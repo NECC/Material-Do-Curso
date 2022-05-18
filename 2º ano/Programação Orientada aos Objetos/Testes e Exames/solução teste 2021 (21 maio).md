@@ -270,9 +270,7 @@ class CasaInteligente {
 
 ## 7
 
-![](Teste_POO_2021.svg)
-
-<!-- https://plantuml-server.kkeisuke.dev/svg/TS_D2i8m30VmUvuYHx_w0ZB6OBjus6bFKDim0sqtcZWGyTqj2YA3dKAItp-GHjHclSS0D_Q456TzOAHufIm0hHLxIKg1Hoe53yRW44kWeuKT0RXWHN3Dde1uN4ztxHG2EUKfLNytwdt11lsd4JpZ1ligNbZAfllftixLe9dJUDe8rl22Xf8lFxu1.svg -->
+![](https://plantuml-server.kkeisuke.dev/svg/TS_D2i8m30VmUvuYHx_w0ZB6OBjus6bFKDim0sqtcZWGyTqj2YA3dKAItp-GHjHclSS0D_Q456TzOAHufIm0hHLxIKg1Hoe53yRW44kWeuKT0RXWHN3Dde1uN4ztxHG2EUKfLNytwdt11lsd4JpZ1ligNbZAfllftixLe9dJUDe8rl22Xf8lFxu1.svg)
 
 ```puml
 @startuml
