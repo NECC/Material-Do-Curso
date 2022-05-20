@@ -1,6 +1,6 @@
 # Teste 20-21
 
-Proposta de Resolucao (Nao está corrijida).
+Proposta de Resolucao
 
 Avaliação: Teste de Programacao Orientada aos Objectos (A) MiEI e LCC - DI/UMinho 21/05/2021
 
@@ -80,6 +80,11 @@ Nao faz sentido, classes abstratas podem implementar metodos.
 ### 2 __Resposta__
 
 (a) e (d) (penultima) sao consistentes. (a) trabalha diretamente com referencias nos getters e setters e (d) faz clones nos getters e setters.
+
+Errado (a), expomos estrutura de dados interna da class.
+
+e) Ultima usa uma estrategia de agregacao.
+
 
 ```java
 public void setConvocados(List<Jogador> conv) {
@@ -270,7 +275,9 @@ class CasaInteligente {
 
 ## 7
 
-![](https://plantuml-server.kkeisuke.dev/svg/TS_D2i8m30VmUvuYHx_w0ZB6OBjus6bFKDim0sqtcZWGyTqj2YA3dKAItp-GHjHclSS0D_Q456TzOAHufIm0hHLxIKg1Hoe53yRW44kWeuKT0RXWHN3Dde1uN4ztxHG2EUKfLNytwdt11lsd4JpZ1ligNbZAfllftixLe9dJUDe8rl22Xf8lFxu1.svg)
+![](Teste_POO_2021.svg)
+
+<!-- https://plantuml-server.kkeisuke.dev/svg/TS_D2i8m30VmUvuYHx_w0ZB6OBjus6bFKDim0sqtcZWGyTqj2YA3dKAItp-GHjHclSS0D_Q456TzOAHufIm0hHLxIKg1Hoe53yRW44kWeuKT0RXWHN3Dde1uN4ztxHG2EUKfLNytwdt11lsd4JpZ1ligNbZAfllftixLe9dJUDe8rl22Xf8lFxu1.svg -->
 
 ```puml
 @startuml
@@ -299,7 +306,10 @@ class CasaInteligente {
     //...
     private static class DeviceNotFound extends Exception {}
     public void remove(String id) throws DeviceNotFound {
-        SmartDevice d = this.devices.stream().filter(s -> s.id().toString().equals(id)).findAny().orElseThrow(DeviceNotFound::new);
+        SmartDevice d = this.devices.stream()
+                                    .filter(s -> s.id().toString().equals(id))
+                                    .findAny()
+                                    .orElseThrow(DeviceNotFound::new);
         this.devices.remove(d);
         this.divisionDevices.values().forEach(c -> c.remove(d));
     }
@@ -326,7 +336,10 @@ public void remove(String id) throws DeviceNotFound {
 
 ```java
 public Iterator<SmartDevice> devicesPorConsumoCrescente() {
-    return this.devices.stream().map(SmartDevice::clone).sorted(Comparator.comparingDouble(SmartDevice::totalConsumo)).iterator();
+    return this.devices.stream()
+                       .map(SmartDevice::clone)
+                       .sorted(Comparator.comparingDouble(SmartDevice::totalConsumo))
+                       .iterator();
 }
 
 //Comparator.comparingDouble(SmartDevice::totalConsumo) ≡ (d1,d2) -> Double.compare(d1.totalConsumo(),d2.totalConsumo())
@@ -374,7 +387,11 @@ class CasaInteligente {
         String id;
         Collection<SmartDevice> devices;
 
-        double totalConsumo() {return devices.stream().map(SmartDevice::totalConsumo).reduce(0.0,Double::sum);}
+        double totalConsumo() {
+            return devices.stream()
+                          .map(SmartDevice::totalConsumo)
+                          .reduce(0.0,Double::sum);
+        }
     }
 
     public String divisaoMaisEconomica() {
@@ -432,9 +449,9 @@ class SmartBulbDimmable extends SmartDevice {
 ```java
 public void alteraInfo(Consumer<SmartBulbDimmable> bd) {
     this.devices()
-            .filter(v -> v instanceof SmartBulbDimmable)
-            .map(v -> (SmartBulbDimmable)v)
-            .forEach(bd);
+        .filter(v -> v instanceof SmartBulbDimmable)
+        .map(v -> (SmartBulbDimmable)v)
+        .forEach(bd);
 }
 ```
 
@@ -445,9 +462,24 @@ bd = s -> s.changeLightIntensity(.25);
 
 ## 13
 
+$∑{#D:D ∈ division} ≟ #{d:d ∈ devices}$
+
+If the sum of the sizes of the divisions equals the number of distinct devices, then we know no device is in more than one division.
+
+Imagine we have 10 different devices and 2 divisions, 1 with 5 devices and another with 6 devices. Then we know for sure one device must be in 2 divisions because we do not have 11 different devices. The argument is analogous to the [Pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle).
+
 ```java
 public boolean apenasNumaDivisao() {
-    return this.devices.stream().distinct().count() == this.divisionDevices.values().stream().map(Collection::size).reduce(0,Integer::sum);
+    return this.devices
+                .stream()
+                .distinct()
+                .count()
+                == 
+            this.divisionDevices
+                .values()
+                .stream()
+                .map(Collection::size)
+                .reduce(0,Integer::sum);
 }
 ```
 

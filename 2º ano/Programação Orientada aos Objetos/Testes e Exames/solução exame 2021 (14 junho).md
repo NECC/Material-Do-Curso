@@ -1,4 +1,10 @@
+# Exame 20-21
 
+Proposta de Resolucao
+
+Avaliação: Exame de Programação Orientada aos Objectos (A) MiEI e LCC - DI/UMinho 14/06/2021
+
+by [Alef Keuffer](https://github.com/Alef-Keuffer)
 
 ## 1 ultima
 
@@ -147,7 +153,7 @@ class SpotifyPOO {
             seu nome e a informacao dos podcasts que tem subscritos. */
         String email; //not final (think about other services that allow you to change email), but must be unique.
         String username;
-        Set<String> podcasts; // names of the podcasts its subscribed to
+        Set<Podcast> podcasts; // names of the podcasts its subscribed to
     }
     Map<String,Utilizador> users; // maps each user email to user
 
@@ -300,16 +306,17 @@ public Map<Integer, List<Episodio>> episodiosPorClassf() {
 
 ## 11
 
-private List<String> conteudo; //corresponde ao texto que é dito
-//quando se reproduz o episodio
+`private List<String> conteudo;` corresponde ao texto que e dito quando se reproduz o episodio.
 
 
 ```java
 public class Episodio implements Playable {
     //...
-    public void play() {conteudo.stream().forEach().(System.media::print);}
+    public void play() {conteudo.stream().forEach(System.media::print);}
 }
 ```
+
+Posso concatenar tudo e fazer print de uma vez so.
 
 ## 12
 
@@ -326,7 +333,7 @@ class EpisodioVideo extends Episodio {
 
     @Override
     public void play() {
-        super.play();
+        super.play(); // deve ser depois. mas nao podemos usar super entao.
         video.forEach(System.media::print);
     }
 }
@@ -354,3 +361,39 @@ class EpisodioVideo extends Episodio {
 
 ## 13
 
+Considere que se pretende criar agora
+a no¸c˜ao de UtilizadorPremium, que ´e um utilizador que, enquanto reproduz um epis´odio,
+possui a capacidade de colocar os outros epis´odos que pretende reproduzir numa lista de
+espera
+
+
+```java
+public void playEpisodio(String idPodCast, String nomeEpisodio) throws AlreadyPlayingException {
+    Episodio e = podcasts
+        .stream()
+        .filter(idPodCast::equals)
+        .map(Episodio::getEpisodios)
+        .flatMap(Collection::stream)
+        .filter(e -> nomeEpisodio.equals(e.getNome()))
+        .findAny()
+        .get(); //throws
+}
+```
+
+## 14
+
+```java
+public void gravaInfoEpisodiosParaTocarMaisTarde(String fich) throws IOException {
+    PrintWriter writer = new PrintWriter(fich);
+    users.values()
+         .stream()
+         .filter(u -> u instanceof UtilizadorPremium)
+         .map(u -> (UtilizadorPremium) u)
+         .forEach(u -> {
+             writer.write(u.getNome() + "\n");
+             u.waitQueue.forEach(e -> writer.write(e.getNome() + " - " + e.getDuracao() + "\n"));
+         });
+    writer.flush();
+    writer.close();
+}
+```
