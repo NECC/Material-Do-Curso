@@ -362,10 +362,9 @@ class EpisodioVideo extends Episodio {
 ## 13
 
 Considere que se pretende criar agora
-a no¸c˜ao de UtilizadorPremium, que ´e um utilizador que, enquanto reproduz um epis´odio,
-possui a capacidade de colocar os outros epis´odos que pretende reproduzir numa lista de
+a noção de UtilizadorPremium, que é um utilizador que, enquanto reproduz um episódio,
+possui a capacidade de colocar os outros episódos que pretende reproduzir numa lista de
 espera
-
 
 ```java
 public void playEpisodio(String idPodCast, String nomeEpisodio) throws AlreadyPlayingException {
