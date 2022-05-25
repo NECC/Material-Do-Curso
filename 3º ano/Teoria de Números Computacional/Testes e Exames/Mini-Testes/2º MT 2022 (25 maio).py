@@ -23,7 +23,7 @@ p= 17
 a= 5
 # Então o número dos menores resíduos de ka maiores que p/2, com k entre 1 e (p-1)/2 é igual a ___.
 
-[Mod(k*a,p) for k in range(1,(p-1)/2+1) if Mod(k*a,p)>p//2] # == [10,15,13]
+len([Mod(k*a,p) for k in range(1,(p-1)/2+1) if Mod(k*a,p)>p//2]) # == [10,15,13]
 
 # Pergunta 3
 
