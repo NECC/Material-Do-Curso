@@ -1,0 +1,127 @@
+Exame Recurso 19 Junho 2019
+
+Questão 5
+
+2.
+
+let g ≡ λx. λy.<x + y, x − y>
+in listcase ((3 ∗ 3) :: 4 :: nil) of ( g 0 0, λh. λt. g h (g 2 1).2)
+
+->
+
+(λg.listcase ((3 ∗ 3) :: 4 :: nil) of ( g 0 0, λh. λt. g h (g 2 1).2))  (λx. λy.<x + y, x − y>)
+
+->
+
+listcase ((3 ∗ 3) :: 4 :: nil) of ( (λx. λy.<x + y, x − y>) 0 0, λh. λt. (λx. λy.<x + y, x − y>) h ((λx. λy.<x + y, x − y>) 21).2)
+
+->
+
+listcase (9 :: 4 :: nil) of ( (λx. λy.<x + y, x − y>) 0 0, λh. λt. (λx. λy.<x + y, x − y>) h ((λx. λy.<x + y, x − y>) 21).2)
+
+
+->
+
+(λh. λt. (λx. λy.<x + y, x − y>) h ((λx. λy.<x + y, x − y>) 2 1).2) 9 (4 :: nil)
+
+->
+
+(λt. (λx. λy.<x + y, x − y>) 9 ((λx. λy.<x + y, x − y>) 2 1).2)  (4 :: nil)
+
+->
+
+(λx. λy.<x + y, x − y>) 9 ((λx. λy.<x + y, x − y>) 2 1).2
+
+->
+
+(λy.<9 + y, 9 − y>) ((λx. λy.<x + y, x − y>) 2 1).2
+
+->
+
+(λy.<9 + y, 9 − y>) ((λy.<2 + y, 2 − y>)1 ).2
+
+->
+
+(λy.<9 + y, 9 − y>) (<2 + 1, 2 − 1>).2
+
+->
+
+(λy.<9 + y, 9 − y>) (<3,1>).2
+
+->
+
+(λy.<9 + y, 9 − y>) 1
+
+->
+
+<9 + 1, 9 − 1>
+
+<10, 8>
+
+Questão 6
+
+1.
+
+data Arv a b = Vazia | Folha a | Nodo b (Arv a b) (Arv a b)
+
+
+<exp> :: = ... | empty 
+               | leaf <exp> 
+               | node <exp> <exp> <exp>
+               | arvcase <exp> of (<exp>, <exp>, <exp>)
+
+
+<type> :: = ... | Arv <type> <type>
+
+
+
+regras de tipo:
+
+
+_____________________
+Γ |- empty : Arv A B
+
+
+
+    Γ |- e : A
+----------------------
+Γ |- leaf e : Arv A B
+
+
+
+Γ |- e : B   Γ |- e1 : Arv A B   Γ |- e2 : Arv A B
+--------------------------------------------------
+        Γ |- node e e1 e2 : Arv A B
+
+
+Γ |- e : Arv A B   Γ |- e1 : θ   Γ |- e2 : A -> θ   Γ |- e2 : B -> Arv A B -> Arv A B-> θ 
+-----------------------------------------------------------------------------------------
+                    Γ |- arvcase e of (e1, e2, e3) : θ
+
+
+
+regras de avaliação CBN:
+
+
+<cfm> ::= ... | empty | leaf <exp> | node <exp> <exp> <exp>
+
+
+
+    e => empty  e1 => z
+----------------------------
+arvcase e of (e1,e2,e3) => z
+
+
+
+    e => leaf a  e2 a  => z
+----------------------------
+arvcase e of (e1,e2,e3) => z
+
+
+e => node a b c    e2 a b c  => z
+---------------------------------
+arvcase e of (e1,e2,e3) => z
+
+2.
+
+letrec soma = λx. arvcase x of (0, λa.a, λb.λe.λd. b + (soma e) +(soma d))

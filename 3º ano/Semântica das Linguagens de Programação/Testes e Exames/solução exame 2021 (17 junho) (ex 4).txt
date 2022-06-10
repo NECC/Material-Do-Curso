@@ -1,0 +1,88 @@
+Exame Recurso 17 Junho 2021
+
+Questão 4
+1.
+
+(λy.λf. sumcase (f y y) of (λx. 30, λx. x + x)) ((λu. u + u) 7) (λx.λz. @2 (x + z))
+
+->
+
+(λy.λf. sumcase (f y y) of (λx. 30, λx. x + x)) (7 + 7) (λx.λz. @2 (x + z))
+
+->
+
+(λy.λf. sumcase (f y y) of (λx. 30, λx. x + x)) 14 (λx.λz. @2 (x + z))
+
+->
+
+(λf. sumcase (f 14 14) of (λx. 30, λx. x + x)) (λx.λz. @2 (x + z))
+
+->
+
+sumcase ((λx.λz. @2 (x + z)) 14 14) of (λx. 30, λx. x + x)
+
+->
+
+sumcase ((λz. @2 (14 + z)) 14) of (λx. 30, λx. x + x)
+
+->
+
+sumcase (@2 (14 + 14)) of (λx. 30, λx. x + x)
+
+->
+
+sumcase (@2 28) of (λx. 30, λx. x + x)
+
+->
+
+(λx. x + x) 28
+
+->
+
+28 + 28
+
+->
+
+56
+
+
+2.
+
+g : Int → Int |- let f ≡ λ <x,y>.λz.(x + y) ∗ z in f <5, 6> (g 7) : Int
+
+1. g : Int → Int, f: Int x Int -> Int -> Int |- f <5, 6> (g 7) : Int
+
+    1. g : Int → Int, f: Int x Int -> Int -> Int |- f <5, 6>  : Int -> Int
+
+        1. g : Int → Int, f: Int x Int -> Int -> Int |- f : Int x Int -> Int -> Int
+
+        2. g : Int → Int, f: Int x Int -> Int -> Int |- <5, 6>  : Int x Int
+
+            1. g : Int → Int, f: Int x Int -> Int -> Int |- 5 : Int
+
+            2. g : Int → Int, f: Int x Int -> Int -> Int |- 6 : Int
+
+
+    2. g : Int → Int, f: Int x Int -> Int -> Int |- (g 7) : Int
+
+        1. g : Int → Int, f: Int x Int -> Int -> Int |- g : Int -> Int
+
+        2. g : Int → Int, f: Int x Int -> Int -> Int |- 7 : Int
+
+
+
+
+2. g :  Int → Int |- λ <x,y>.λz.(x + y) ∗ z : Int x Int -> Int -> Int
+
+    1. g :  Int → Int, <x,y> :Int x Int |- λz.(x + y) ∗ z : Int -> Int
+
+        1. g :  Int → Int, <x,y> :Int x Int, z: Int |- (x + y) ∗ z : Int
+
+            1. g :  Int → Int, <x,y> :Int x Int, z: Int |- (x + y) : Int
+
+                1. g :  Int → Int, <x,y> :Int x Int, z: Int |- x : Int
+
+                2. g :  Int → Int, <x,y> :Int x Int, z: Int |- y : Int
+
+            2. g :  Int → Int, <x,y> :Int x Int, z: Int |- z : Int
+
