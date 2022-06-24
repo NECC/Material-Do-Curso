@@ -1,0 +1,419 @@
+// Aula T15 (27.Nov.2020)
+
+/*
+Grafos (TMD ?, EES )
+
+Aplicações: 
+   mapas: Vertices são cruzamentos
+          Arestas  são ruas a ligar cruzamentos
+
+Vertices {0,1,...,N-1}
+x está relacionado com y  : existe uma aresta x ----> y
+
+Grafos não orientados (a aresta x-->y é igual a  y-->x)
+
+Grafos pesados (associado a cada aresta existe um peso)
+
+Representação de Grafos
+*/
+
+#define V 100
+
+typedef int GrafoM[V][V]; // grafos em matrizes de adjacência
+    // se GrafoM g, então g[2][5] == 3 significa que 
+    //                        existe uma aresta com origem 2
+    //                                              destino 5
+    //                                              peso 3
+    //                    g[3][6] == 0 não existe aresta de 3 para 6
+
+
+// Aula T16 (30.Nov.2020)
+
+typedef struct aresta {
+	int destino, peso;
+	struct aresta *prox;
+} * ListaAdj; 
+
+typedef ListaAdj GrafoL [V]; // grafo em Listas de Adjacência
+
+
+// contaArestas :: Grafo -> Int
+// para grafos orientados
+
+int contaArestasM (GrafoM g) {
+    int o, d, r = 0;
+    for (o=0; o<V; o++)
+    	for (d=0; d<V; d++)
+    		if (g[o][d] != 0) r++;
+    return r;
+}
+
+// tamanho do input (V,E) em que V número de vert, E é o numero de Arestas
+//T_contaArestasM (V,E) = Theta (V^2)
+
+int contaArestasL (GrafoL g) {
+    int o, r=0;
+    ListaAdj x;
+    for (o=0; o<V; o++)
+        // x = g[o];
+    	// while (x != NULL) { r++; x = x->prox; }
+    	for (x = g[o]; x!=NULL; x = x->prox) r++;
+    return r;
+}
+
+// T_contaArestasL (V,E) = Theta (V + E)
+
+
+// -------------------------------
+//  (outDegree) 
+//  grau de saida de um vertice é o numero de arestas que têm esse vertice como origem
+//  grau de saida de um grafo: maior número de arestas com uma origem em comum
+
+int outDegreeM (GrafoM g) {
+   int o, d, r = 0, t;
+    for (o=0; o<V; o++){
+    	t = 0;
+    	for (d=0; d<V; d++)
+    		if (g[o][d] != 0) t++;
+    	if (t>r) r = t;
+    }
+    return r;
+}
+
+int outDegreeL (GrafoL g) {
+    int o, r=0, t;
+    ListaAdj x;
+    for (o=0; o<V; o++){
+    	t=0;
+    	for (x = g[o]; x!=NULL; x = x->prox) t++;
+        if (t>r) r=t;
+    }
+    return r;
+}
+
+-- T_outDegreeM (V,E) = Theta (V^2)
+-- T_outDegreeL (V,E) = Theta (V + E)
+
+// Aula T17 (4.Dez.2020)
+
+Procura de adjacente 
+
+int haArestaM (GrafoM g, int o, int d) {
+    return (g[o][d] != 0);
+}
+
+T_haArestaM (V,E) = Theta (1)
+
+int haArestaL (GrafoL g, int o, int d) {
+    ListaAdj x;
+    for (x = g[o]; x!=NULL && x->destino!=d; x = x->prox)
+        ;
+    return (x!=NULL);
+}
+
+T_haArestaL (V,E) = O (V)
+
+--------------------------
+
+int procura (GrafoL g, int o, int d) {
+    int v[V]; int i;
+
+    for (i=0; i<V; i++) v[i]=0;
+    
+    return (procuraAux (g,o,d,v));
+}
+
+
+int procuraAux (GrafoL g, int o, int d, int vis []) { 
+    ListaAdj x;
+    
+    vis [o] = 1; // nunca mais inicio uma procura a partir de o
+    if (o == d) return 1;
+    for (x = g[o]; x!=NULL; x = x->prox) {
+        // existe uma aresta desde o até x->destino com peso x->peso
+        if (vis [x->destino] == 0   // ainda não tentei a partir daqui
+            && procuraAux (g, x->destino, d, vis) ) return 1;
+    }
+    return 0;
+}
+
+T_haCaminho (V,E) = V + T_haCaminhoAux (V,E) = V + V + E = O (V+E)
+
+T_haCaminhoAux (V,E) = O (V + E)
+
+
+// Aula T18 (7.Dez.2020)
+
+int travessiaDepthFirst (GrafoL g, int o) {
+    // retorna o número de vértices alcançáveis a partir de o
+    int v[V]; int i;
+
+    for (i=0; i<V; i++) v[i]=0;
+    
+    return (travessiaAux (g,o,v));
+}
+
+
+int travessiaAux (GrafoL g, int o, int vis []) { 
+    int r;
+    ListaAdj x;
+    
+    vis [o] = 1; // nunca mais inicio uma procura a partir de o
+    r=1;
+    for (x = g[o]; x!=NULL; x = x->prox) {
+        // existe uma aresta desde o até x->destino com peso x->peso
+        if (vis [x->destino] == 0)   // ainda não tentei a partir daqui
+           r += travessiaAux (g, x->destino, vis) ;
+    }
+    return r;
+}
+
+---------------------- 
+
+Algoritmos baseados em Orla
+
+
+Vertices do grafo estão divididos em 3 zonas
+
+#define Branco   0
+#define Cinzento 1
+#define Preto    2
+
+Não visitados (Branco)
+Orla          (Cinzento)
+Visitados     (Preto)
+
+
+Invariante :
+   Todos os nodos na orla são adjacentes a algum vértice visitado 
+       (há uma excepção...)
+
+
+// inicializar todos os vértices a não visitados (Branco)
+// inicializar a orla ()
+
+while (houver candidatos) {
+    // escolher vertice v da orla (cinzento)
+    // v passa para os visitados (preto)
+    for (x in adjacentes (v)) 
+        acrescentar x à orla
+}
+
+int TravessiaBreadthFirst (GrafoL g, int o, int alc[], int pais []){
+    // retorna o número de vértices alcançáveis a partir de o
+    // preenche o array alc com 1 se o vert for alc de o
+    // preenche o array pais com a árvore produzida
+
+    int cor [V], i, tamOrla, r;
+    int orla[V], inicioO, fimO; // Queue orla; 
+    int v;
+    ListaAdj x;
+
+    r = 0;
+    for (i=0; i<V; i++) { alc[i] = 0; pais [i] = -2; }
+
+    for (i=0; i<v; i++) cor [i] = Branco;
+    tamOrla = 0;
+    inicioO = fimO = 0 // orla = Queue Vazia
+
+    cor [o] = Cinzento;
+    orla [fimO++] = o; // enqueue (orla,o);
+    tamOrla = 1;
+    pais[o] = -1;
+
+    while (fimO != inicioO) { // (tamOrla > 0) {
+        // escolher vertice v da orla (cinzento)
+        v = orla [inicioO ++] // v = dequeue (orla);
+        cor [v] = Preto;
+        tamOrla--;
+        r++;
+        alc [v] = 1;
+        for (x=g[v]; x!=NULL; x = x->prox) {
+            // existe uma aresta de v e destino x->destino
+            if (cor[x->destino] == Branco) {
+               orla[fimO++] = x->destino; // enqueue (orla, x->destino)
+               cor [x->destino] = Cinzento;
+               tamOrla++;
+               pais [x->destino] = v;
+            }
+        }
+    }
+    return r;
+}
+
+// Aula T19 (11.Dez.2020)
+
+-- Caminho mais curto entre dois vértices Shortest Path
+-- 
+
+// Aula T20 (14.Dez.2020)
+
+int DijkstraSP (GrafoL g, int o, int alc[], int pais [], int W []){
+    // retorna o número de vértices alcançáveis a partir de o
+    // preenche o array alc com 1 se o vert for alc de o
+    // preenche o array pais com a árvore produzida
+
+    int cor [V], i, tamOrla, r;
+    ?? orla
+    int v;
+    ListaAdj x;
+
+    r = 0;
+    for (i=0; i<V; i++) { 
+       alc[i] = 0; pais [i] = -2; cor [i] = Branco;
+    }
+    
+    tamOrla = 0;
+    
+
+    cor [o] = Cinzento;
+    W [o] = 0;
+    // adicionar o à orla
+    tamOrla = 1;
+    pais[o] = -1;
+
+    while (tamOrla > 0) {
+        // escolher vertice v da orla (cinzento) ????
+        ???? 
+        cor [v] = Preto;
+        tamOrla--;
+        r++;
+        alc [v] = 1;
+        for (x=g[v]; x!=NULL; x = x->prox) {
+            // existe uma aresta de v e destino x->destino com peso x->peso
+            if (cor[x->destino] == Branco) {
+               // x->destino é não visitado
+               // adicionar x->destino à orla ?????
+               cor [x->destino] = Cinzento;
+               tamOrla++;
+               pais [x->destino] = v;
+               W [x->destino] = W [v] + x->peso;
+            }
+            else if (cor [x->destino] == Cinzento && W [v] + x->peso < W[x->destino]) {
+               W [x->destino] = W [v] + x->peso;
+               pais [x->destino] = v;
+               // actualizar a ordem na orla
+            }
+        }
+    }
+    return r;
+}
+
+
+T_DiSP (V,E) = V + T_Add + V * T_Sel + V * T_Add + (E-V) * T_Act
+             = V + T_Add + V * T_Sel + V * T_Add + E * T_Act - V*T_Act
+
+Alternativas para a orla
+1. Orla = array de vertices ordenado por W
+   T_Add = O (V)
+   T_Sel = O (1)
+   T_Act = O (V)
+
+   T_Dis (V,E) = V + V + V*1 + V*V + E*V - V*V = O (V + E*V)
+
+2. Orla = array desordenado
+   T_Add = O(1)
+   T_Sel = O(V)
+   T_Act = O(1)
+
+   T_Dis = V + 1 + V*V + V*1 + E*1 -V*1 = V + V^2 + V*E = O(V^2 + V*E)
+
+3. Orla = Min-heap (ordenada por W)
+   T_Add = log N
+   T_Sel = log N
+   T_Act = log N
+
+4. Fibonnaci Heap 
+   T_Add = 1 (amortizada)
+   T_Sel = log N
+   T_Act = 1 (amortizada)
+
+// Aula T21 (18.Dez.2020)
+
+Algoritmo de Floyd-Warshall
+
+Dado um grafo g, calcular um grafo g+ em que 
+existe uma aresta de a para b com peso p sse, em g, 
+   o caminho mais curto de a para b tem peso p
+
+o que é um caminho?
+   sequência de arestas "encadeadas"
+
+   1. caminho simples (só com uma aresta)
+   2. caminhos com vértices intermédios
+
+   g+ = g;
+   for (i=0; i < V; i++)
+       // existe a --> b com peso p em g+ sse
+       // o caminho mais curto de a até b 
+       // usando apenas vertices <i como intermédios  
+       // tem custo p
+       for (a in antecessores (i))
+           for (b in sucessores (i))
+              acrescentar info da aresta (a,b)
+       
+
+        a ----------->  i ---------> b
+               p1             p2
+
+T_warshall (V,E) = V^2  + V * V * V = V^2 + V^3 = Theta (V^3)
+                   init
+
+g: 
+
+0 ----  2 ----> 4
+1 ----  3 ----> 3
+2 ----  4 ----> 1
+2 ----  6 ----> 4
+3 ----  5 ----> 0
+3 ---- -2 ----> 2
+4 ---- -1 ----> 1
+
+
+
+3) g+ (com 0,1,2 como vértices intermédios)
+   antecessores de 2: 3 (-2)
+   sucessores 2     : 1 (4), 3 (7), 4 (6)
+      arestas a acrescentar 3->1 (2), 3->3 (5), 3->4 (4)
+
+   0   1   2   3   4
+0  -   -   -   -   2
+1  -   -   -   3   -
+2  -   4   -   7   6
+3  5   2  -2   5   4
+4  -  -1   -   2   -
+
+2) g+ (com 0,1 como vértices intermédios)
+   antecessores de 1: 2 (4) e 4 (-1)
+   sucessores de 1  : 3 (3)
+      arestas a acrescentar 2->3 (7) 4->3 (2)
+
+   0   1   2   3   4
+0  -   -   -   -   2
+1  -   -   -   3   -
+2  -   4   -   7   6
+3  5   -  -2   -   7
+4  -  -1   -   2   -
+
+1) g+ (com 0 como vértice intermédio)
+   antecessores de 0: 3 (5) 
+   sucessores de 0  : 4 (2)
+
+   0   1   2   3   4
+0  -   -   -   -   2
+1  -   -   -   3   -
+2  -   4   -   -   6
+3  5   -  -2   -   7
+4  -  -1   -   -   -
+
+
+0) g+ (inicial) (sem vértices intermédios)
+
+   0   1   2   3   4
+0  -   -   -   -   2
+1  -   -   -   3   -
+2  -   4   -   -   6
+3  5   -  -2   -   -
+4  -  -1   -   -   -
+
+

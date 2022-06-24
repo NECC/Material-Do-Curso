@@ -1,0 +1,224 @@
+Aula 1 (9.Out.2020)
+
+Avaliação por frequência
+   1 teste no final (Janeiro) com matéria toda (70%) não há nota minima
+   6 mini-avaliações ao longo do semestre (30%)
+
+
+Programa
+
+PI : programação imperativa (pythontutor)
+
+AeC : (introdução) à análise de algoritmos imperativos
+   1. Análise de Correcção (maioritariamente nas aulas tps)
+      saber se um programa faz o que deve.
+   2. Análise de complexidade de algoritmos
+      quanto custa (memória, largura de banda, watts, tempo de execução)
+
+   3. Análise de algoritmos concretos
+      (ordenações, dicionarios, grafos)
+
+
+1. Análise de correcção.
+
+Especificações : predicados que caracterizam os estados inicial e final
+
+{P} S {Q} : triplo de Hoare
+    exemplo {x > y} x=x+y ; y=x-y ; x=x-y {y > x}
+            ---P--- ----------S---------- ---Q---
+
+P: (pré-condição) predicado que caracteriza os (possíveis) estados iniciais
+Q: (pós-condição) predicado que caracteriza o estado final
+S: Programa
+
+Lógica de Hoare
+
+Noção de validade.
+
+t1: {x > y} x=x+y ; y=x-y ; x=x-y {y > x}   (é válida)
+t2: {x > y} y = 2*x {y > x}                 (não é válida)
+
+{P} S {Q} é válida se e só se
+partindo de qualquer estado em que se verifique P
+depois do programa S terminar
+chega-se a um estado em que Q se verifica.
+
+Aula T2 (12.Out.2020)
+
+Possibilidade de Mini-avaliações online (e nota minima no teste)
+
+Triplo é não válido: 
+Se existe um estado inicial, que verifica P
+e que, partindo desse estado, após executar o programa, atinge-se um estado em que Q não é válido.
+
+Para mostrar que t2 não é válido
+x : -3   y : -5  (x>y? Sim)
+após executar o programma, a que estado chegamos?
+x : -3   y = -6  (y > x ? Não)
+
+t1 não é válida
+x : 4 y : 2  (x>y é verdadeiro)
+executar o programa
+após x=x+y   x:6 y:2
+após y=x-y   x:6 y:4
+após x=x-y   x:2 y:4 (y>x? verdadeiro)
+
+Sistema de prova. formas de provar que formulas são válidas a partir de outras.
+
+Por exemplo A A=>B então B (regra de inferência).
+
+Definir a linguagem de programação (imperativa) que vamos usar.
+1. Atribuição x = E, por exemplo (x = 3, x = 2*y, x = x+1)
+   significado de x = 4 + x
+   a) calcular o valor de 4+x
+   b) colocar o resultado desse cálculo em x
+2. Sequência  A ; B, por exemplo x = 2*y ; x = x+1
+   significado de A;B
+   a) executa-se A
+   b) a partir do estado resultante, executa-se B
+3. Condicional if c A else B
+   significado de if c A else B
+   a) calcular o valor de c (usando o estado inicial)
+   b) se c for verdadeiro executar A a partir do estado inicial
+   c) se c for falso      executar B a partir do estado inicial
+4. Ciclo    while c A
+   significado de while c A
+   a) calcular o valor de c no estado inicial
+   b) se c for falso, termina e não muda o estado
+   c) se c for verdadeiro executo A e volto ao inicio com o estado modificado
+
+1. Regra da atribuição
+
+   P => Q [x\E] 
+  ----------------------
+   {P} x = E {Q}         (conclusão)
+
+  a [x\E] significa a expressão a, substituindo todas as ocorrências de x por E.
+  Por exemplo (x + y) [x\(3+z)] = ((3+z)+y)
+
+  {???} x = 4+y {x > 10}
+  Usando a regra da atribuição 
+  ??? => (x > 10) [x\(4+y)] 
+         ((4+y) > 10)
+         y>6
+
+2. Regra da sequência
+
+  {P} A {R}   {R} B {Q}
+  -------------------------
+  {P} A ; B {Q}
+
+3. Regra da Condicional
+
+     {P && c} A {Q}    {P && not c} B {Q}
+            -------------------------
+            {P} if c A else B {Q}
+
+Aula T3 (16.Out.2020)
+
+3'. Regra da condicional
+
+             {P && c} A {Q}    (P && not c) => Q
+                  -------------------------
+                       {P} if c A {Q}
+
+    Exemplo: {x == x0 && y == y0} if (x<y) x = y {x == max (x0,y0)}
+             
+4. Ciclos 
+
+    Invariante é um predicado que
+    a) é válido em todos os estados em que uma iteração se inicia
+       a.1) (establecimento do invariante)
+            I  é válido no inicio (antes da 1ª iteração)
+            P => I
+       a.2) (preservação)
+            Se I é válido e estamos em condições de executar uma 
+            iteração, após executar uma iteração I continua válido.
+            {I && c}  A {I}
+    b) (utilidade)
+       Quando o ciclo termina, garante a pós-condição
+       (I && not c) => Q
+
+                 P => I   {I && c} A {I}  (I && not c) => Q
+                          ----------------------
+                            {P} while c A {Q}
+      
+      Exemplo: {x == x0} while(i<x){ i=i+1; r = r*i;} { r == x0!}
+
+      "Descoberta" do invariante
+
+      Exemplo de execução (x0 == 5)
+          x  | i  | r
+          ---+----+----
+      ini  5 | 0  |   1 = 0!
+           5 | 1  |   1 = 1!
+           5 | 2  |   2 = 2!
+           5 | 3  |   6
+           5 | 4  |  24
+           5 | 5  | 120
+
+      I : r == i! && i<=x && x == x0 
+
+          i<=x && i>=x && x == x0 => i == x0!
+
+Aula T4 (19.Out.2020)
+
+    Correcção até aqui diz respeito a programas que terminam.
+    Correcção PARCIAL
+
+    Correcção TOTAL = Correcção parcial + Terminação
+
+    {P} S {Q}    S está parcialmente correcto face a (P,Q)
+
+    [P] S [Q]   S está totalmente correcto face a (P,Q)
+
+    Terminação: 
+       1. x = E termina sempre
+       2. A ; B termina sempre que A e B terminarem
+       3. if c A else B termina sempre que A termina assumindo c e   B termina assumindo not c
+       4. while c S termina quando ????
+
+    Sistema de inf para correcção total
+
+    1. (Atribuição)
+          P => Q [x\E]
+    ----------------------
+         [P] x = E [Q]
+
+    2. Sequência
+
+        [P] A [R]   [R] B [Q] 
+    ------------------------
+        [P] A ; B [Q]
+
+    3. Condicional
+
+        [P && c] A [Q]   [P && not c] B [Q]
+          ----------------------------
+              [P] if c A else B [Q]
+
+    4. Ciclo
+       noção de VARIANTE: 
+          V: expressão inteira envolvendo variáveis do programa
+          Propriedades:
+             1. V >= 0
+             2. V decresce (estritamente) em cada iteração 
+
+           V0 > V1 > V2 > ... > VN 
+
+                         P => I  
+                         (I && c) => (V >= 0) 
+                         [I && c && V == v0] S [I && V < v0] 
+                         (I && not c) => Q
+                     ----------------------------
+                        [P] while c S [Q]
+
+        [x > 0] while (x != 1)
+                    if (x % 2 == 0) x = x/2; else x = x*3 + 1 
+        [x == 1]
+
+        Invariante:   TRUE
+        Variante:   (x * 3) ^ 2 ???? (hotpo)   
+
+
+        for (i=0; i<N; i++) A termina. Variante: N-i

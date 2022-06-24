@@ -1,0 +1,742 @@
+Aula T5 (23.Out.2020)
+
+pre: forall 0<=i<N A[i] == a_i   &&
+     forall 0<=i<N-1 a_i <=a_i+1 && 
+     x == x_0
+
+pos: forall 0<=i<N A[i] == a_i &&
+     ((r == -1 && forall 0<=i<N a_i!=x_0) 
+      || 
+      (0<=r<N && x_0 == a_r))
+
+
+int procura1 (int x, int A[], int N) {
+	int i, r;
+
+    r=-1;
+    for (i=0; r==-1 && i<N; i++)
+        if (A[i] == x) r = i;
+
+	return r;
+}
+
+int procura2 (int x, int A[], int N) {
+	int i, r;
+
+    r=-1;
+    for (i=0; i<N; i++)
+        if (A[i] == x) r = i;
+
+	return r;
+}
+
+
+
+int procura3 (int x, int A[], int N) {
+	int i, r;
+
+    r=-1;
+    for (i=0; r==-1 && i<N && A[i] <= x; i++)
+        if (A[i] == x) r = i;
+
+	return r;
+}
+Custos: 
+   tempo
+   memória
+   energia (green computing)
+   ...
+
+Análise de complexidade (análise do tempo de execução de um programa)
+
+
+--------------
+Quanto custa executar procura1?
+Depende :)
+
+Depende de:
+   1. Tamanho do input 
+      (nº mínimo de bits necessários para 
+      representar o input)
+
+      (1 + N + 1) * nº de bits usado para rep int
+
+      Tamanho do input é o nº de eltos do array A.
+
+      T (N) = ...  N ... 
+
+
+Aula T6 (26.Out.2020)
+
+   2. Valores do input
+      Analisando casos
+      a) Melhor Caso 
+      b) Pior   Caso 
+      c) Análise do caso médio
+
+   3. Maquina 
+
+
+
+Exemplo: Custo de executar
+
+      r=-1;
+      for (i=0; r==-1 && i<N; i++)
+        if (A[i] == x) r = i;
+
+   sabendo que:
+   1. Tamanho do input (tamanho do array) N
+   2. Melhor caso (A[0] == x)
+   3. 
+      atribuiçao       c1
+      comparação       c2
+      acesso ao array  c3
+      incremento       c4
+      &&               c5
+
+   T (N) = c1 + c1 + c2 + c5 + c2 + c2 + c3 + c1 + c4 + c2 
+           + c5 
+         = K1
+           where K1 = c1 + c1 + c2 + c5 + c2 + c2 + c3 + c1 + c4 + c2 
+           + c5
+   -------------------------------------------
+
+   No pior caso (forall 0<=i<N A[i]!=x)
+
+   T (N) = c1 + c1 + (2*c2+c5 + c2+c3 + c4) * N + 2*c2+c5 
+         = K1 + K2 * N
+           where K1 = c1 + c1 + 2*c2+c5
+                 K2 = 2*c2+c5 + c2+c3 + c4
+
+----------------------------------------------------
+Análise do procura3 (procura num array ordenado)
+
+int procura3 (int x, int A[], int N) {
+	int i, r;
+
+    r=-1;
+    for (i=0; r==-1 && i<N && A[i] <= x; i++)
+        if (A[i] == x) r = i;
+
+	return r;
+}
+
+1. Tamanho do input: tamanho do array A
+2. Valores do input 
+   Melhor caso: A[0] > x
+
+   T(N) = K1
+
+   Pior Caso: (forall 0<=i<N  A[i] <= x i.e. A[N-1] <= x
+
+   T(N) = K1 + K2 * N
+
+Aula T7 (30.Out.2020)
+
+Análise de tempo médio
+
+Enumerar todas as possíveis execuções do programa
+
+(analise do numero de acessos ao array)
+
+int procura3 (int x, int A[], int N) {
+  int i, r;
+
+    r=-1;
+    for (i=0; r==-1 && i<N && A[i] <= x; i++)
+        if (A[i] == x) r = i;
+
+  return r;
+}
+
+Caso   (c)         |  Nº de Acessos ao array  | Probabilidade
+-------------------+--------------------------+----
+Melhor (x<A[0])    | 1                        | (1-p) * 1/N
+x == A[0]          | 2                        | p * 1/N
+x > A[0] && x <A[1]| 3                        | (1-p) * 1/N
+x ==A[1]           | 4                        | p * 1/N
+x>A[1]  && x<A[2]  | 5                        |
+...                | ...                      | 
+Pior (x>=A[N-1])   | N * 2                    |
+---------
+
+Custo Médio = sum (c) Custo (c) * prob (c)
+            = sum (cimpar) ... + sum (cpar) ...
+            = 
+            ~ N/2
+
+int procura1 (int x, int A[], int N) {
+  int i, r;
+
+    r=-1;
+    for (i=0; r==-1 && i<N; i++)
+        if (A[i] == x) r = i;
+
+  return r;
+}
+
+Assunções: valores do array A e de x são aleatórios
+Supondo que p é a probabilidade de o elemnto existir no array
+A probabilidade de x == A[i] é igual
+
+
+Caso(c)                       |  Nº de Acessos ao array  | Probabilidade
+------------------------------+--------------------------+----
+Melhor (A[0] == x)            | 1                        | p * 1/N
+A[0]!=x &&A[1] == x           | 2                        | p * 1/N
+A[0..1]!=x && A[2]==x         | 3                        | p * 1/N
+...                           | ...                      | ...
+(A[0..N-2]!=x) && A[N-1] == x | N                        | p * 1/N
+Pior (A[0..N-1] != x)         | N                        | 1 - p
+
+Custo Médio = sum (c) Custo (c) * prob (c)
+            
+            = (sum (i=1) (i=N) i * p * 1/N) + N * (1-p)
+            = p * 1/N * (sum (i=1)(i=N) i)  + N * (1-p)
+            = p * 1/N * N * (N+1) / 2       + N * (1-p)
+            = p * (N+1) / 2                 + N * (1-p)
+            = N
+
+
+p = N * (1/2^64) ~ N * 0 ~ 0
+
+Custo médio = Media ponderada dos custos
+
+
+Aula T8 (2.Nov.2020)
+
+em C:
+x += 1  é o mesmo que  ++x
+
+int addto (int x[], int e[], int N){
+   // x += e
+   // adiciona a x o valor de e
+   // retorna 1 se overflow
+   // x = 1101011001
+   // e = 0010001001
+   int i, int c=0;
+
+   for (i=N-1; i>=0; i--){
+      x[i] = ...
+   }
+   return c;
+}
+
+Quanto custa?
+depende :)
+
+1º do tamanho do input (N: tamanho dos arrays)
+// 2º do valor do input 
+3º da máquina (analizando apenas o numero de bits calculados)
+
+Taddto (N) = N
+
+
+int inc (int x[], int N) {
+    // ++x
+    // retorna 1 se overflow
+    // exemplos
+    // inc 1000001000010011   = 1000001000010100
+    // inc 1000001000011111   = 1000001000100000
+    // inc 1111111111111111   = 0000000000000000 (e dá erro de overflow!)
+    int i;
+    int r = 0;
+    for (i=N-1; i>=0 && x[i] == 1; i--)
+       x[i] = 0;
+    if (i>=0) x[i] = 1;
+    else r=1;
+    return r;
+}
+
+Quanto custa? depende :)
+
+1ª do tamanho do input (N: tamanho dos arrays)
+3º da máquina (vamos analizar o numero de bits alterados)
+2ª do valor do input?
+  Por exemplo, se o input for 1000001000010010 custo =  1
+               se o input for 1000001000011111 custo =  6
+               se o input for 0111111111111111 custo = 16
+               se o input for 1111111111111111 custo = 16
+
+  Análise de casos:
+  Melhor caso: (A[N-1] == 0)          custo = 1
+  Pior caso: (forall 0<i<N A[i] == 1) custo = N
+
+
+Aula T9 (6.Nov.2020)
+
+
+  Análise do caso médio
+
+  Caso                   | Custo                | Probabilidade
+-------------------------+----------------------+------------------
+Melhor (A[N-1]==0)       | 1                    | 1/2 
+A[N-1]==1 A[N-2]==0      | 2                    | 1/2 * 1/2
+                         | 3                    | 1/2 * 1/2 * 1/2
+                         | ...                  | ...
+                         | k                    | (1/2) ^ k
+                         | ...                  | ...
+Pior (...)               | N                    | (1/2)^N 
+                         |                      |  + (1/2)^N
+
+Tmedio (N) = sum (c) custo (c) * prob (c)
+           = 1 * 1/2  + 2 * (1/2)^2 + 3 * (1/2)^3 + ... + k*(1/2)^k + ...
+           = (sum (1<=i<=N) i * (1/2)^i) + N * (1/2)^N
+           = -N / 2^N  + 2^(N+1) / 2^N  - 2/2^N + N / 2^N
+           = 2 - 1/2^(N-1)
+
+           ~ 2 
+
+-------------------------------------
+
+Dadas funções f e g
+
+lim (x->inf) f(x)  ==  lim (x->inf) g(x)
+
+lim (x->inf) ( f (x) / g (x) )
+     = 0    significa que g cresce mais do que f
+            exemplo f(x) = x + 100 
+                    g(x) = x^2 - 100 
+     = k    significa que crescem à mesma "taxa"
+
+o(g) = { f | lim (x->inf) |f(x)/g(x)|  == 0} 
+conjunto de funções cuja taxa de crescimento é menor do que a de g
+
+(x+100)  elem o(x^2-100)
+(x)
+(x+42)
+
+Abuso de linguagem: em vez de se escrever f elem o(g)
+                    é costume escrever f = o(g)
+
+Propriedades da relação f = o (g) 
+1) reflexiva ? (f = o (f) ?) NÂO
+2) simetrica ? (f = o(g)  => g = o (f) ?) NÃO
+3) transitiva ? (f = o(g) && g = o (h) => f = o(h) ) SIM
+
+
+lim (x->inf) |f(x)/g(x)|  == 0
+forall (delta > 0) exist (xi) forall(xi <= x) |f(x)/g(x)| <= delta
+
+O (g) = {f | exist (delta > 0) exist (xi) forall(xi <= x) |f(x)/g(x)| <= delta } 
+
+Aula T10 (9.Nov.2020)
+
+O (g) = {f | exist (C > 0) exist (xi) forall(xi <= x) |f(x)| <= C |g(x)| } 
+
+Propriedades da relação f = O (g) 
+1) reflexiva ? (f = O (f) ?) SIM (basta na definição acima fazer C = 1)
+2) simetrica ? (f = O(g)  => g = O (f) ?) Não, mas...
+3) transitiva ? (f = O(g) && g = O (h) => f = O(h) ) SIM 
+
+f = O (g) && g = O (f) significa que, f e g têm taxas de crescimente semelhantes
+
+por exemplo, consegue-se mostrar que:
+  x^2 +3x = O (2x^2 -4x)   &&    2x^2 -4x = O (x^2 +3x)
+
+Theta (g) = {f | f = O (g) && g = O (f)}
+é o mesmo que dizer que 
+f = Theta (g)  sse f = O(g) && g = O (f)
+f = Theta (g) significa que f e g têm taxas de crescimento semelhantes.
+
+Reformulando 2) acima
+
+2') simetrica ? (f = O(g)   &&  g = O (f) => f = Theta (g)
+
+
+propriedades da relação <=
+
+1. Reflexiva (x <= x)
+2. anti-simétrica no sentido lato (x <= y && y <= x   => x == y)
+3. transitiva (...)
+
+p = p1 ; p2
+
+T_p1 (N) = Theta (N^2) 
+   ou seja T_p1 (N) = a N^2 + b N + c
+T_p2 (N) = Theta (N)
+   ou seja T_p2 (N) = d N + e
+
+T_p (N) = T_p1 (N) + T_p2 (N)
+        = a N^2 + (b+d) N + (c+e)
+        = Theta (N^2)
+
+Dadas f e g (funções de custo)
+
+f = O (g) ou g = O (f) ou f = Theta (g)
+
+(
+f = Omega (g) é o mesmo que g = O (f)
+f = Omega (g) significa que g é um limite INFERIOR de f
+
+f = O (x^2)   f não cresce mais do que a função x^2
+   exemplos de f:   x, x^2, 42 x^2 +4x, log (x), 1/x, sqrt (x), ...
+
+f = Omega (x^2)   f cresce pelo menos tanto como x^2
+   exemplos de f: x^3, x^3 + 42, x^2, 2^x, ...
+)
+
+Função que junta dois arrays ordenados (merge)
+
+void merge (int a[], int A, int b[], int B, int c[]){
+   // junta dois vectores ordenados num só
+   int ia, ib, ic;
+
+   for (ia=ib=ic=0; ia<A && ib<B; ic++)
+       // variante deste ciclo ????
+       if (a[ia] < b[ib]) c[ic] = a[ia++];
+       else c[ic] = b [ib++];
+   for(;ia<A; ic++,ia++) c[ic] = a[ia];
+   for(;ib<B; ic++,ib++) c[ic] = b[ib];
+   // ic == A + B
+}
+
+Quanto custa?
+depende :)
+1. Máquina onde é executado (Número de atribuições ao array c)
+2. Tamanho do input (A, B são os tamanhos dos arrays a e b)
+3. Valor do input? NÃO
+
+Tmerge (A,B) = Custo do 1º ciclo + Custo do 2º ciclo + Custo do 3º ciclo
+             = Theta (A + B)
+
+
+Aula T11 (13.Nov.2020)
+
+void mergeSort (int v[], int N) {
+  // estratégia divide & conquer
+  int m;
+  if (N > 1) {
+     //  4 10 33 2 5 8 49 42
+     //           |       
+     m = N/2;
+     mergeSort (v, m);
+     mergeSort (&(v[m]), N-m);
+     // 2 4 10 33 5 8 42 49
+     //          |
+     merge (v,m,v+m,N-m,v);
+     // TPC: descobrir porque raio isto não funciona!!!
+  }
+}
+
+Análise do custo.
+1. Contar Comparações entre elementos do array
+2. Tamanho do input (considerar apenas o n de elementos do array)
+3. valor do input? NÃO
+
+
+T_mergeSort (N) | N <= 1  = 0
+                | N > 1   = T_mergeSort (N/2) 
+                          + T_mergeSort (N-N/2) 
+                          + T_merge (N/2,N-N/2)
+
+T_mergeSort (N) | N <= 1  = 0
+                | N > 1   = T_mergeSort (N/2) 
+                          + T_mergeSort (N-N/2) 
+                          + N
+
+Simplificando....
+
+T_mergeSort (N) | N <= 1  = 0
+                | N > 1   = T_mergeSort (N/2) 
+                          + T_mergeSort (N/2) 
+                          + N
+ 
+  N   |   0    |                         T(N)   -- N
+      |        |           /                               \
+  N   |   1    |     T(N/2) -- N/2                        T(N/2)  -- N/2
+      |        |       /  \                              /     \
+  N   |   2    |  T(N/4) -- N/4  T(N/4) -- N/4   T(N/4) -- N/4 T(N/4) -- N/4
+      |        |  
+      |   ...  |
+      |        |
+  N   |   i    | 2^i cópias de T(N/2^i)  -- N/2^i
+      |        |
+      |   u    | 2^u cópias de T(2) -- 2
+      |        |
+      |        | T (1) -- 0 ......
+      | 
+Para que a linha u faça sentido, é necessário que 2 = N / 2^u, i.e., 
+2^(u+1) = N
+u+1 = log2 N
+u = (log2 N) - 1
+
+T(N) = N * (u+1) = N * ((log2 N) - 1 +1)
+     = N * log2 N
+
+
+void merge (int a[], int N, int m){
+     int aux [N];
+     int i,j,k;
+
+     for (i=0; i<N; i++) aux[i] = a[i];
+
+     for (i=0, j=m, k=0; i<m && j<N; k++)
+         if (aux[i]<=aux[j]) a[k] = aux[i++];
+         else a[k] = aux[j++];
+
+     for (;i<m;i++,k++) a[k] = aux[i];
+     for (;j<N;j++,k++) a[k] = aux[j];
+}
+
+
+
+Aula T12 (16.Nov.2020)
+
+
+void quickSort (int v[], int N) {
+  int p;
+
+  if (N>1) {
+     p = particao (v,N); // executa em tempo linear
+     // forall (0<=k<p) v[k] <= v[p]
+     // forall (p<k<N)  v[k] >  v[p]
+     // v0 v1 v2 ...   vp vp+1  ... vN-1
+     //                 | 
+     quickSort (v,p);
+     quickSort (v+p+1,N-(p+1));
+  }
+}
+
+T (N) | N<=1  = 0
+      | N>1   =     N     +       T(p)       +    T (N-(p+1))
+               (particao)   (1ª chamada rec)   (2ª chamada rec)
+
+Casos de valor de p:
+
+1) p == 0  (último elemento do array é sempre o menor, i.e., o array está ordenado por ordem inversa)
+
+2) p == N-1 (último elemento do array é sempre o maior, i.e., o array já está ordenado)
+
+3) p == N/2 (g'anda paio!)
+
+TPC: resolver a recorrência para cada um dos casos apresentados (ora aqui está um exercicio fixe para o próximo mini-teste :) )
+
+
+-------------------------------------------------
+
+Análise amortizada
+
+Exemplo: arrays dinâmicos
+
+stack usando arrays
+
+#define MAX 100
+typedef struct s{
+      int valores [MAX];
+      int sp;
+} StackInt;
+
+int push (StackInt *s, int x) {
+    if (s->sp == MAX) return 1;
+
+    s->valores [s->sp] = x;
+    s->sp++;
+    return 0;
+}
+
+T_push (N) = Theta (1)
+
+---------------------------------------------------
+
+Usando arrays dinâmicos
+
+
+typedef struct s{
+      int tam;
+      int *valores;
+      // o array valores está dim para tam
+      int sp;
+} StackInt;
+
+int push (StackInt *s, int x) {
+  
+    if (s->sp == s->tam) duplicaTam (s);
+    
+    s->valores [s->sp] = x;
+    s->sp++;
+    return 0;
+}
+
+T_push (N) = ???
+Depende :)
+
+Melhor caso: (stack não cheia) T_push (N) = Theta (1)
+
+Pior caso: (stack cheia) T_push (N) = N + 1 = Theta (N)
+
+caso médio ???? não faz muito sentido
+
+--------------------------------------------------------
+
+Outra abordagem... (análise amortizada)
+
+       Análise do custo de uma operação, considerando que 
+       se fazem várias invocações dessa operação
+
+T_push_i - custo real da invocação i da função push
+
+TAm_push - custo amortizado da função push
+
+sum (1<=i<=k) T_push_i    <=    sum (1<=i<=k) T_Am   
+
+Aula T13 (20.Nov.2020)
+
+1. Análise agregada 
+
+Para um N suficientemente "expressivo"
+
+T_Am = ( sum (1<=i<=N) T_push_i ) / N
+
+Escolher N como o tamanho da pior sequência possível.
+
+Exemplo de aplicação às stacks com arrays dinâmicos.
+
+               int push (StackInt *s, int x) {
+                 
+                   if (s->sp == s->tam) duplicaTam (s);
+                   
+                   s->valores [s->sp] = x;
+                   s->sp++;
+                   return 0;
+               }
+
+
+     op         stack                               tam  sp   custo           
+               ----------------------------------------------
+ estado in     { }                                   1   0
+  push (10)    {10}                                  1   1      1  0+1
+  push (20)    {10,20}                               2   2      2 (1+1)
+  push (15)    {10,20,15,  }                         4   3      3 (2+1)
+  push (42)    {10,20,15,42}                         4   4      1  0+1
+  push (-1)    {10,20,15,42,-1,  ,  ,  }             8   5      5 (4+1)
+  push (-5)    {10,20,15,42,-1,-5,  ,  }             8   6      1  0+1
+  push (12)    {10,20,15,42,-1,-5,12,  }             8   7      1  0+1
+  push (21)    {10,20,15,42,-1,-5,12,21}             8   8      1  0+1
+  push ( 2)    {10,20,15,42,-1,-5,12,21, 2,...}     16   9      9 (8+1)
+
+
+Neste caso para N = 9, calcular T_Am = (1+2+3+1+...+9) / 9 = 24/9 = 2.(6)
+Se N = 5,  T_Am = 2,4
+
+Se N = 17, T_Am = ()/17 = 2,8
+
+As piores sequências (que acabam com uma operação "cara") têm comprimento 2^i+1
+
+N = 2^i + 1
+N-1 = 2^i
+log2 (N-1) = i
+
+( sum (0<=i<=N) 2^i) = 2^(N+1) - 1  
+  2^0 + 2^1 + 2^2 + ... + 2^N progressão aritmética de razão 2 )
+
+
+
+
+
+T_Am = ( N + sum (0<=k<=i) 2^k ) / N
+       ( N + (2^(i+1) - 1)      ) / N
+       ( N + 2N - 2 - 1 ) / N
+       3 - 3/N
+
+     = 3
+
+
+2^(i+1) = 2*2^i  = 2* 2^log2(N-1) = 2*(N-1) = 2*N-2
+
+
+Aula T14 (23.Nov.2020)
+
+Método contabilistico 
+
+
+     op         stack             tam  sp   custo (deb)   cAmort (cred)    saldo    
+ -------------------------------------------------------------------------------
+ estado in     { }                 1   0                                     0
+  push (10) |  {10}             |  1 | 1   |  1  0+1    |    1 + 2 = 3   |   2  
+  push (20) |  {10,20}          |  2 | 2   |  2 (1+1)   |    1 + 2 = 3   |   3  
+  push (15) |  {10,20,15,...    |  4 | 3   |  3 (2+1)   |    1 + 2 = 3   |   3  
+  push (42) |  {10,20,15,...    |  4 | 4   |  1  0+1    |    1 + 2 = 3   |   5  
+  push (-1) |  {10,20,15,...    |  8 | 5   |  5 (4+1)   |    1 + 2 = 3   |   3  
+  push (-5) |  {10,20,15,...    |  8 | 6   |  1  0+1    |    1 + 2 = 3   |   5  
+  push (12) |  {10,20,15,...    |  8 | 7   |  1  0+1    |    1 + 2 = 3   |   7  
+  push (21) |  {10,20,15,...    |  8 | 8   |  1  0+1    |    1 + 2 = 3   |   9  
+  push ( 2) |  {10,20,15,...}   | 16 | 9   |  9 (8+1)   |    1 + 2 = 3   |   3
+  ....
+                                    2^i+1     1+x
+                                  2^i+1 +1    1              1+d
+                                  2^i+1 +2    ...
+                                              1              1+d
+                                              ...
+                2^i+2^i +1       2^(i+1)+1    1+y            1+d (i.e., 2^(i+1)+1 )  
+           1+1+...+1+(1+y)  = (1+d) +(1+d) + ... +(1+d)
+                numero de parcelas = y/2
+           (y/2) + y        = y/2  * (1+d)
+           (y/2) + y        = y/2 + y/2 * d 
+                   y        = y/2 * d
+                   1        = d/2
+                   2        = d
+
+
+                                 por isso y =  2^(i+1)
+    x+1                             numero de operações entre op caras é y/2
+    x+2
+    ...                          por isso, d = y         / (y/2)
+    x+k                                        adicional   numero de ops
+                                             = 2
+  
+
+  
+  Saldo_k = sum creditos          - sum debitos
+          = (sum (0<=i<=k) T_Am ) - (sum (0<=i<=k) c_i)
+
+          Se garantirmos que o Saldo é sempre positivo ...
+
+          (sum (0<=i<=k) T_Am ) - (sum (0<=i<=k) c_i) >=0
+
+          isto é, 
+
+          (sum (0<=i<=k) c_i) <= (sum (0<=i<=k) T_Am )
+
+
+
+Método do Potencial
+
+Definir uma função (de potencial) de estados para Int (saldo)
+
+  Pot_k = Pot_(k-1) + cAm - c_k
+
+  cAm = c_k + Pot_k - Pot_(k-1)
+
+Aula T15 (27.Nov.2020)
+
+  No exemplo em causa
+  Pot deve ser máximo quando a stack está cheia (valor = N)      
+      deve ser minimo quando a stack está meia cheia (valor = 0)
+
+      Pot = Ocup - Livres 
+
+   Cálculo de CAm
+
+   caso 1: Stack não está cheia
+   c (custo real)  = 1
+   Ocup_dep = Ocup_ant + 1
+   Livres_dep = Livres_ant - 1
+
+   Pot_dep = Ocup_dep - Livres_dep
+           = Ocup_ant + 1 - (Livres_ant - 1)
+           = Ocup_ant - Livres_ant + 2
+
+  cAm = 1 + (Ocup_ant - Livres_ant + 2) - (Ocup_ant - Livres_ant)
+      = 3
+
+  caso 2: Stack está cheia (Ocup_ant = N, Livres_ant = 0)
+     c = N+1
+     Ocup_dep = Ocup_ant + 1 = N + 1
+     Livres_dep = N-1
+
+     cAm = (N+1) + (N+1 - (N-1)) - (N - 0)
+         = N + 1 + N + 1 - N + 1 - N + 0
+         = 3
+
+---------------------------------------------------------------------
