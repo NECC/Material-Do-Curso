@@ -79,7 +79,7 @@ Nao faz sentido, classes abstratas podem implementar metodos.
 
 ### 2 __Resposta__
 
-(a) e (d) (penultima) sao consistentes. (a) trabalha diretamente com referencias nos getters e setters e (d) faz clones nos getters e setters.
+(d) , faz clones nos getters e setters.
 
 Errado (a), expomos estrutura de dados interna da class.
 
