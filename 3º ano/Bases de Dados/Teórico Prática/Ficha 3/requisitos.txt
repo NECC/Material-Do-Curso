@@ -1,0 +1,14 @@
+Entidades:
+ - delegado - (id, nome)
+ - contagiado (id,nome, dataN, ContactoTelefonico)
+ - situacao_contagio - (id, data, descrição, local_registado, total_contágio)
+ - contacto (id, nome, contacto, familiar)
+ - Freguesia (id_freguesia, nome, descrição) 
+ - Concelho (id_concelho, nome, descrição)
+ - Distrito (id_distrito, nome, descrição)
+ - Região (id_regiao, nome)
+
+Regiao - conjunto Distritos - conjunto de concelhos - conjunto de freguesias.
+
+
+ 
