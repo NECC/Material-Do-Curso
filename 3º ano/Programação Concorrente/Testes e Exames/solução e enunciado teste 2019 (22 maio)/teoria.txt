@@ -1,0 +1,29 @@
+1 - starvation
+isso é quando um dado processo não consegue chegar à parte reservada do codigo
+pois outros processos (por diversos motivos), lhe estão sempre a passar à frente.
+e os outros processos ao obterem lock, ele nao consegue fazer mais enquanto nao chegar la.
+
+um método mais complexo é a noçao de prioridade, por exemplo com duas barreiras,
+prioritario e nao prioritario, avança-se com os prioritarios, e depois os nao
+prioritarios passam a prioritarios, vao rodando. assim um processo nunca fica eternamente nao
+prioritario e eventualmente irá conseguir chegar onde quer.
+
+outro método para evitar isso é usar monitores,
+pois vários processos a tentar chegar a uma parte em lock, entra em espera,
+quando ficar livre. o processo ao sair faz signal para acordar um processo seguinte que 
+está à espera. e assim sucessivamente, eventualmente chegará a vez do processo que queremos.
+
+-------------
+2 - varias condicoes num monitor em vez de varios monitores com uma condiçao
+ao definir condiçoes estamos a determinar o motivo pela qual o processo pode ficar bloqueado.
+e os processos em ficam em fila de espera, ou seja, ao acordar, vai acordar o primeiro que ficou bloqueado.
+usando varios monitores com uma condiçao, nao ha lista de espera pelo provcessos bloqueados.
+---------------
+3 - 
+a principal diferença é a partilha de memoria, tal nao acontece em erlang.
+ou seja cada processo é independente e tem a sua propria informaçao.
+a comunicaçao é feita exclusivamente por mensagens.
+e cada mensagem é resolvida de acordo com o pattern matching de quem a recebe, 
+e as mensagem ficam numa fila de espera e sao "resolvidas" por ordem de chegada.
+
+em java, é necesário implementar um sistema de locks de forma a evitar leitura e escrita da memoria partilhada em momentos inoportunos. e assim evita-se ler dados errados, varios processos tentar escrever ao mesmo tempo. 

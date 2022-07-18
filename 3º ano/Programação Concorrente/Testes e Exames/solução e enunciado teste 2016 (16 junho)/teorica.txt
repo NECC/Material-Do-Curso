@@ -1,0 +1,25 @@
+1 - deadlock
+deadlock acontece quando dois ou mais processos ficam bloqueados e nao conseguem avanças
+pois estão à espera que outros processos terminem.
+por exemplo o p1 está à espera que p2 acabe os calculos,
+e p2 esta a espera que p1 acabe os calculos....logo ninguem avança.
+
+p1 faz lock de uma parte, e depois tenta fazer lock de uma segunda parte,
+p2 faz lock da segunda parte, e depois tenta fazer lock da primeira.
+
+logo ninguem avança, pois cada um precisa do que nao consegue atingir.
+
+-------------
+2 - spurious wake up
+é o fenomeno "inexplicavel" de processos bloqueado acordarem sem motivo aparente,
+e tentarem prosseguir com a execução do codigo.
+para evitar continuações indesejadas, é ncesserário fazer ciclos de espera, ou seja, sempre que o processo acorda, ele tem de verificar novamente se esta em condiçoes de continuar, se nao, volta a bloquear.
+
+o problema resolvido era de os processos seguirem com a execução de forma indesejada.
+so acordam quando recebem o sinal, ou seja, quando ja é seguro prosseguir.
+-------------
+3 - é uma afirmação que incorreta pois se a leitura ocorrer durante a escrita pode dar problemas pois pode acabar por ler "lixo", ou valores nao actualizados.
+o que leva posteriormente a erros nos valores.
+
+se a leitura for de algo quase "atómico" pode-se dar a essa liberdade, ou se for um objecto/variavel imutaveis.
+

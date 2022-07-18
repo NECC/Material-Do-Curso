@@ -1,0 +1,11 @@
+1 - ja respondida
+------------
+2 - palavra final
+é uma afirmação errada pois a keyword final indica que a variavel será de single assignment, ou seja, uma vez atribuido um valor ou referencia, não volta a mudar, é imutável.
+
+e o final garante que quando o objecto è lido, o valor é o correcto.
+no caso de ser um construtor de um objecto, outra thread que tente ler esse objecto, so vai conseguir ler no fim da construçao e assim é garantido que lê os dados correctos.
+
+se for para ler uma variavel que seja final, nao é necessário fazer syncronized pois a garantia de ser o valor correcto é  dado pela final.
+
+
