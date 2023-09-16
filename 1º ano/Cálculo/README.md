@@ -11,7 +11,7 @@ Material do Curso de LCC
 
 2020/21 - 
 
-2021/22 - 
+2021/22 - Maria Joana Costa Cruz Oliveira Torres 
 
 2022/23 - Maria Joana Costa Cruz Oliveira Torres 
 

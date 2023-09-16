@@ -9,7 +9,7 @@ Material do Curso de LCC
 
 2019/20 - 
 
-2020/21 - 
+2020/21 - José Manuel Ribeiro Oliveira 
 
 2021/22 - José Manuel Ribeiro Oliveira 
 
