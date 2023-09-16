@@ -15,4 +15,4 @@ Material do Curso de LCC
 
 2022/23 - Maria Paula Freitas Sousa Mendes Martins
 
-2023/24 -
+2023/24 - Maria Paula Freitas Sousa Mendes Martins

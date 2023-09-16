@@ -15,4 +15,4 @@ Material do Curso de LCC
 
 2022/23 - Maria Joana Costa Cruz Oliveira Torres 
 
-2023/24 - 
+2023/24 - Maria Joana Costa Cruz Oliveira Torres
