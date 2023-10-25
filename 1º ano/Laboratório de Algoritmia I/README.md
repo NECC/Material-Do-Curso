@@ -11,8 +11,7 @@ Material do Curso de LCC
 
 2020/21 - 
 
-2021/22 - Francisco Supino Marcondes .; Rui Manuel Ribeiro Castro Mendes .;
-Sérgio Manuel Carvalho Gonçalves .; Pedro José Costa Oliveira
+2021/22 - Francisco Supino Marcondes .; Rui Manuel Ribeiro Castro Mendes .; Sérgio Manuel Carvalho Gonçalves .; Pedro José Costa Oliveira
 
 2022/23 - Rui Manuel Ribeiro Castro Mendes 
 
