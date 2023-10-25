@@ -11,7 +11,7 @@ Material do Curso de LCC
 
 2020/21 -
 
-2021/22 - 
+2021/22 - António Augusto Veloso Costa
 
 2022/23 - Ana Cristina Castro Ferreira
 
