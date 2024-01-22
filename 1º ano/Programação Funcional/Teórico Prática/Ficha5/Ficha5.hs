@@ -26,9 +26,10 @@ zipWith' f _ _ = []
 da lista que satisfazem um dado predicado; por exemplo:
 takeWhile odd [1,3,4,5,6,6] == [1,3]. -}
 
-takeWhile' :: (a->Bool) -> [a] -> [a]
-takeWhile' f [] = []
-takeWhile' f (x:xs) = if f x then x:takeWhile' f xs else []
+takeWhile1 :: (a -> Bool) -> [a] -> [a]
+takeWhile1 f [] = []
+takeWhile1 f (h:t) = if f h then h : takeWhile1 f t 
+                    else takeWhile1 f t
 
 {- (d) dropWhile :: (a->Bool) -> [a] -> [a] que elimina os primeiros elementos da
 lista que satisfazem um dado predicado; por exemplo:
