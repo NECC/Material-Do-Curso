@@ -13,6 +13,6 @@ Material do Curso de LCC
 
 2021/22 - Rui António Sabino Castiço Silva .; André Martins Pereira .; Alberto Proença;
 
-2022/23 - João Luís Ferreira Sobral
+2022/23 - João Luís Ferreira Sobral;
 
-2023/24 -
+2023/24 - João Luís Ferreira Sobral;
