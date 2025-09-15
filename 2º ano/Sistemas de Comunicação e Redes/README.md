@@ -17,3 +17,7 @@ Material do Curso de LCC
 Ferreira Rito Lima .;
 
 2023/24 - Maria Solange Pires Ferreira Rito Lima .; Óscar Sílvio Marques Almeida Gama
+
+2024/25 - Maria Solange Pires Ferreira Rito Lima .; Vadym Serhiyovych Hapanchak
+
+2025/26 - 

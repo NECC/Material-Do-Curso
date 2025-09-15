@@ -17,4 +17,4 @@ Material do Curso de LCC
 
 2023/24 - Maria Rosário Ribeiro Fernandes
 
-2024/25 - 
+2024/25 - Gaspar José Brandão Queirós Azevedo Machado

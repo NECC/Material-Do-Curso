@@ -16,4 +16,8 @@ Material do Curso de LCC
 2022/23 - João Tiago Medeiros Paulo .; Paulo Sérgio Soares Almeida .; Tânia Conceição
 Araújo Esteves .; Ricardo Gonçalves Macedo
 
-2023/24 - 
+2023/24 - João Tiago Medeiros Paulo .; Paulo Sérgio Soares Almeida .; Tânia Conceição
+Araújo Esteves .; Ricardo Gonçalves Macedo
+
+2023/24 - João Tiago Medeiros Paulo .; Tânia Conceição
+Araújo Esteves .; Ricardo Gonçalves Macedo
