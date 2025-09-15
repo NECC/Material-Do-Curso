@@ -5,8 +5,8 @@
 <ul>
 <details><summary><a href="1º ano/Análise Matemática/">Análise Matemática</a></summary></details>
 <details><summary><a href="1º ano/Cálculo/">Cálculo</a></summary></details>
-<details><summary><a href="1º ano/Laboratório de Programação I/">Laboratório de Programação I</a></summary></details>
-<details><summary><a href="1º ano/Laboratório de Programação II/">Laboratório de Programação II</a></summary></details>
+<details><summary><a href="1º ano/Laboratórios de Programação I/">Laboratório de Programação I</a></summary></details>
+<details><summary><a href="1º ano/Laboratórios de Programação II/">Laboratório de Programação II</a></summary></details>
 <details><summary><a href="1º ano/Matemática Discreta/">Matemática Discreta</a></summary></details>
 <details><summary><a href="1º ano/Programação Funcional/">Programação Funcional</a></summary></details>
 <details><summary><a href="1º ano/Programação Imperativa/">Programação Imperativa</a></summary></details>
@@ -50,5 +50,16 @@
 <details><summary><a href="3º ano/Fundamentos de Criptografia e Segurança da Informação/">Fundamentos de Criptografia e Segurança da Informação</a></summary></details>
 <details><summary><a href="3º ano/Geometria/">Geometria</a></summary></details>
 <details><summary><a href="3º ano/Otimização/">Otimização</a></summary></details>
+</ul>
+</details>
+
+<details>
+<summary>Cadeiras não lecionadas atualmente</summary>
+<ul>
+
+<details><summary><a href="Cadeiras não lecionadas atualmente/Álgebra Universal e Categorias/">Álgebra Universal e Categorias</a></summary></details>
+<details><summary><a href="Cadeiras não lecionadas atualmente/Interação e Concorrência/">Interação e Concorrência</a></summary></details>
+<details><summary><a href="Cadeiras não lecionadas atualmente/Laboratório de Algoritmia II/">Laboratório de Algoritmia II</a></summary></details>
+<details><summary><a href="Cadeiras não lecionadas atualmente/Projeto/">Projeto</a></summary></details>
 </ul>
 </details>
