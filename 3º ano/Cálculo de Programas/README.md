@@ -15,4 +15,7 @@ Material do Curso de LCC
 
 2022/23 - Olga Maria Gomes Martins Pacheco .; José Nuno Fonseca Oliveira
 
-2023/24 - 
+2023/24 - Olga Maria Gomes Martins Pacheco .; José Nuno Fonseca Oliveira
+
+2024/25 - Olga Maria Gomes Martins Pacheco .; José Nuno Fonseca Oliveira
+

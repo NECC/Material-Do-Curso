@@ -16,3 +16,5 @@ Material do Curso de LCC
 2022/23 - Rui Manuel Silva Ralha
 
 2023/24 - Maria Rosário Ribeiro Fernandes
+
+2024/25 - 

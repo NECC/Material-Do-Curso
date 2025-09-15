@@ -16,4 +16,6 @@ Material do Curso de LCC
 2022/23 - José Bernardo Santos Monteiro Vieira Barros .; Manuel Alcino Pereira
 Cunha
 
-2023/24 - 
+2023/24 - José Bernardo Santos Monteiro Vieira Barros .; Manuel Alcino Pereira
+
+2024/25 - José Bernardo Santos Monteiro Vieira Barros .; Manuel Alcino Pereira
