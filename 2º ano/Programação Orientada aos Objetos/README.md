@@ -16,4 +16,9 @@ Material do Curso de LCC
 2022/23 - António Luís Pinto Ferreira Sousa .; António Manuel Nestor
 Ribeiro .; José Francisco Creissac Freitas Campos
 
-2023/24 - 
+2023/24 - António Luís Pinto Ferreira Sousa .; António Manuel Nestor
+Ribeiro .; José Francisco Creissac Freitas Campos
+
+2024/25 - António Luís Pinto Ferreira Sousa .; António Manuel Nestor
+Ribeiro .; José Francisco Creissac Freitas Campos
+

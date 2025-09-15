@@ -1,4 +1,7 @@
 # Material-Do-Curso
 Material do Curso de LCC
 
-2024/25 - Renato Jorge Araújo Neves
+## Stores por ano:
+
+2025/26 - 
+

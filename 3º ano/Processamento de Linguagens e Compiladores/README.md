@@ -16,3 +16,7 @@ Material do Curso de LCC
 2022/23 - 
 
 2023/24 - Pedro Manuel Rangel Santos Henriques
+
+2024/25 - Pedro Manuel Rangel Santos Henriques
+
+2025/26 - João Carlos Leite Ramalho

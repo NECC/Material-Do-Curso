@@ -3,7 +3,11 @@ Material do Curso de LCC
 
 ## Stores por ano:
 
-2023/24 -
+2025/26 - 
+
+2024/25 - Carla Albertina Carvalhinho Silva Mendes
+
+2023/24 - Carla Albertina Carvalhinho Silva Mendes
 
 2022/23 - Carla Albertina Carvalhinho Silva Mendes
 

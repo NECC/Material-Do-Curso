@@ -16,3 +16,8 @@ Material do Curso de LCC
 2022/23 - Luís Filipe Ribeiro Pinto
 
 2023/24 - Luís Filipe Ribeiro Pinto
+
+2024/25 - João Manuel Caramalho Melo Domingues
+
+2025/26 - Luís Filipe Ribeiro Pinto
+

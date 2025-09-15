@@ -16,3 +16,5 @@ Material do Curso de LCC
 2022/23 - José Bernardo Santos Monteiro Vieira Barros
 
 2023/24 - José Bernardo Santos Monteiro Vieira Barros
+
+2024/25 - José Bernardo Santos Monteiro Vieira Barros

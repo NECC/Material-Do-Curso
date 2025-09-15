@@ -15,4 +15,4 @@ Material do Curso de LCC
 
 2022/23 - Rui Manuel Ribeiro Castro Mendes 
 
-2023/24 - 
+2023/24 - Rui Manuel Ribeiro Castro Mendes 

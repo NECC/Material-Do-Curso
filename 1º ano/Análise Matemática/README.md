@@ -15,4 +15,6 @@ Material do Curso de LCC
 
 2022/23 - José Joaquim Martins Oliveira 
 
-2023/24 - 
+2023/24 - José Joaquim Martins Oliveira 
+
+2024/25 - Maria Joana Costa Cruz Oliveira Torres 
