@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt"><head>
+<script src="Aula6_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Aula6_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Aula6_files/libs/quarto-html/popper.min.js"></script>
+<script src="Aula6_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Aula6_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Aula6_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Aula6_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Soraia Pereira">
+  <meta name="dcterms.date" content="2026-12-10">
+  <title>Métodos de Regularização em Regressão: Ridge e Lasso</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Aula6_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Aula6_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="Aula6_files/libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
+  <link href="Aula6_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Aula6_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Aula6_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Aula6_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Métodos de Regularização em Regressão: Ridge e Lasso</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Soraia Pereira 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-12-10</p>
+</section>
+<section id="implementação-em-r-pacotes" class="title-slide slide level1 center">
+<h1>Implementação em R (pacotes)</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># instalar se necessário</span></span>
+<span id="cb1-2"><a href=""></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"glmnet"</span>,<span class="st">"tidyverse"</span>,<span class="st">"broom"</span>)</span>
+<span id="cb1-3"><a href=""></a>new <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(pkgs, <span class="fu">rownames</span>(<span class="fu">installed.packages</span>()))</span>
+<span id="cb1-4"><a href=""></a><span class="cf">if</span>(<span class="fu">length</span>(new)) <span class="fu">install.packages</span>(new)</span>
+<span id="cb1-5"><a href=""></a><span class="fu">library</span>(glmnet); <span class="fu">library</span>(tidyverse); <span class="fu">library</span>(broom)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section>
+<section id="exemplo-1-mtcars" class="title-slide slide level1 center">
+<h1>Exemplo 1: <code>mtcars</code></h1>
+<p>Vamos prever <code>mpg</code> a partir de <code>disp</code>, <code>hp</code>, <code>wt</code>, <code>qsec</code>, <code>am</code>, <code>gear</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-2"><a href=""></a>D <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(am, gear), factor))</span>
+<span id="cb2-3"><a href=""></a><span class="co"># Matriz modelo (one-hot sem intercepto)</span></span>
+<span id="cb2-4"><a href=""></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> disp <span class="sc">+</span> hp <span class="sc">+</span> wt <span class="sc">+</span> qsec <span class="sc">+</span> am <span class="sc">+</span> gear, <span class="at">data =</span> D)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb2-5"><a href=""></a>y <span class="ot">&lt;-</span> D<span class="sc">$</span>mpg</span>
+<span id="cb2-6"><a href=""></a><span class="co"># grid de lambdas padrão do glmnet</span></span>
+<span id="cb2-7"><a href=""></a>fit_ridge <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">0</span>)   <span class="co"># ridge</span></span>
+<span id="cb2-8"><a href=""></a>fit_lasso <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">1</span>)   <span class="co"># lasso</span></span>
+<span id="cb2-9"><a href=""></a>fit_ridge; fit_lasso</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:  glmnet(x = X, y = y, alpha = 0) 
+
+    Df  %Dev Lambda
+1    7  0.00 5147.0
+2    7  0.74 4690.0
+3    7  0.81 4273.0
+4    7  0.89 3894.0
+5    7  0.98 3548.0
+6    7  1.07 3232.0
+7    7  1.18 2945.0
+8    7  1.29 2684.0
+9    7  1.41 2445.0
+10   7  1.55 2228.0
+11   7  1.70 2030.0
+12   7  1.86 1850.0
+13   7  2.04 1685.0
+14   7  2.23 1536.0
+15   7  2.45 1399.0
+16   7  2.68 1275.0
+17   7  2.93 1162.0
+18   7  3.21 1058.0
+19   7  3.52  964.5
+20   7  3.85  878.8
+21   7  4.21  800.7
+22   7  4.60  729.6
+23   7  5.03  664.8
+24   7  5.49  605.7
+25   7  6.00  551.9
+26   7  6.54  502.9
+27   7  7.14  458.2
+28   7  7.78  417.5
+29   7  8.48  380.4
+30   7  9.24  346.6
+31   7 10.05  315.8
+32   7 10.93  287.8
+33   7 11.88  262.2
+34   7 12.89  238.9
+35   7 13.98  217.7
+36   7 15.15  198.3
+37   7 16.39  180.7
+38   7 17.72  164.7
+39   7 19.13  150.0
+40   7 20.62  136.7
+41   7 22.20  124.6
+42   7 23.86  113.5
+43   7 25.61  103.4
+44   7 27.43   94.2
+45   7 29.34   85.9
+46   7 31.31   78.2
+47   7 33.35   71.3
+48   7 35.45   65.0
+49   7 37.60   59.2
+50   7 39.79   53.9
+51   7 42.02   49.1
+52   7 44.26   44.8
+53   7 46.51   40.8
+54   7 48.75   37.2
+55   7 50.98   33.9
+56   7 53.17   30.9
+57   7 55.33   28.1
+58   7 57.42   25.6
+59   7 59.46   23.3
+60   7 61.42   21.3
+61   7 63.29   19.4
+62   7 65.07   17.7
+63   7 66.76   16.1
+64   7 68.35   14.7
+65   7 69.84   13.4
+66   7 71.22   12.2
+67   7 72.51   11.1
+68   7 73.69   10.1
+69   7 74.78    9.2
+70   7 75.78    8.4
+71   7 76.69    7.6
+72   7 77.51    7.0
+73   7 78.26    6.3
+74   7 78.94    5.8
+75   7 79.56    5.3
+76   7 80.12    4.8
+77   7 80.62    4.4
+78   7 81.08    4.0
+79   7 81.49    3.6
+80   7 81.86    3.3
+81   7 82.21    3.0
+82   7 82.52    2.7
+83   7 82.80    2.5
+84   7 83.06    2.3
+85   7 83.30    2.1
+86   7 83.52    1.9
+87   7 83.73    1.7
+88   7 83.92    1.6
+89   7 84.09    1.4
+90   7 84.26    1.3
+91   7 84.42    1.2
+92   7 84.57    1.1
+93   7 84.71    1.0
+94   7 84.84    0.9
+95   7 84.97    0.8
+96   7 85.09    0.7
+97   7 85.20    0.7
+98   7 85.31    0.6
+99   7 85.42    0.6
+100  7 85.52    0.5</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:  glmnet(x = X, y = y, alpha = 1) 
+
+   Df  %Dev Lambda
+1   0  0.00 5.1470
+2   1 12.78 4.6900
+3   1 23.39 4.2730
+4   2 32.47 3.8940
+5   2 40.22 3.5480
+6   3 46.85 3.2320
+7   3 52.93 2.9450
+8   3 57.98 2.6840
+9   3 62.18 2.4450
+10  3 65.66 2.2280
+11  3 68.55 2.0300
+12  3 70.95 1.8500
+13  3 72.94 1.6850
+14  3 74.60 1.5360
+15  3 75.97 1.3990
+16  3 77.11 1.2750
+17  3 78.05 1.1620
+18  3 78.84 1.0580
+19  4 79.61 0.9645
+20  4 80.35 0.8788
+21  4 80.98 0.8007
+22  5 81.54 0.7296
+23  4 82.30 0.6648
+24  4 82.89 0.6057
+25  4 83.38 0.5519
+26  4 83.79 0.5029
+27  4 84.13 0.4582
+28  4 84.41 0.4175
+29  4 84.64 0.3804
+30  4 84.84 0.3466
+31  4 85.00 0.3158
+32  4 85.13 0.2878
+33  4 85.24 0.2622
+34  4 85.33 0.2389
+35  4 85.41 0.2177
+36  4 85.47 0.1983
+37  4 85.53 0.1807
+38  4 85.57 0.1647
+39  4 85.61 0.1500
+40  5 85.65 0.1367
+41  5 85.69 0.1246
+42  5 85.73 0.1135
+43  5 85.75 0.1034
+44  5 85.78 0.0942
+45  5 85.80 0.0859
+46  5 85.82 0.0782
+47  5 85.83 0.0713
+48  6 85.94 0.0649
+49  6 86.05 0.0592
+50  6 86.14 0.0539
+51  6 86.21 0.0491
+52  6 86.27 0.0448
+53  6 86.32 0.0408
+54  6 86.37 0.0372
+55  6 86.40 0.0339
+56  6 86.43 0.0309
+57  7 86.46 0.0281
+58  7 86.49 0.0256
+59  7 86.52 0.0233
+60  7 86.54 0.0213
+61  7 86.56 0.0194
+62  7 86.57 0.0177
+63  7 86.58 0.0161
+64  7 86.59 0.0147
+65  7 86.60 0.0134
+66  7 86.61 0.0122
+67  7 86.61 0.0111
+68  7 86.62 0.0101
+69  7 86.62 0.0092
+70  7 86.63 0.0084
+71  7 86.63 0.0076
+72  7 86.63 0.0070
+73  7 86.63 0.0063
+74  7 86.63 0.0058
+75  7 86.64 0.0053
+76  7 86.64 0.0048
+77  7 86.64 0.0044
+78  7 86.64 0.0040</code></pre>
+</div>
+</div>
+</section>
+<section id="curvas-de-coeficientes" class="slide level2">
+<h2>Curvas de coeficientes</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb5-2"><a href=""></a><span class="fu">plot</span>(fit_ridge, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Ridge: caminhos dos coef."</span>)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">plot</span>(fit_lasso, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Lasso: caminhos dos coef."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<img data-src="Aula6_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><blockquote>
+<p>Observe que o <strong>lasso</strong> reduz coeficientes a zero à medida que <span class="math inline">\(\lambda\)</span> cresce; o <strong>ridge</strong> apenas contrai.</p>
+</blockquote>
+</section>
+<section id="escolha-de-lambda-por-validação-cruzada" class="slide level2">
+<h2>Escolha de <span class="math inline">\(\lambda\)</span> por validação cruzada</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb7-2"><a href=""></a>cv_ridge <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
+<span id="cb7-3"><a href=""></a>cv_lasso <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
+<span id="cb7-4"><a href=""></a>cv_ridge<span class="sc">$</span>lambda.min; cv_ridge<span class="sc">$</span>lambda<span class="fl">.1</span>se</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5146981</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.373665</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>cv_lasso<span class="sc">$</span>lambda.min; cv_lasso<span class="sc">$</span>lambda<span class="fl">.1</span>se</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1134977</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.274947</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb13-2"><a href=""></a><span class="fu">plot</span>(cv_ridge); <span class="fu">title</span>(<span class="st">"CV Ridge"</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb13-3"><a href=""></a><span class="fu">plot</span>(cv_lasso); <span class="fu">title</span>(<span class="st">"CV Lasso"</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<img data-src="Aula6_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="modelos-finais-e-predição" class="slide level2">
+<h2>Modelos finais e predição</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb15-2"><a href=""></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(X)), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span><span class="sc">*</span><span class="fu">nrow</span>(X)))</span>
+<span id="cb15-3"><a href=""></a>Xtr <span class="ot">&lt;-</span> X[idx,]; ytr <span class="ot">&lt;-</span> y[idx]</span>
+<span id="cb15-4"><a href=""></a>Xte <span class="ot">&lt;-</span> X[<span class="sc">-</span>idx,]; yte <span class="ot">&lt;-</span> y[<span class="sc">-</span>idx]</span>
+<span id="cb15-5"><a href=""></a>cv_ridge2 <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(Xtr, ytr, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
+<span id="cb15-6"><a href=""></a>cv_lasso2 <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(Xtr, ytr, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb15-7"><a href=""></a>pr_ridge <span class="ot">&lt;-</span> <span class="fu">predict</span>(cv_ridge2, <span class="at">newx =</span> Xte, <span class="at">s =</span> <span class="st">"lambda.min"</span>)</span>
+<span id="cb15-8"><a href=""></a>pr_lasso <span class="ot">&lt;-</span> <span class="fu">predict</span>(cv_lasso2, <span class="at">newx =</span> Xte, <span class="at">s =</span> <span class="st">"lambda.min"</span>)</span>
+<span id="cb15-9"><a href=""></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b) <span class="fu">sqrt</span>(<span class="fu">mean</span>((a<span class="sc">-</span>b)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb15-10"><a href=""></a>res <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-11"><a href=""></a>  <span class="at">modelo =</span> <span class="fu">c</span>(<span class="st">"ridge"</span>,<span class="st">"lasso"</span>),</span>
+<span id="cb15-12"><a href=""></a>  <span class="at">RMSE =</span> <span class="fu">c</span>(<span class="fu">rmse</span>(yte, pr_ridge[,<span class="dv">1</span>]), <span class="fu">rmse</span>(yte, pr_lasso[,<span class="dv">1</span>]))</span>
+<span id="cb15-13"><a href=""></a>)</span>
+<span id="cb15-14"><a href=""></a>res</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  modelo  RMSE
+  &lt;chr&gt;  &lt;dbl&gt;
+1 ridge   2.73
+2 lasso   2.63</code></pre>
+</div>
+</div>
+</section></section>
+<section id="exemplo-2-p-n-correlações-dados-sintéticos" class="title-slide slide level1 center">
+<h1>Exemplo 2 (p &gt; n / correlações): dados sintéticos</h1>
+<p>Gerar dados com colinearidade forte e <span class="math inline">\(p=20\)</span>, <span class="math inline">\(n=60\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">321</span>)</span>
+<span id="cb17-2"><a href=""></a>n <span class="ot">&lt;-</span> <span class="dv">60</span>; p <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb17-3"><a href=""></a>Sigma <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">^</span><span class="fu">abs</span>(<span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>p, <span class="dv">1</span><span class="sc">:</span>p, <span class="st">"-"</span>))  <span class="co"># matriz Toeplitz (AR1)</span></span>
+<span id="cb17-4"><a href=""></a>Z <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, p), <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb17-5"><a href=""></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">0</span>, p<span class="dv">-5</span>))</span>
+<span id="cb17-6"><a href=""></a>y <span class="ot">&lt;-</span> Z <span class="sc">%*%</span> beta_true <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="dv">3</span>)</span>
+<span id="cb17-7"><a href=""></a>X <span class="ot">&lt;-</span> <span class="fu">scale</span>(Z)</span>
+<span id="cb17-8"><a href=""></a>cv_r <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
+<span id="cb17-9"><a href=""></a>cv_l <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb17-10"><a href=""></a><span class="fu">coef</span>(cv_l, <span class="at">s =</span> <span class="st">"lambda.min"</span>) <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">25</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             lambda.min
+(Intercept)  0.86971409
+V1           2.21002920
+V2           2.67363613
+V3           3.37343907
+V4           2.45446341
+V5           2.88758497
+V6          -1.20610871
+V7           0.54685035
+V8           0.00000000
+V9          -0.66256446
+V10          1.29623507
+V11         -0.82290074
+V12          0.00000000
+V13          0.92408646
+V14         -0.26687201
+V15          0.00000000
+V16         -0.10099619
+V17          0.00000000
+V18          0.04703634
+V19          0.17559066
+V20          0.89833121</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Lasso</strong> recupera esparsidade (muitos coef. exatos 0).</li>
+<li><strong>Ridge</strong> tende a reter todos os preditores com pesos pequenos.</li>
+</ul>
+</section>
+
+<section id="comparação-teórica-resumida" class="title-slide slide level1 smaller center">
+<h1>Comparação teórica resumida</h1>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Propriedade</th>
+<th>Ridge (L2)</th>
+<th>Lasso (L1)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Contração</td>
+<td>Contínua</td>
+<td>Contínua + zeros</td>
+</tr>
+<tr class="even">
+<td>Seleção de variáveis</td>
+<td>Não</td>
+<td>Sim</td>
+</tr>
+<tr class="odd">
+<td>Colinearidade forte</td>
+<td>Distribui pesos</td>
+<td>Escolhe um (instável)</td>
+</tr>
+<tr class="even">
+<td>p &gt; n</td>
+<td>Funciona</td>
+<td>Funciona</td>
+</tr>
+<tr class="odd">
+<td>Solução fechada</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr class="even">
+<td>Viés</td>
+<td>Maior</td>
+<td>Pode ser maior</td>
+</tr>
+<tr class="odd">
+<td>Variância</td>
+<td>Menor</td>
+<td>Menor (tipicamente)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Regra de bolso:</strong> quando há <strong>muitos preditores correlacionados</strong>, <strong>Elastic Net</strong> (combina L1+L2) é frequentemente superior.</p>
+</blockquote>
+</section>
+
+<section id="escolha-de-lambda-e-métricas" class="title-slide slide level1 center">
+<h1>Escolha de <span class="math inline">\(\lambda\)</span> e métricas</h1>
+<ul>
+<li><strong>CV k-fold</strong> (padrão em <code>cv.glmnet</code>): escolher <code>lambda.min</code> (menor erro) ou <code>lambda.1se</code> (mais parcimonioso).</li>
+<li>Métricas: RMSE, MAE, <span class="math inline">\(R^2\)</span> em validação/teste.</li>
+<li>Reportar <strong>curvas de CV</strong> e <strong>caminhos de coeficientes</strong>.</li>
+</ul>
+</section>
+
+<section id="limitações-e-extensões" class="title-slide slide level1 center">
+<h1>Limitações e extensões</h1>
+<ul>
+<li>Lasso pode ser instável com preditores muito correlacionados.</li>
+<li>Ridge não faz seleção automática.</li>
+<li><strong>Elastic Net</strong>: <span class="math inline">\(\alpha\in[0,1]\)</span> interpola Lasso (1) e Ridge (0).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># Exemplo rápido: elastic net com alpha=0.5</span></span>
+<span id="cb19-2"><a href=""></a>cv_en <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X, y, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb19-3"><a href=""></a><span class="fu">coef</span>(cv_en, <span class="at">s =</span> <span class="st">"lambda.1se"</span>) <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            lambda.1se
+(Intercept)  0.8697141
+V1           2.0552097
+V2           2.3242874
+V3           2.9643333
+V4           2.6669901
+V5           1.5142081</code></pre>
+</div>
+</div>
+</section>
+
+<section id="predição-e-incerteza" class="title-slide slide level1 center">
+<h1>Predição e incerteza</h1>
+<ul>
+<li>Predição pontual via <code>predict</code>.</li>
+<li>Intervalos padrão de MQO não se aplicam diretamente; <code>glmnet</code> foca predição.</li>
+<li>Para <strong>intervalos de previsão</strong>: usar re-amostragem (bootstrap) ou métodos pós-seleção.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">99</span>)</span>
+<span id="cb21-2"><a href=""></a><span class="co"># Bootstrap simples do modelo lasso (ilustrativo)</span></span>
+<span id="cb21-3"><a href=""></a>B <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb21-4"><a href=""></a>preds <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb21-5"><a href=""></a>  id <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(X)), <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb21-6"><a href=""></a>  fit <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X[id,], y[id], <span class="at">alpha=</span><span class="dv">1</span>)</span>
+<span id="cb21-7"><a href=""></a>  <span class="fu">as.numeric</span>(<span class="fu">predict</span>(fit, <span class="at">newx =</span> X[<span class="dv">1</span>,,<span class="at">drop=</span><span class="cn">FALSE</span>], <span class="at">s=</span><span class="st">"lambda.min"</span>))</span>
+<span id="cb21-8"><a href=""></a>})</span>
+<span id="cb21-9"><a href=""></a><span class="fu">quantile</span>(preds, <span class="fu">c</span>(.<span class="dv">025</span>,.<span class="dv">5</span>,.<span class="dv">975</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%        50%      97.5% 
+-8.6528557 -5.6970592 -0.7016028 </code></pre>
+</div>
+</div>
+</section>
+
+<section id="exemplo-final" class="title-slide slide level1 center">
+<h1>Exemplo final</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-2"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb23-3"><a href=""></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(mtcars)), <span class="at">size =</span> <span class="dv">24</span>)</span>
+<span id="cb23-4"><a href=""></a>train <span class="ot">&lt;-</span> mtcars[idx,]; test <span class="ot">&lt;-</span> mtcars[<span class="sc">-</span>idx,]</span>
+<span id="cb23-5"><a href=""></a>Xtr <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> ., train)[,<span class="sc">-</span><span class="dv">1</span>]; ytr <span class="ot">&lt;-</span> train<span class="sc">$</span>mpg</span>
+<span id="cb23-6"><a href=""></a>Xte <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> ., test)[,<span class="sc">-</span><span class="dv">1</span>];  yte <span class="ot">&lt;-</span> test<span class="sc">$</span>mpg</span>
+<span id="cb23-7"><a href=""></a>cv_las <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(Xtr, ytr, <span class="at">alpha=</span><span class="dv">1</span>)</span>
+<span id="cb23-8"><a href=""></a>pr <span class="ot">&lt;-</span> <span class="fu">predict</span>(cv_las, <span class="at">newx =</span> Xte, <span class="at">s =</span> <span class="st">"lambda.1se"</span>)</span>
+<span id="cb23-9"><a href=""></a>rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((yte <span class="sc">-</span> pr[,<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb23-10"><a href=""></a><span class="fu">list</span>(<span class="at">lambda_1se =</span> cv_las<span class="sc">$</span>lambda<span class="fl">.1</span>se, <span class="at">RMSE_teste =</span> rmse)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$lambda_1se
+[1] 1.794338
+
+$RMSE_teste
+[1] 3.198099</code></pre>
+</div>
+</div>
+</section>
+
+<section id="exercícios" class="title-slide slide level1 center">
+<h1>Exercícios</h1>
+<ol type="1">
+<li>Reproduza o Exemplo 1 com outro <em>target</em> (e.g., <code>wt</code>) e documente diferenças.</li>
+<li>Em dados sintéticos (p&gt;n), compare estabilidade da seleção do Lasso com 100 <em>splits</em>.</li>
+<li>Use <strong>Elastic Net</strong> e faça <em>grid search</em> em <span class="math inline">\(\alpha \in (0, 0.25, 0.5, 0.75, 1)\)</span>, reportando RMSE de teste e nº de variáveis selecionadas.</li>
+<li>Represente graficamente as <strong>curvas dos coeficientes</strong> e interprete.</li>
+</ol>
+</section>
+
+<section>
+<section id="referências" class="title-slide slide level1 center">
+<h1>Referências</h1>
+<ul>
+<li>Hastie, Tibshirani &amp; Friedman (2009). <em>The Elements of Statistical Learning</em>.</li>
+<li>James et al.&nbsp;(2021). <em>An Introduction to Statistical Learning</em>, cap. 6.</li>
+<li>Documentação <code>glmnet</code> (vignette): <code>vignette("glmnet")</code>.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="Aula6_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="Aula6_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="Aula6_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Aula6_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copiada");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copiada");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

@@ -1,0 +1,176 @@
+---
+title: "Teste 1 — EDA, Regressão Linear e Regularização (2 horas)"
+author: "Nome do/a aluno/a: __________________"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document: default
+  pdf_document: default
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 4.6)
+set.seed(123)
+```
+
+# Instruções
+
+* **Duração:** 2 horas.
+* **Entregar:** este `.Rmd` com **código** e **respostas** (texto + figuras).
+* **Dados usados:** `ggplot2::mpg`, `gapminder::gapminder`, `ggplot2::diamonds`.
+
+
+```{r pacotes}
+# Instalar se necessário
+req <- c("tidyverse","broom","gapminder","glmnet","janitor", "car")
+new <- setdiff(req, rownames(installed.packages()))
+if(length(new)) install.packages(new)
+
+library(tidyverse)
+library(broom)
+library(gapminder)
+library(glmnet)
+library(janitor)
+library(car)
+```
+
+---
+
+# Parte A — EDA & Visualização 
+
+
+## A1. MPG (ggplot2): consumo e características dos automóveis 
+
+**Dados:** `ggplot2::mpg`.
+
+```{r A2-data}
+mpg <- ggplot2::mpg |> janitor::clean_names()
+glimpse(mpg)
+```
+
+**a)** Faça um **gráfico de dispersão** de `hwy` (milhas por galão em autoestrada) vs `displ` (cilindrada). Distinga as observações por `class` e por `drv` (tração) da forma que achar mais adequada na representação gráfica (poderá considerar gráficos lado a lado).
+*Comente o padrão geral (relação consumo–cilindrada) e diferenças por tração.*
+
+```{r A2a}
+# Seu código aqui
+```
+
+**b)** Produza um **boxplot** de `hwy` por `class`.
+*Indique quais as 2 classes com menor número de milhas por galão em autoestrada e a classe com maior variabilidade.*
+
+```{r A2b}
+# Seu código aqui
+```
+
+**c)** Crie a métrica `eff_ratio = hwy / cty` (eficiência autoestrada/cidade). Represente graficamente a **média de `eff_ratio` por `trans`** (tipo de transmissão).
+
+```{r A2c}
+# Seu código aqui
+```
+
+**d)** Para os **8 fabricantes** (manufacturer) com mais observações, mostre um **gráfico de linhas** da média de `hwy` por **ano** (`year`) — uma linha por fabricante.
+*Comente se há melhoria/deterioração entre 1999 e 2008 e diferenças entre fabricantes.*
+
+```{r A2d}
+# Seu código aqui
+```
+
+---
+
+
+# Parte B — Regressão Linear Múltipla 
+
+## B1. Gapminder: o que explica a esperança de vida? 
+
+**Dados:** `gapminder::gapminder`. Variável de interesse: **`life_exp`**. 
+
+```{r B1-data}
+gp <- gapminder::gapminder |> janitor::clean_names()
+glimpse(gp)
+```
+
+**a)** Crie variáveis auxiliares: `log_gdp = log10(gdp_per_cap)` e `year_c = year - 2000`.
+Ajuste o modelo linear:
+$$
+\texttt{life_exp} \sim \texttt{log_gdp} + \texttt{year_c} + \texttt{continent}.
+$$
+*Apresente as estimativas dos coeficientes.* Interprete os coeficientes associados à variável continent.
+
+```{r B1a}
+# Seu código aqui
+```
+
+**b)** Indique quais as covariáveis estatisticamente significativas na explicação da variabilidade da esperança média de vida.
+
+```{r B1b}
+# Seu código aqui
+```
+
+
+**c)** Inclua a interação `log_gdp:continent`. Compare com o modelo base definido em a).
+*A interação melhora o ajuste? Explique.*
+
+```{r B1e}
+# Seu código aqui
+```
+
+**d)** Faça uma análise de diagnóstico do modelo definido em a) e calcule **VIF** (`car::vif`).
+*Identifique potenciais problemas e comente os valores de VIF.*
+
+```{r B1f}
+# Seu código aqui
+```
+
+**e)** Predição para perfis novos (ano 2007 ⇒ `year_c = 7`) com base no modelo definido em a):
+
+1. `continent="Europe"`, `log_gdp=4.2`.
+   *Calcule predição pontual, Intervalo de Confiança (IC) 95% da média e Intervalo de Predição (IP) 95%, e compare IC vs IP.*
+
+```{r B1bonus}
+# Seu código aqui
+```
+
+---
+
+
+# Parte C — Regularização: Lasso / Ridge 
+
+## C1. Diamonds (ggplot2): efeitos da penalização e estabilidade 
+
+**Dados:** `ggplot2::diamonds`. Resposta: `log(price)`.
+
+```{r C1-data}
+data("diamonds", package = "ggplot2")
+dm <- diamonds |> janitor::clean_names() |> mutate(log_price = log(price)) |>
+  select(-price)
+```
+
+
+**a)** Divida a amostra em dados de treino (80%) e dados de teste (20%). Ajuste **Lasso** aos dados de treino. Trace os caminhos dos coeficientes (em função de -log(λ)).
+*Identifique os 2 preditores com maior relevância na generalidade de valores de lambda*. 
+
+```{r C1a}
+# Seu código aqui
+```
+
+**b)** Escolha um valor de lambda com base em validação cruzada e justifique a sua escolha.
+Para esse valor de λ, indique: (i) o número de coeficientes ≠ 0, (ii) o RMSE de teste.
+
+```{r C1b}
+# Seu código aqui
+```
+
+**c)** Faça **B = 20** *subamostras* do conjunto de treino (por ex., 80% sem reposição), ajuste **Lasso** em cada amostra (use o mesmo critério de escolha de λ dentro de cada *subamostra*) e calcule a **frequência de seleção** (proporção de vezes com coef ≠ 0) para cada variável.
+*Liste as 3 variáveis com maior frequência e interprete a estabilidade do ranking.
+
+```{r C1c}
+# Seu código aqui
+```
+
+**d)** Ajuste Ridge aos dados de treino e avalie o RMSE com os dados de teste. Compare os RMSEs de teste dos dois modelos (Ridge e Lasso) e comente. 
+
+```{r C1d}
+# Seu código aqui
+```
+

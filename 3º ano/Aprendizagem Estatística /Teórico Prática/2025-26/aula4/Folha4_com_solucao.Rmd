@@ -1,0 +1,315 @@
+---
+title: "Exercícios — Regressão Linear Simples (com soluções)"
+#author: "Seu Nome"
+date: "`r format(Sys.time(), '%d/%m/%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    toc: true
+    number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+set.seed(123)
+options(digits = 4)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(broom)
+  pkgs <- c("palmerpenguins","nycflights13","gapminder")
+  to_install <- pkgs[!pkgs %in% rownames(installed.packages())]
+  if(length(to_install)) install.packages(to_install, quiet = TRUE)
+  library(palmerpenguins)
+  library(nycflights13)
+  library(gapminder)
+})
+theme_set(theme_minimal())
+```
+
+
+
+---
+
+# Exercício 1 — Pinguins: morfologia e predição (palmerpenguins)
+
+**Objetivo:** estimar como `flipper_length_mm` (resposta) se relaciona com `bill_length_mm` (explicativa).
+
+## 1. Gráfico de dispersão e reta
+
+```{r ex1-plot}
+peng <- penguins |> drop_na(flipper_length_mm, bill_length_mm)
+
+ggplot(peng, aes(bill_length_mm, flipper_length_mm)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "Comprimento do bico (mm)",
+       y = "Comprimento da barbatana (mm)",
+       title = "Pinguins: barbatana vs bico (reta de regressão)")
+```
+
+
+**Interpretação.** O diagrama sugere **relação positiva**: pinguins com bicos mais longos tendem a ter barbatanas mais longas.
+
+## 2. Ajuste do modelo e resumo
+
+```{r ex1-fit}
+mod_peng <- lm(flipper_length_mm ~ bill_length_mm, data = peng)
+summary(mod_peng)
+tidy(mod_peng, conf.int = TRUE)
+glance(mod_peng)[,c("r.squared","adj.r.squared","sigma")]
+```
+
+
+**Interpretação.**  
+- **Declive** (> 0): aumento de 1 mm no bico associa-se, em média, a aumento de ~`r round(coef(mod_peng)[2],3)` mm na barbatana.  
+- **Intercept**: comprimento médio da barbatana quando o bico é 0 mm (não tem interpretação biológica direta; serve para posicionar a reta).  
+- O $R^2$ indica a fração da variabilidade da barbatana explicada pelo bico (tipicamente moderada).
+
+## 3. Predição e intervalo de predição para `bill_length_mm = 45`
+
+```{r ex1-pred}
+novo_peng <- tibble(bill_length_mm = 45)
+predict(mod_peng, newdata = novo_peng, interval = "prediction", level = 0.95)
+```
+
+
+**Interpretação.** A **predição pontual** é o valor esperado da barbatana para bico=45mm. O **intervalo de predição** é mais largo que um IC de média, pois incorpora a variabilidade individual além da incerteza dos parâmetros.
+
+## 4. Diagnóstico de resíduos
+
+
+```{r ex1-dx}
+augment(mod_peng) |>
+  ggplot(aes(.fitted, .resid)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point(alpha = 0.7) +
+  labs(x = "Ajustados", y = "Resíduos", title = "Resíduos vs Ajustados — pinguins")
+
+qqnorm(resid(mod_peng)); qqline(resid(mod_peng))
+```
+
+
+
+**Interpretação.**  
+- **Linearidade/homocedasticidade**: nuvem sem padrão.  
+- **Normalidade**: QQ-plot próximo da reta é desejável. Pequenos desvios são aceitáveis; fortes padrões indicariam a necessidade de transformar variáveis ou usar modelos mais complexos.
+
+---
+
+# Exercício 2 — Diamantes: preço e quilates (ggplot2::diamonds)
+
+## 1–2. Ajuste linear simples e $R^2$
+
+
+```{r ex2-fit1}
+data(diamonds, package = "ggplot2")
+
+mod_d_lin <- lm(price ~ carat, data = diamonds)
+summary(mod_d_lin)$r.squared
+glance(mod_d_lin)[, c("r.squared","adj.r.squared","sigma")]
+```
+
+
+
+
+## 3. Comparação com escala log–log
+
+
+```{r ex2-fit2}
+mod_d_log <- lm(log(price) ~ log(carat), data = diamonds)
+bind_rows(
+  glance(mod_d_lin) |> mutate(modelo = "price ~ carat"),
+  glance(mod_d_log) |> mutate(modelo = "log(price) ~ log(carat)")
+) |> 
+  select(modelo, r.squared, adj.r.squared, sigma, AIC, BIC)
+```
+
+
+
+```{r ex2-dx}
+par(mfrow=c(1,2))
+plot(mod_d_lin, which = 1)     # resíduos vs ajustados
+plot(mod_d_log, which = 1)
+par(mfrow=c(1,1))
+```
+
+
+**Interpretação.** Em geral, **log–log** melhora a homocedasticidade e lineariza a relação preço–quilates (potência). 
+
+## 4. Predição para `carat = 1.0` (no modelo escolhido)
+
+
+```{r ex2-pred}
+novo_d <- tibble(carat = 1.0)
+
+# Exemplo: usando o modelo log–log (substitua se optar pelo linear)
+pred_log <- predict(mod_d_log, newdata = tibble(carat = 1.0),
+                    interval = "prediction", level = 0.95)
+# Reverter log para escala original:
+exp(pred_log)
+```
+
+**Interpretação.** O intervalo de predição em escala original reflete a grande variabilidade do preço para um mesmo peso.
+
+---
+
+# Exercício 3 — Países: esperança média de vida e PIB (gapminder)
+
+## 1–2. Seleção do ano e comparação de modelos
+
+```{r ex3-fit}
+gm <- gapminder |> filter(year == 2007)
+
+# Gráfico com escala log no eixo x
+ggplot(gm, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10() +
+  geom_smooth(method = "lm", formula = y ~ log(x), se = TRUE) +
+  labs(x = "PIB per capita (log10 no eixo)", y = "Esperança média de vida")
+
+m_lin <- lm(lifeExp ~ gdpPercap, data = gm)
+m_log <- lm(lifeExp ~ log(gdpPercap), data = gm)
+
+bind_rows(
+  glance(m_lin) |> mutate(modelo = "lifeExp ~ gdpPercap"),
+  glance(m_log) |> mutate(modelo = "lifeExp ~ log(gdpPercap)")
+) |>
+  select(modelo, r.squared, adj.r.squared, sigma, AIC, BIC)
+```
+
+
+## 3. Interpretação do declive do melhor modelo
+
+
+```{r ex3-coef}
+tidy(m_log, conf.int = TRUE)
+```
+
+**Interpretação.** No modelo `lifeExp ~ log(gdpPercap)`, um aumento proporcional do PIB (ex.: ~\(e\) vezes) está associado a um aumento **aditivo** na esperança de vida de magnitude igual ao declive. Em termos práticos: “**dobrar** o PIB per capita está associado a ≈ `r round(coef(m_log)[2]*log(2),2)` anos a mais de vida, em média.”
+
+## 4. Resíduos
+
+```{r ex3-dx}
+augment(m_log) |>
+  ggplot(aes(.fitted, .resid)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point(alpha = 0.7) +
+  labs(x = "Ajustados", y = "Resíduos", title = "Resíduos vs Ajustados — gapminder 2007")
+
+qqnorm(resid(m_log)); qqline(resid(m_log))
+```
+
+
+**Interpretação.** Espera-se padrão mais homogéneo e resíduos mais centrados em zero com a transformação log no PIB.
+
+---
+
+# Exercício 4 — Voos: atraso e distância (nycflights13)
+
+> Para gráficos e diagnóstico mais leves, trabalharemos com uma **amostra** estratificada por mês.
+
+## 1–2. Gráfico e modelo
+
+
+```{r ex4-fit}
+fl <- flights |> 
+  drop_na(dep_delay, distance) |>
+  filter(between(dep_delay, -30, 300)) |>
+  group_by(month) |>
+  slice_sample(prop = 0.1) |>
+  ungroup()
+
+ggplot(fl, aes(distance, dep_delay)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "Distância (milhas)", y = "Atraso na descolagem (min)",
+       title = "Atraso vs distância")
+
+m_dep <- lm(dep_delay ~ distance, data = fl)
+summary(m_dep)
+tidy(m_dep, conf.int = TRUE)
+```
+
+
+
+**Interpretação.** O declive indica o **aumento médio de atraso por milha** adicional. Em geral, o efeito tende a ser **pequeno** (muitos outros fatores explicam atrasos).
+
+## 3. Influência de outliers (remoção do mais influente)
+
+
+```{r ex4-influence}
+aug <- augment(m_dep)
+cutoff <- 4/nrow(fl)
+
+# Top influentes por distância de Cook
+aug |> arrange(desc(.cooksd)) |> slice_head(n = 5)
+
+# Remover o mais influente e reestimar
+i_max <- which.max(aug$.cooksd)
+fl2 <- fl[-i_max, ]
+m_dep2 <- lm(dep_delay ~ distance, data = fl2)
+
+bind_rows(
+  tidy(m_dep)  |> mutate(modelo = "com todos"),
+  tidy(m_dep2) |> mutate(modelo = "sem o mais influente")
+) |>
+  filter(term == "distance")
+```
+
+
+
+**Interpretação.** Compare a inclinação antes/depois. Se a mudança for pequena, a conclusão é robusta; se mudar muito, o ajuste estava dominado por poucos pontos.
+
+## 4. Limitações
+
+**Interpretação textual.** Usar apenas `distance` ignora clima, horário, companhia, aeroporto, conexão, congestionamento etc. A variância residual alta sugere necessidade de mais preditores ou ou outros modelos.
+
+---
+
+# Exercício 5 — Predição para subgrupos (diamantes)
+
+## 1–4. Modelos separados por lapidação
+
+```{r ex5-fit}
+subcuts <- c("Ideal","Good")
+dsub <- diamonds |> filter(cut %in% subcuts)
+
+mods_by_cut <- dsub |>
+  group_by(cut) |>
+  group_map(~ lm(price ~ carat, data = .x), keep = TRUE)
+
+# Tabela comparativa das inclinações e R2 por subgrupo
+tbl_slopes <- dsub |>
+  group_by(cut) |>
+  do(tidy(lm(price ~ carat, data = .))) |>
+  filter(term == "carat") |>
+  select(cut, estimate, std.error, p.value)
+
+tbl_fit <- dsub |>
+  group_by(cut) |>
+  do(glance(lm(price ~ carat, data = .))) |>
+  select(cut, r.squared, adj.r.squared, sigma)
+
+list(tbl_slopes = tbl_slopes, tbl_fit = tbl_fit)
+```
+
+
+
+```{r ex5-dx}
+# Resíduos por subgrupo
+par(mfrow=c(1,2))
+plot(lm(price ~ carat, data = filter(dsub, cut=="Ideal")), which = 1, main = "Ideal: Resíduos vs Ajustados")
+plot(lm(price ~ carat, data = filter(dsub, cut=="Good")),  which = 1, main = "Good: Resíduos vs Ajustados")
+par(mfrow=c(1,1))
+```
+
+
+**Interpretação.** As inclinações podem diferir entre *cuts* por qualidade de lapidação (valor agregado). Resíduos podem mostrar heterocedasticidade, sugerindo uso de transformações (*e.g.*, log–log) em análises futuras.
+
+---
+
+

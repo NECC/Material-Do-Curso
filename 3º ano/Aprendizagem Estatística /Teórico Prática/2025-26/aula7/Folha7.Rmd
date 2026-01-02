@@ -1,0 +1,74 @@
+---
+title: "Análise de Componentes Principais (ACP)"
+author: ""
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  html_document:
+ #   toc: true
+  #  toc_depth: 2
+  #  number_sections: true
+  pdf_document:
+  #  toc: true
+   # number_sections: true
+lang: pt
+fontsize: 11pt
+geometry: margin=2.5cm
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+set.seed(123)
+```
+
+
+# Exercício 1 — NCI60 (expressão génica; p ≈ 6.830)
+
+**Dados**: `ISLR2::NCI60` (64 linhas = linhas celulares; ~6.830 genes como variáveis).
+
+1. Use a library `ISLR2` e obtenha a matriz `NCI60$data`. Quantas variáveis (genes) existem? Há valores em falta?
+2. Construa `X <- scale(NCI60$data)` (centrar e padronizar por coluna). Justifique a escolha de **correlações** em vez de **covariâncias** neste contexto.
+3. Aplique `prcomp` a `X` (não volte a padronizar dentro de `prcomp`). Extraia **valores próprios**, **PVE** e **PVE acumulada**. Faça o **scree plot** e o gráfico da PVE acumulada.
+4. Faça um gráfico **CP1 vs CP2** dos *scores*. Use `NCI60$labs` apenas para **colorir** os pontos por tipo de cancro (não entra na ACP). Comente padrões/separações.
+5. Identifique os **25 genes** com maiores |loadings| em **CP1** e em **CP2** (duas listas). Discuta se há sobreposição entre as listas.
+
+```{r E1}
+library(ISLR2)
+
+```
+
+---
+
+# Exercício 2 — Sonar (sinais; p = 60)
+
+**Dados**: `mlbench::Sonar` (208 amostras, 60 variáveis de energia em bandas de frequência; classe M/R usada **apenas** para visualização).
+
+1. Carregue `mlbench` e prepare `X <- scale(as.matrix(Sonar[, 1:60]))`. Guarde o vetor de classes `y <- Sonar$Class`.
+2. Aplique ACP a `X`. Reporte **PVE** e **PVE acumulada**; produza o **scree plot**.
+3. Faça um gráfico **CP1 vs CP2** com pontos coloridos por `y`. Comente se há **separação** entre M (mine) e R (rock).
+4. Mostre um **biplot** (atenção à escala visual). Quais as **5 variáveis** com maior |loading| em CP1 e CP2?
+
+```{r E2}
+library(mlbench)
+data(Sonar)
+
+```
+
+---
+
+# Exercício 3 — Espectroscopia NIR (*yarn*; p ≈ 268 comprimentos de onda)
+
+**Dados**: `pls::yarn`. Tem espectros NIR (muitas variáveis) e respostas químicas (ex.: `density`). Use **apenas** os **espectros** para ACP.
+
+1. Carregue `pls` e examine `yarn`. Construa a matriz `X <- scale(yarn$NIR)` com padronização por coluna.
+2. Aplique ACP a `X`. Reporte **valores próprios**, **PVE** e **PVE acumulada**. Produza os gráficos correspondentes.
+3. Faça **scores plots** (CP1 vs CP2, e CP2 vs CP3). Procure padrões (e.g., batches/lotes se disponíveis).
+4. Identifique **intervalos de onda** com maiores contribuições (|loadings| altos) para CP1 e CP2. Discuta possível interpretação.
+
+```{r E3}
+library(pls)
+
+```
+
+---

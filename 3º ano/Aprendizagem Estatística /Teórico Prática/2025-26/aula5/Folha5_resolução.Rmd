@@ -1,0 +1,280 @@
+---
+title: "Exercícios - Regressão Linear Múltipla em R"
+#author: "Nome do/a aluno/a"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document:
+#    toc: true
+ #   toc_depth: 3
+  #  toc_float: true
+  pdf_document:
+  #  toc: true
+  word_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r pacotes}
+# Instalar se necessário:
+req <- c("tidyverse","broom","palmerpenguins","nycflights13","car","performance","GGally", "see")
+new <- setdiff(req, rownames(installed.packages()))
+if(length(new)) install.packages(new)
+
+library(tidyverse)
+library(broom)
+library(palmerpenguins)
+library(nycflights13)
+library(car)           # VIF e diagnóstico
+library(performance)   # checks de suposições
+library(GGally)        # ggpairs
+library(see)          # diagnóstico
+```
+
+## ----------------------------------------------------------
+## Exercício 1 — Exploração inicial (EDA)
+## ----------------------------------------------------------
+
+## 1.1 (Penguins)
+```{r eda-penguins}
+# pair plot das variáveis contínuas
+penguins |>
+  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |>
+  ggpairs()
+
+# matriz de correlações
+cor_peng <- penguins |>
+  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |>
+  cor(use = "complete.obs")
+
+cor_peng
+# Comentário (texto):
+# - body_mass_g tende a aumentar com flipper_length_mm e bill_length_mm
+# - bill_depth_mm pode estar correlacionada com bill_length_mm
+# - possíveis colinearidades moderadas entre medidas do bico e barbatana
+```
+
+## 1.2 (Flights)
+
+```{r eda-flights}
+flights |>
+  select(arr_delay, dep_delay, distance, air_time) |>
+  ggpairs()
+
+cor_flts <- flights |>
+  select(arr_delay, dep_delay, distance, air_time) |>
+  cor(use = "complete.obs")
+
+cor_flts
+# Comentário:
+# - arr_delay e dep_delay aprewsentam correlação positiva forte
+# - air_time e distance também estão correlacionadas
+# - atenção à colinearidade entre distance e air_time
+```
+
+
+
+## ----------------------------------------------------------
+## Exercício 2 — Modelo base (Penguins)
+## ----------------------------------------------------------
+
+## 2.1 Ajuste do modelo
+```{r fit-penguins-base}
+m1 <- lm(body_mass_g ~ bill_length_mm +
+           bill_depth_mm * flipper_length_mm +
+           species + sex,
+         data = penguins)
+
+summary(m1)
+```
+
+**2.2 Interpretação:**
+
+* `bill_length_mm`: para cada 1 mm a mais de comprimento de bico, mantendo as outras variáveis constantes, o peso médio esperado aumenta em `β` gramas (o valor vem do summary).
+* `bill_depth_mm`: efeito principal do depth quando `flipper_length_mm = 0` (por isso é melhor olhar para o termo de interação).
+* `bill_depth_mm:flipper_length_mm`: diz quanto o efeito da barbatana muda quando o bico é mais fundo. Se positivo, barbatana longa + bico mais fundo → pinguim mais pesado.
+* `species` e `sex` são fatores: os coeficientes representam a diferença média de massa em relação à categoria de referência (vê em `summary(m1)` qual é — normalmente `Adelie` e `female`).
+
+
+## 2.3 VIFs
+```{r vif-penguins}
+vif(m1)
+# Se alguns VIF > 5, há sinais de multicolinearidade,
+# o que é esperado porque temos medidas corporais parecidas e interação.
+```
+
+
+
+
+## ----------------------------------------------------------
+## Exercício 3 — Diagnóstico do modelo (Penguins)
+## ----------------------------------------------------------
+```{r diag-penguins}
+par(mfrow = c(2,2))
+plot(m1)
+par(mfrow = c(1,1))
+
+# diagnóstico mais completo
+check_model(m1)
+```
+
+**Comentário:**
+
+* Resíduos vs ajustados: procurar padrão em funil (→ heteroscedasticidade).
+* QQ-plot: pequenos desvios são OK, grandes desvios nas caudas → normalidade imperfeita.
+* Cook’s distance: pontos muito influentes podem ser ilhas ou indivíduos extremos de uma espécie.
+
+
+## 3.2 Modelo com transformação (exemplo)
+```{r penguins-transform}
+# transformar resposta
+penguins <- penguins |> mutate(log_body_mass = log(body_mass_g))
+
+m1_log <- lm(log_body_mass ~ bill_length_mm +
+               bill_depth_mm * flipper_length_mm +
+               species + sex,
+             data = penguins)
+
+summary(m1_log)
+
+# comparar AIC / BIC / R2 adj.
+list(
+  base = list(AIC = AIC(m1), BIC = BIC(m1), R2adj = summary(m1)$adj.r.squared),
+  log  = list(AIC = AIC(m1_log), BIC = BIC(m1_log), R2adj = summary(m1_log)$adj.r.squared)
+)
+```
+
+Se o modelo em log tiver AIC/BIC mais baixos e resíduos mais homogéneos, preferimos o transformado.
+
+
+## ----------------------------------------------------------
+## Exercício 4 — Interações (Penguins)
+## ----------------------------------------------------------
+
+## 4.1 Interação flipper_length_mm : species
+```{r penguins-interaction}
+m2 <- lm(body_mass_g ~ bill_length_mm + bill_depth_mm +
+           flipper_length_mm * species + sex,
+         data = penguins)
+
+summary(m2)
+```
+
+**Interpretação do coeficiente de interação** (texto):
+
+* O coeficiente de `flipper_length_mm:speciesGentoo`, por ex., diz quanto **o declive** de `flipper_length_mm` sobre `body_mass_g` muda quando passamos da espécie de referência (provavelmente Adelie) para Gentoo. Se for positivo, então para Gentoo cada mm extra de barbatana aumenta mais o peso do que em Adelie.
+
+
+## 4.2 Curva de predição com ribbon
+
+```{r penguins-ribbon}
+# Valores fixos (medianas) com na.rm = TRUE
+fix_vals <- penguins |>
+  summarise(
+    bill_length_mm = median(bill_length_mm, na.rm = TRUE),
+    bill_depth_mm  = median(bill_depth_mm,  na.rm = TRUE)
+  )
+
+# Intervalo seguro (finito) para a sequência
+rng <- range(penguins$flipper_length_mm, na.rm = TRUE, finite = TRUE)
+
+grid <- tidyr::expand_grid(
+  flipper_length_mm = seq(from = rng[1], to = rng[2], length.out = 100),
+  bill_length_mm    = fix_vals$bill_length_mm,
+  bill_depth_mm     = fix_vals$bill_depth_mm,
+  species           = factor("Adelie", levels = levels(penguins$species)),
+  sex               = factor("male",   levels = levels(penguins$sex))
+)
+
+pred <- cbind(
+  grid,
+  as.data.frame(predict(m2, newdata = grid, interval = "confidence", level = 0.95))
+)
+
+ggplot(pred, aes(flipper_length_mm, fit)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2) +
+  geom_line() +
+  labs(x = "Flipper length (mm)", y = "Pred. body mass (g)",
+       title = "Efeito parcial de flipper_length_mm (Adelie, male)")
+```
+
+
+## ----------------------------------------------------------
+## Exercício 5 — Seleção de variáveis e validação
+## ----------------------------------------------------------
+```{r compare-penguins}
+# m1: modelo base
+# m2: com interação flipper_length_mm:species
+AIC(m1); AIC(m2)
+BIC(m1); BIC(m2)
+summary(m1)$adj.r.squared
+summary(m2)$adj.r.squared
+```
+
+**Texto possível:**
+
+* Se m2 tiver AIC menor e R² ajustado ligeiramente maior, preferimos m2, pois capta que o efeito da barbatana não é igual entre espécies.
+* Se a diferença for muito pequena, pode-se manter m1 por simplicidade.
+
+
+## ----------------------------------------------------------
+## Exercício 6 — Predição pontual e intervalos (Penguins)
+## ----------------------------------------------------------
+```{r penguins-predict}
+novo <- tibble(
+  bill_length_mm   = 45,
+  bill_depth_mm    = 18,
+  flipper_length_mm= 200,
+  species          = "Adelie",
+  sex              = "male"
+)
+
+# escolher o modelo (suponhamos m2)
+pred_mean <- predict(m2, newdata = novo, interval = "confidence", level = 0.95)
+pred_pred <- predict(m2, newdata = novo, interval = "prediction", level = 0.95)
+
+pred_mean
+pred_pred
+```
+
+**Comentário:** o intervalo de **predição** é sempre mais largo que o de **confiança**, porque inclui a variabilidade individual.
+
+
+## ----------------------------------------------------------
+## Exercício 7 — Modelo para atrasos de voo (Flights)
+## ----------------------------------------------------------
+
+## 7.1 Ajuste do modelo
+```{r flights-model}
+m_fl <- lm(arr_delay ~ dep_delay + log(distance) + air_time + carrier,
+           data = flights)
+
+summary(m_fl)
+```
+
+**7.2 Interpretação (texto):**
+
+* O coeficiente de `dep_delay` diz quantos minutos, em média, o atraso na chegada aumenta por cada minuto de atraso na partida, controlando pelas outras variáveis.
+* `log(distance)` é útil porque a relação atraso–distância pode ser não linear: aumentos de distância não aumentam o atraso de forma proporcional; o log “aplana” essa relação.
+
+
+## 7.3 Heteroscedasticidade
+```{r flights-hetero}
+par(mfrow = c(2,2))
+plot(m_fl)
+par(mfrow = c(1,1))
+
+```
+
+
+## 7.4 VIF e pontos influentes
+```{r flights-vif-influence}
+vif(m_fl)
+
+```
+
+
+

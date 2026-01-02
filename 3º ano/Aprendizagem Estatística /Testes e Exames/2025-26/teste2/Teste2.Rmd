@@ -1,0 +1,176 @@
+---
+title: "Teste 2 — ACP, Regressão Logística e Inferência Estatística (2 horas)"
+author: "Nome do/a aluno/a: __________________"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document: default
+  pdf_document: default
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+set.seed(123)
+```
+
+# Exercício 1
+
+O ficheiro `habitos_estudo_pca.csv` contém informação sobre hábitos de estudo de alunos do 12.º ano. Cada linha corresponde a um aluno e as colunas são:
+
+-   `horas_estudo_semana` – número médio de horas de estudo individual por semana;
+-   `horas_explicacoes` – número médio de horas semanais de explicações/aulas extra;
+-   `horas_tempo_livre` – número médio de horas de tempo livre por dia;
+-   `faltas` – número de faltas à disciplina no último período;
+-   `nota_teste` – nota (0–20) no último teste.
+
+Pretende-se aplicar **Análise de Componentes Principais (ACP)** às quatro variáveis de hábitos/comportamento:
+
+$$
+(\text{horas_estudo_semana}, \text{horas_explicacoes}, \text{horas_tempo_livre}, \text{faltas}).
+$$
+
+
+Considere apenas essas quatro variáveis para o vetor-resposta multivariado.
+
+## 1.1 Preparação dos dados
+
+(a) Importe os dados para o R e crie um objeto com as quatro variáveis indicadas.
+
+```{r}
+# Seu código aqui
+```
+
+(b) Calcule a matriz de correlações entre as quatro variáveis (função `cor`).
+
+-   Com base nos resultados, comente **se faz sentido** aplicar a ACP.
+
+## 1.2 Cálculo da ACP
+
+(c) Aplique a ACP às quatro variáveis **padronizadas**.
+
+-   Apresente os valores próprios (variâncias explicadas) e a proporção de variância explicada por cada componente principal.
+
+(d) Apresente um gráfico que ajude a decidir **quantas componentes principais** reter.
+
+-   Com base nesse gráfico e na proporção de variância explicada, justifique quantas componentes consideraria relevantes.
+
+## 1.3 Interpretação
+
+(e) Apresente os coeficientes (loadings) das duas primeiras componentes principais (recorra a pca\$rotation se necessário).
+
+-   Interprete, em palavras, o que parece medir a **1.ª componente principal** (por exemplo, “nível geral de estudo”, “compromisso académico”, etc.).
+-   Comente também, de forma breve, o significado da 2.ª componente.
+
+(f) Faça um gráfico de dispersão das observações no plano das duas primeiras componentes principais.
+
+-   Indique se observa algum **padrão claro**.
+
+------------------------------------------------------------------------
+
+# Exercício 2
+
+O ficheiro `credit_logit.csv` contém informação sobre pedidos de crédito bancário. Cada linha corresponde a um cliente, com as variáveis:
+
+-   `default` – variável binária (1 = incumprimento do crédito, 0 = crédito pago sem problemas);
+-   `renda_mensal` – rendimento mensal do cliente (em euros);
+-   `divida_total` – valor total de dívidas existentes (em euros);
+-   `idade` – idade do cliente (em anos);
+-   `hist_incumprimento` – variável binária (1 = cliente com histórico anterior de incumprimento, 0 = sem histórico).
+
+Pretende-se ajustar um modelo de **regressão logística** para modelar a probabilidade de incumprimento (`default = 1`) em função das variáveis explicativas.
+
+## 2.1 Ajustamento do modelo
+
+(a) Importe os dados para o R e indique:
+
+-   o número total de clientes;
+-   a proporção de clientes em incumprimento (`default = 1`) e sem incumprimento (`default = 0`).
+
+(b) Ajuste um modelo de regressão logística com `default` como resposta e as variáveis `renda_mensal`, `divida_total` e `hist_incumprimento` como explicativas. Note que a variável `hist_incumprimento` é uma variável categórica (recorra à função "factor" para a conversão de estrutura).
+
+
+$$
+   \text{logit}\big(P(\text{default}=1)\big)
+   = \beta_0 + \beta_1\text{renda_mensal}
+   + \beta_2\text{divida_total}
+   + \beta_3\text{hist_incumprimento}.
+$$
+
+(c) Apresente o resumo do modelo e interprete:
+
+-   o sinal dos coeficientes estimados $\hat\beta_1$ e $\hat\beta_2$ (fazem sentido no contexto?);
+-   quais as variáveis estatisticamente significativas para um nível de significância de 5% (utilize o p-valor).
+
+## 2.2 Probabilidades e odds
+
+(d) Calcule os **odds-ratios** associados a `renda_mensal`, `divida_total` e `hist_incumprimento`.
+
+-   Interprete, em linguagem simples, o **coeficiente associado a `hist_incumprimento`**:
+    -   o que significa o sinal de $\hat\beta_3$?
+    -   como se interpreta $\exp(\hat\beta_3)$?
+
+(e) Utilizando o modelo ajustado, calcule a **probabilidade prevista de incumprimento** para dois clientes com:
+
+-   renda mensal de 1200 euros, dívida total de 8000 euros, **sem** histórico de incumprimento (`hist_incumprimento = 0`);
+-   renda mensal de 1200 euros, dívida total de 8000 euros, **com** histórico de incumprimento (`hist_incumprimento = 1`).
+
+Comente a diferença entre estas probabilidades.
+
+## 2.3 Classificação
+
+(f) Gere as probabilidades previstas de incumprimento para todos os clientes e construa uma variável com a **classe prevista** usando um limiar de 0.5.
+
+-   Crie a matriz de confusão.
+-   Calcule a **taxa de acerto global** (proporção de classificações corretas).
+-   Comente brevemente se o modelo parece ter um desempenho razoável para apoiar decisões de concessão de crédito.
+
+------------------------------------------------------------------------
+
+# Exercício 3
+
+Neste exercício, vai trabalhar com dois conjuntos de dados diferentes, em situações de inferência estatística univariada.
+
+## 3.1 Intervalos de Confiança
+
+O ficheiro `tempo_espera.csv` contém a variável:
+
+-   `tempo` – tempo de espera (em minutos) até à chegada do autocarro, medido em diferentes dias numa determinada paragem.
+
+Admita que o tempo de espera é aproximadamente normal.
+
+(a) Importe os dados `tempo_espera.csv` e calcule o tamanho amostral $n$, a média amostral $\bar x$ e o desvio padrão amostral $s$.
+
+(b) Construa um **intervalo de confiança a 95%** para o tempo médio de espera $\mu$, usando a distribuição t de Student (variância populacional desconhecida).
+
+-   Apresente o intervalo e interprete-o.
+
+(c) Suponha que a empresa de transportes afirma que o tempo médio de espera é de 8 minutos. Com base no intervalo de confiança obtido, comente se essa afirmação parece plausível.
+
+------------------------------------------------------------------------
+
+## 3.2 Testes de hipótese
+
+O ficheiro `produtividade_remoto.csv` contém dados de produtividade de trabalhadores em dois regimes de trabalho. As colunas são:
+
+-   `regime` – factor com dois níveis: `"presencial"` e `"remoto"`;
+-   `produtividade` – número médio de tarefas concluídas por dia, medido ao longo de um período de observação.
+
+Pretende-se avaliar se o trabalho remoto leva a uma **produtividade média diferente** da do trabalho presencial.
+
+(d) Importe os dados `produtividade_remoto.csv`. Calcule, para cada regime, a média e o desvio padrão de `produtividade`.
+
+(e) Formule as hipóteses para um **teste t de duas amostras independentes**:
+
+-   $H_0$: as médias de produtividade nos dois regimes são iguais;
+-   $H_1$: as médias de produtividade nos dois regimes são diferentes.
+
+Escreva as hipóteses formalmente em termos de $\mu_{\text{presencial}}$ e $\mu_{\text{remoto}}$.
+
+(f) Aplique o teste t em R (assumindo variâncias não necessariamente iguais).
+
+-   Apresente o resumo do teste (estatística t, p-valor).
+-   A um nível de significância de 5%, qual é a sua decisão relativamente a $H_0$?
+-   Interprete o resultado.

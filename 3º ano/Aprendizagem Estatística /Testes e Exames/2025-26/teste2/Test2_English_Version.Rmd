@@ -1,0 +1,176 @@
+---
+title: "Test 2 — PCA, Logistic Regression and Statistical Inference (2 hours)"
+author: "Student name: __________________"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document: default
+  pdf_document: default
+#editor_options:
+#  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+set.seed(123)
+```
+
+# Exercise 1
+
+The file `habitos_estudo_pca.csv` contains information on the study habits of 12th-grade students. Each row corresponds to one student and the columns are:
+
+* `horas_estudo_semana` – average number of hours of individual study per week;
+* `horas_explicacoes` – average number of hours per week in tutoring/extra classes;
+* `horas_tempo_livre` – average number of hours of free time per day;
+* `faltas` – number of absences in the subject in the last term;
+* `nota_teste` – test grade (0–20) in the last exam.
+
+We want to apply **Principal Component Analysis (PCA)** to the four habit/behaviour variables:
+
+$$
+(\text{horas_estudo_semana}, \text{horas_explicacoes}, \text{horas_tempo_livre}, \text{faltas}).
+$$
+
+Consider only these four variables as the multivariate response vector.
+
+## 1.1 Data preparation
+
+(a) Import the data into R and create an object containing the four variables above.
+
+```{r}
+# Code here
+```
+
+(b) Compute the correlation matrix of the four variables (cor function).
+
+* Based on the results, comment on whether it **makes sense** to apply PCA.
+
+## 1.2 Computing the PCA
+
+(c) Apply PCA to the four variables **standardised**.
+
+* Report the eigenvalues (explained variances) and the proportion of variance explained by each principal component.
+
+(d) Produce a plot that helps decide **how many principal components** to retain.
+
+* Based on this plot and on the proportion of explained variance, justify how many components you would consider relevant.
+
+## 1.3 Interpretation
+
+(e) Report the coefficients (loadings) of the first two principal components (use pca$rotation).
+
+* In words, interpret what the **first principal component** seems to measure (for example “overall study level”, “academic engagement”, etc.).
+* Briefly comment on the meaning of the second component as well.
+
+(f) Make a scatter plot of the observations in the plane of the first two principal components.
+
+* Indicate whether you observe any **clear pattern**.
+
+---
+
+# Exercise 2 
+
+The file `credit_logit.csv` contains information on bank credit applications. Each row corresponds to one client, with the following variables:
+
+* `default` – binary variable (1 = credit default, 0 = credit fully repaid);
+* `renda_mensal` – client’s monthly income (in euros);
+* `divida_total` – total amount of existing debt (in euros);
+* `idade` – client’s age (in years);
+* `hist_incumprimento` – binary variable (1 = client with a previous default history, 0 = no previous default history).
+
+We want to fit a **logistic regression** model to describe the probability of default (`default = 1`) as a function of the explanatory variables.
+
+## 2.1 Model fitting
+
+(a) Import the data into R and report:
+
+   * the total number of clients;
+   * the proportion of clients in default (`default = 1`) and not in default (`default = 0`).
+
+(b) Fit a logistic regression model with `default` as the response and `renda_mensal`, `divida_total` and `hist_incumprimento` as explanatory variables. Note that the variable hist_incumprimento is a categorical variable (use the factor function to convert its structure).
+
+$$
+\text{logit}\big(P(\text{default}=1)\big)
+= \beta_0 + \beta_1\,\text{renda_mensal}
++ \beta_2\,\text{divida_total}
++ \beta_3\,\text{hist_incumprimento}.
+$$
+
+(c) Present the model summary and interpret:
+
+   * the sign of the estimated coefficients $\hat\beta_1$ and $\hat\beta_2$ (do they make sense in context?);
+   * which variables are statistically significant at the 5% significance level (use the p-value).
+
+## 2.2 Probabilities, odds and binary covariate
+
+(d) Compute the **odds ratios** associated with `renda_mensal`, `divida_total` and `hist_incumprimento`.
+
+   * Interpret, in simple language, the **coefficient associated with `hist_incumprimento`**:
+     - what does the sign of $\hat\beta_3$ mean?
+     - how do you interpret $\exp(\hat\beta_3)$?
+
+(e) Using the fitted model, compute the **predicted probability of default** for two clients with:
+
+   * monthly income of 1200 euros, total debt of 8000 euros, **no** previous default history (`hist_incumprimento = 0`);
+   * monthly income of 1200 euros, total debt of 8000 euros, **with** previous default history (`hist_incumprimento = 1`).
+
+   Comment on the difference between these probabilities.
+
+## 2.3 Classification
+
+(f) Compute the predicted probabilities of default for all clients and create a variable with the **predicted class** using a threshold of 0.5.
+
+   * Build the confusion matrix.
+   * Compute the **overall accuracy** (proportion of correct classifications).
+   * Briefly comment on whether the model appears to perform reasonably well to support credit decision-making.
+
+
+---
+
+# Exercise 3
+
+In this exercise you will work with two different datasets, in univariate statistical inference settings.
+
+## 3.1 Confidence intervals 
+
+The file `tempo_espera.csv` contains the variable:
+
+* `tempo` – waiting time (in minutes) until the bus arrives, measured on different days at a given bus stop.
+
+Assume that the waiting time is approximately normal.
+
+(a) Import the data `tempo_espera.csv` and compute the sample size $n$, the sample mean $\bar x$ and the sample standard deviation $s$.
+
+(b) Construct a **95% confidence interval** for the mean waiting time $\mu$, using the t distribution (unknown population variance).
+
+* Report the interval and interpret it in simple language.
+
+(c) Suppose the transport company claims that the mean waiting time is 8 minutes. Based on your confidence interval, comment on whether this claim seems plausible.
+
+---
+
+## 3.2 Hypotheses Testing 
+
+The file `produtividade_remoto.csv` contains productivity data for workers under two working regimes. The columns are:
+
+* `regime` – factor with two levels: `"presencial"` (on-site) and `"remoto"` (remote);
+* `produtividade` – average number of tasks completed per day, measured over an observation period.
+
+We want to assess whether remote work leads to a **different mean productivity** compared to on-site work.
+
+(d) Import the data `produtividade_remoto.csv`. For each regime, compute the mean and standard deviation of `produtividade`.
+
+(e) Formulate the hypotheses for a **two-sample t-test**:
+
+* $H_0$: the mean productivity is the same in the two regimes;
+* $H_1$: the mean productivity is different in the two regimes.
+
+Write the hypotheses formally in terms of $\mu_{\text{presencial}}$ and $\mu_{\text{remoto}}$.
+
+(f) Perform the t-test in R with a two-sided alternative and unequal variances allowed.
+
+* Report the test output (t statistic, p-value).
+* At a 5% significance level, what is your decision regarding $H_0$?
+* Interpret the result in simple language.
+

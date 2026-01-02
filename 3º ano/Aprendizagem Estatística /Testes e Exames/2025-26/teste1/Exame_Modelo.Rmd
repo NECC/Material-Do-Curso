@@ -1,0 +1,199 @@
+---
+title: "Exame Modelo — EDA, Regressão Linear e Regularização (2 horas)"
+author: "Nome do/a aluno/a: __________________"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document:
+#    toc: true
+ #   toc_depth: 2
+  pdf_document: default
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 4.6)
+set.seed(123)
+```
+
+# Instruções
+
+* **Duração:** 2 horas.
+* **Entregar:** este `.Rmd` com **código** e **respostas** (texto + figuras).
+* **Dados usados:** `gapminder`, `babynames`, `ggplot2::diamonds`, `ISLR2::Hitters`.
+
+```{r pacotes}
+# Instalar se necessário
+req <- c("tidyverse","broom","gapminder","babynames","glmnet","ISLR2","GGally","scales","janitor")
+new <- setdiff(req, rownames(installed.packages()))
+if(length(new)) install.packages(new)
+
+library(tidyverse)
+library(broom)
+library(gapminder)
+library(babynames)
+library(glmnet)
+library(ISLR2)
+library(GGally)
+library(scales)
+library(janitor)
+```
+
+---
+
+# Parte A — EDA & Visualização
+
+## A1. Gapminder: padrões globais
+
+**Dados:** `gapminder::gapminder`.
+
+```{r A1-data}
+gp <- gapminder::gapminder |> janitor::clean_names()
+glimpse(gp)
+```
+
+**a)** Crie um **gráfico de dispersão** de `life_exp` vs `gdp_per_cap` para todos os anos, com:
+
+* eixo do PIB em **escala log10** (`scale_x_log10()`),
+* **transparência** (ex.: `alpha = 0.3`) para reduzir sobreposição,
+* **facet por continente**,
+* **linha de tendência** simples (`geom_smooth(se = FALSE)`).
+  *Explique tendências gerais e diferenças por continente.*
+
+```{r A1a}
+# Seu código aqui
+```
+
+**b)** Escolha **3 países** de **continentes distintos** e faça um **gráfico de linhas ao longo do tempo** para `life_exp` (com pontos nos anos observados).
+*Comente a evolução comparada.*
+
+```{r A1b}
+# Seu código aqui
+```
+
+**c)** Para o ano **2007**, compare as distribuições de `life_exp` por continente usando **boxplot**.
+*Comente níveis típicos e dispersão por continente.*
+
+```{r A1c}
+# Seu código aqui
+```
+
+
+---
+
+## A2. Babynames: diversidade de nomes
+
+**Dados:** `babynames::babynames`.
+
+```{r A2-data}
+bb <- babynames::babynames |> janitor::clean_names()
+glimpse(bb)
+```
+
+**a)** Escolha **5 nomes** (de ambos os sexos) e faça **séries temporais** (1900–2015) de `prop` por `year`, com **facets por nome** e **linhas suaves**.
+*Descreva um padrão.*
+
+```{r A2a}
+# Seu código aqui
+```
+
+**b)** Para um sexo à escolha (`sex` = "F" ou "M"), construa um **diagrama de barras** para os 5 **nomes** mais comuns.
+*Indique um padrão temporal.*
+
+```{r A2b}
+# Seu código aqui
+```
+
+
+---
+
+# Parte B — Regressão Linear
+
+## B1. Diamonds: preço e características 
+
+**Dados:** `ggplot2::diamonds`. Objetivo: prever `log(price)`.
+
+```{r B1-data}
+data("diamonds", package = "ggplot2")
+dm <- diamonds |> janitor::clean_names() |> mutate(log_price = log(price))
+
+```
+
+**a)** Ajuste o modelo base:
+$$
+\log(\text{price}) \sim \text{carat} + \text{cut} + \text{color} + \text{clarity}.
+$$
+*Reporte **RMSE** e **R²** em treino e teste.*
+
+```{r B1a}
+# Seu código aqui
+```
+
+**b)** Adicione a **interação** `carat:clarity`.
+*Compare **AIC** e **R² ajustado** com o modelo base e discuta o **trade-off complexidade vs ajuste**.*
+
+```{r B1b}
+# Seu código aqui
+```
+
+**c)** Faça **diagnóstico visual** (resíduos vs ajustados, QQ-plot, *scale-location*).
+*Identifique 2 problemas potenciais.*
+
+```{r B1c}
+# Seu código aqui
+```
+
+**d)** Produza um **efeito parcial**: curvas previstas de `log(price)` vs `carat` para **3 níveis de `clarity`** (fixe `cut` e `color` em categorias comuns). Inclua **IC 95%** com `geom_ribbon`.
+*Comente.*
+
+```{r B1d}
+# Seu código aqui
+```
+
+**e)** **Interprete** dois coeficientes do melhor modelo (um coeficiente de uma variável contínua e um coeficiente de uma variável categórica), indicando unidades/escala e implicação no **preço**.
+*Resposta textual abaixo.*
+
+**Interpretação (B1e):**
+*Escreva aqui.*
+
+---
+
+# Parte C — Regularização: Ridge e Lasso
+
+## C1. Hitters (ISLR2): salários no basebol
+
+**Dados:** `ISLR2::Hitters`. Resposta: `log(Salary)`. Remova linhas com `NA` em `Salary`.
+
+```{r C1-data}
+ht <- as_tibble(ISLR2::Hitters) |> janitor::clean_names() |> drop_na(salary) |>
+  mutate(log_salary = log(salary))
+
+```
+
+**a)** Ajuste **Ridge** com `cv.glmnet(..., nfolds = 10)`.
+*Indique o `lambda.min` e o **RMSE de teste** (na escala de `log_salary`).*
+
+```{r C1a}
+# Seu código aqui
+```
+
+**b)** Ajuste **Lasso** com *cross-validation*.
+*Indique `lambda.min`, e **RMSE de teste** para ambos.*
+
+```{r C1b}
+# Seu código aqui
+```
+
+**c)** Liste as **variáveis selecionadas** com o Lasso (com base no lambda.min).
+
+```{r C1c}
+# Seu código aqui
+```
+
+**d)** Compare **OLS vs Ridge vs Lasso** (use o mesmo *split*).
+*Discuta **viés–variância**, **colinearidade** e **parcimónia**.
+
+```{r C1d}
+# Seu código aqui
+```
+

@@ -1,0 +1,297 @@
+---
+title: "Regressão Linear"
+author: "Soraia Pereira"
+lang: pt
+date: today
+format:
+  revealjs:
+    theme: [default, simple]
+    slide-number: true
+    code-overflow: wrap
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# AULA 1 Regressão Linear Simples (SLR)
+
+## Motivação: prever e explicar
+
+- Objetivo: modelar $\mathbb{E}[Y\mid X]$ (reta média condicional) e **prever** $Y$ para novos $X$.
+- Dois usos:
+  - **Explicação**: interpretar $\beta_1$ (efeito marginal de $X$).
+  - **Previsão**: obter $\widehat{Y}$ com incerteza (IC/IP).
+
+```{r}
+# Exemplo base que iremos usar
+data(mtcars)
+head(mtcars[, c("mpg", "wt")], 5)
+```
+
+---
+
+## Modelo SLR
+
+$$
+Y_i=\beta_0+\beta_1 X_i+\varepsilon_i,\quad i=1,\dots,n
+$$
+
+* $\beta_0$ (intercept), $\beta_1$ (declive).
+* $\varepsilon_i$ capta variabilidade não explicada; $\mathbb{E}[\varepsilon_i]=0$; $\mathrm{Var}(\varepsilon_i)=\sigma^2$.
+
+```{r}
+# Ajuste do modelo SLR: mpg ~ wt
+m_slr <- lm(mpg ~ wt, data = mtcars)
+coef(m_slr)
+```
+
+---
+
+## Linearidade na média (conceito)
+
+$$
+\mathbb{E}[Y\mid X] = \beta_0+\beta_1 X
+$$
+
+* Linearidade é sobre a **média condicional**, não sobre cada observação.
+
+```{r}
+# Gráfico de dispersão + reta ajustada
+plot(mtcars$wt, mtcars$mpg,
+     pch=19, xlab="Peso (1000 lbs)", ylab="Consumo (mpg)")
+abline(m_slr, col="tomato", lwd=2)
+```
+
+---
+
+## Estimação por MMQ (OLS): ideia
+
+Minimizar:
+$$
+\mathrm{RSS}=\sum_{i=1}^n \big(Y_i-\beta_0-\beta_1 X_i\big)^2
+$$
+
+```{r}
+# RSS do modelo
+rss <- sum(residuals(m_slr)^2)
+n <- nrow(mtcars)
+rss
+```
+
+---
+
+## Estimação por MMQ (OLS): expressão fechada
+
+$$
+\hat\beta_1=\frac{\sum (X_i-\bar X)(Y_i-\bar Y)}{\sum (X_i-\bar X)^2},\qquad
+\hat\beta_0=\bar Y-\hat\beta_1 \bar X
+$$
+
+```{r}
+# Cálculo manual de beta1 e beta0
+x <- mtcars$wt; y <- mtcars$mpg
+b1 <- sum( (x-mean(x))*(y-mean(y)) ) / sum( (x-mean(x))^2 )
+b0 <- mean(y) - b1*mean(x)
+c(b0=b0, b1=b1)
+```
+
+---
+
+## Interpretação de $\hat\beta_1$
+
+* **Sinal**: direção (positiva/negativa).
+* **Magnitude**: variação média de $Y$ por 1 unidade de $X$.
+
+```{r}
+summary(m_slr)$coefficients
+```
+
+---
+
+## Propriedades (Gauss–Markov)
+
+* Sob $\mathbb{E}[\varepsilon|X]=0$ e $\mathrm{Var}(\varepsilon|X)=\sigma^2 I$.
+
+```{r}
+# Rápida inspeção dos resíduos
+par(mfrow=c(1,2))
+plot(m_slr, which=1)  # resíduos vs ajustados
+plot(m_slr, which=2)  # QQ-plot
+par(mfrow=c(1,1))
+```
+
+---
+
+## Estimador de $\sigma^2$ e RSE
+
+$$
+\hat\sigma^2=\frac{1}{n-2}\sum e_i^2,\quad \mathrm{RSE}=\sqrt{\hat\sigma^2}
+$$
+
+```{r}
+sigma2_hat <- sum(residuals(m_slr)^2)/(n-2)
+RSE <- sqrt(sigma2_hat)
+c(sigma2_hat=sigma2_hat, RSE=RSE)
+```
+
+---
+
+## Erros-padrão dos coeficientes
+
+$$
+\mathrm{SE}(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{\sum (X_i-\bar X)^2}},\qquad
+\mathrm{SE}(\hat\beta_0)=\hat\sigma\sqrt{\frac{1}{n}+\frac{\bar X^2}{\sum (X_i-\bar X)^2}}
+$$
+
+```{r}
+# Conferir com o summary()
+summary(m_slr)$coefficients[,2]
+```
+
+---
+
+## Testes $t$ para coeficientes
+
+* $H_0:\beta_1=0$ vs $H_1:\beta_1\neq 0$
+* Estatística: $t=\hat\beta_1/\mathrm{SE}(\hat\beta_1)$ (gl $n-2$)
+
+```{r}
+# Estatística t e p-valor para beta1
+t_val <- summary(m_slr)$coefficients["wt","t value"]
+p_val <- summary(m_slr)$coefficients["wt","Pr(>|t|)"]
+c(t=t_val, p=p_val)
+```
+
+---
+
+## ICs para coeficientes
+
+* IC $(1-\alpha)$: $\hat\beta_j \pm t_{1-\alpha/2},\mathrm{SE}(\hat\beta_j)$.
+
+```{r}
+confint(m_slr)
+```
+
+---
+
+## Medidas de ajuste: $R^2$
+
+$$
+R^2 = 1-\frac{\sum e_i^2}{\sum (Y_i-\bar Y)^2}
+$$
+
+```{r}
+summary(m_slr)$r.squared
+```
+
+---
+
+
+## Previsão: ponto | IC da média | IP individual
+
+```{r}
+# Ponto, IC da média e IP para wt=3
+predict(m_slr, newdata = data.frame(wt=3), interval="confidence")
+predict(m_slr, newdata = data.frame(wt=3), interval="prediction")
+```
+
+---
+
+## Pressupostos: visão prática
+
+* **Linearidade**, **homoscedasticidade**, **independência**, **normalidade** (para inferência).
+* Verificar com gráficos de resíduos e QQ-plots.
+
+---
+
+## Diagnóstico inicial (gráficos)
+
+```{r}
+par(mfrow=c(2,2))
+plot(m_slr)          # 4 gráficos padrão de diagnóstico
+par(mfrow=c(1,1))
+```
+
+---
+
+## Quando SLR falha (indícios)
+
+* Relação curvilínea, heteroscedasticidade, outliers/influência, omissão de preditores.
+
+---
+
+## Exercícios rápidos — Aula 1
+
+1. **Ajusta e interpreta** `mpg ~ wt`.
+2. **Testa** $H_0!:\beta_1=0$ a 5%.
+3. **IC/IP** em `wt=2.2` e `wt=3.0`.
+4. **Diagnóstico**: comenta resíduos vs ajustados e QQ-plot.
+
+---
+
+
+### Exercício final — SLR com `women` (altura → peso)
+
+**Objetivo:** ajustar e interpretar um modelo de regressão linear simples do **peso** (`weight`) em função da **altura** (`height`).
+**Dados:** `women` (R base; 15 observações de mulheres adultas nos EUA).
+
+---
+
+#### Tarefas
+
+1. **Inspeção inicial**
+
+   1.1. Carrega `women`; mostra primeiras linhas e estatísticas resumo.
+   
+   1.2. Faz um gráfico de dispersão de `weight` vs `height` (peso no eixo Y, altura no X).
+   
+   1.3. Comenta visualmente se a relação parece aproximadamente linear.
+
+---
+
+2. **Ajuste do modelo SLR**
+
+   2.1. Ajusta o modelo: `weight ~ height`.
+   
+   2.2. Escreve a reta estimada: $\widehat{\text{weight}} = \hat\beta_0 + \hat\beta_1 \cdot \text{height}$.
+   
+   2.3. **Interpreta** $\hat\beta_1$ (unidades e significado) e $\hat\beta_0$ (faz sentido físico? comenta).
+
+---
+
+3. **Inferência**
+
+   3.1. Testa $H_0:\beta_1=0$ a 5% (apresenta $t$, p-valor e conclusão).
+   
+   3.2. Apresenta o **IC95%** para $\beta_1$.
+   
+   3.3. Reporta **RSE** e **(R^2)**; comenta a qualidade de ajuste.
+
+---
+
+4. **Previsão**
+
+   4.1. Obtém **previsão pontual**, **IC da média** e **IP individual** para `height = 66` e `height = 70`.
+   
+   4.2. Compara as larguras de IC vs IP e entre as duas alturas (mais longe da média → maior incerteza?).
+
+---
+
+5. **Diagnóstico**
+
+   5.1. Mostra os 4 gráficos padrão (`plot(lm_obj)`) e comenta: linearidade (resíduos vs ajustados) e normalidade (QQ-plot).
+   
+   5.2. Há alguma observação com **alta influência** (Cook)? Identifica-a e comenta o impacto potencial.
+
+---
+
+
+
+
+## Referências
+
+* James, Witten, Hastie, Tibshirani (2023). *An Introduction to Statistical Learning*, 2.ª ed., Cap. 3.
+* R base: `?lm`, `plot.lm`, `predict.lm`, `anova.lm`.
+* Pacotes úteis: `car` (VIF, avPlots), `lmtest` (BP, DW), `sandwich` (SE robustos).
+

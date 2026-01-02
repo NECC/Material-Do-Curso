@@ -1,0 +1,42 @@
+---
+title: "Exercícios de Regularização (Ridge e Lasso)"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output: html_document
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.width = 7, fig.height = 4.6)
+set.seed(123)
+```
+
+### Dados
+
+* `modeldata::ames`
+* Resposta: `log10(Sale_Price)`
+* Considere apenas variáveis quantitativas
+
+---
+
+## Exercício 1 — Ridge vs OLS (Ames)
+
+1. Defina `Sale_Price <- log10(Sale_Price)`.
+2. Faça *split* treino/teste (80/20).
+3. **OLS**: ajuste `lm(...)`, preveja em teste, calcule RMSE e R².
+4. **Ridge** (`alpha=0`): ajuste `cv.glmnet(..., nfolds=10)`, preveja em teste com `lambda.min` e compare com OLS.
+5. **Interpretação:** explique o **compromisso viés–variância** e por que motivo o ridge pode melhorar o RMSE em presença de colinearidade/alta dimensão.
+
+---
+
+## Exercício 2 — Lasso (parcimónia e seleção)
+
+1. Ajuste **lasso** (`alpha=1`) com `cv.glmnet`.
+2. Reporte `lambda.min` e `lambda.1se`.
+3. Liste as variáveis com **coeficientes ≠ 0** em `lambda.1se`.
+4. Compare RMSE de teste entre `lambda.min` e `lambda.1se`.
+5. **Interpretação:** discuta sinais esperados dos coeficientes e o **trade-off** parcimónia vs desempenho.
+
+---
+
+

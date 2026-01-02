@@ -1,0 +1,150 @@
+---
+title: "Análise de Componentes Principais (ACP)"
+subtitle: "Baseado nos slides (AMA/LEAp 2025/26)"
+author: ""
+format:
+  revealjs:
+    theme: [default]
+    slide-number: true
+    toc: true
+    toc-depth: 2
+    transition: fade
+    code-overflow: wrap
+    incremental: true
+editor: visual
+lang: pt
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## 1. Introdução
+
+-   A ACP é uma técnica **exploratória** para “simplificar” dados multivariados mantendo a **informação mais relevante**.
+-   Objetivo: reduzir a **dimensionalidade** (nº de variáveis) definindo $r$ novas variáveis, $1\le r\le p$, que expliquem o **máximo** da variabilidade das $p$ originais.
+-   As novas variáveis (componentes principais) devem ser **não correlacionadas** entre si.
+-   **Reduzimos o nº de variáveis**, **não** o tamanho amostral.
+
+------------------------------------------------------------------------
+
+## 1. Formulação
+
+-   Dadas $p$ v.a. quantitativas correlacionadas $X_1,\dots,X_p$, definem‑se novas v.a. $Y_1,\dots,Y_p$, cada uma **combinação linear** das originais, tais que:
+    -   $\operatorname{Var}[Y_1]\ge \operatorname{Var}[Y_2]\ge\cdots\ge\operatorname{Var}[Y_p]$;
+    -   $\operatorname{Cov}(Y_j,Y_k)=0$ para $j\ne k$;
+    -   $\lVert a_j\rVert=1$ ("norma 1" nos pesos) para fixar a escala das combinações lineares.
+-   Espera‑se que as primeiras $r$ (poucas) CPs expliquem **80–90%** da variabilidade total, permitindo descartar as restantes em análises subsequentes.
+
+------------------------------------------------------------------------
+
+## 2. Construção das Componentes Principais — 1ª CP
+
+-   Procuramos $Y_1 = a_{11}X_1+\cdots+a_{1p}X_p$ que **maximiza a variância** entre todas as combinações de **norma 1**: $$
+    \max_{\lVert a_1\rVert=1} \operatorname{Var}(Y_1)\quad\text{com}\quad a_1=(a_{11},\dots,a_{1p})^\top.
+    $$
+-   A restrição $\lVert a_1\rVert=1$ é **essencial**: sem ela, a variância pode ser inflacionada reescalando os pesos.
+-   Solução clássica (multiplicadores de Lagrange): $a_1$ é o **vetor próprio (norma 1)** associado ao **maior valor próprio** da matriz de **covariâncias amostrais** das $X_j$.
+
+------------------------------------------------------------------------
+
+## 2. Construção — 2ª CP e seguintes
+
+-   2ª CP: $Y_2=a_{21}X_1+\cdots+a_{2p}X_p$ que maximiza a variância **sujeita a**
+    1)  $\lVert a_2\rVert=1$; 2) **ortogonalidade** a $Y_1$ (i.e., $a_2^\top a_1=0$).
+-   3ª CP: análoga, com $\lVert a_3\rVert=1$ e ortogonalidade a $Y_1$ e $Y_2$.
+-   Em geral, obtemos $p$ vetores próprios $a_1,\dots,a_p$ (ordenados por valores próprios **estritamente decrescentes** $\lambda_1>\cdots>\lambda_p\ge0$) — assumindo covariâncias com espectro simples.
+
+------------------------------------------------------------------------
+
+## 2. Variâncias e variância total
+
+-   Cada valor próprio **representa a variância** da respetiva CP: $\lambda_j=\operatorname{Var}[Y_j]$.
+-   A **variância total** das variáveis iniciais é a soma dos valores próprios: $\sum_{j=1}^p \operatorname{Var}[X_j] = \sum_{j=1}^p \lambda_j$.
+-   **Proporção explicada pela** $j$‑ésima CP: $\lambda_j/\sum_{i=1}^p\lambda_i$.
+-   **Proporção de variância explicada acumulada** pelas primeiras $r$ CPs: $(\lambda_1+\cdots+\lambda_r)/\sum_{i=1}^p\lambda_i$.
+
+------------------------------------------------------------------------
+
+## 2. Matriz de correlações
+
+-   Se as $X_j$ estão em **unidades diferentes** (variâncias muito distintas), as CPs ficam **dominadas** pelas variáveis de maior variância.
+-   Solução: **estandardizar** as variáveis ou obter as CPs a partir da **matriz de correlações**.
+-   Numa matriz de correlações, o traço (soma dos diagonais) é $p$; logo, a proporção explicada pela $j$‑ésima CP é $\lambda_j/p$.
+
+------------------------------------------------------------------------
+
+## 3. Exercícios
+
+**(A) Caso bivariado:** matriz de correlação $$
+P=\begin{bmatrix}1 & r\\ r & 1\end{bmatrix},\quad r=\rho(X_1,X_2)\ne0.
+$$ 
+1. Determine as **duas CPs** (valores próprios/vetores próprios de $P$). 
+
+2. Discuta, em função de $r$, a **importância** relativa das CPs.
+
+---
+
+**(B) Caso trivariado:** $$
+P=\begin{bmatrix}1 & r & 0\\ r & 1 & 0\\ 0 & 0 & 1\end{bmatrix},\quad r\ne0.
+$$ 
+1. Determine as **três CPs**. 
+
+2. Discuta a importância em função de $r$. 
+
+3. Compare com (A) e comente o efeito de $X_3$ ser **não correlacionada** com $X_1$ e $X_2$.
+
+------------------------------------------------------------------------
+
+## 4. Observações importantes sobre a ACP (I)
+
+I)  Objetivo principal: transformar $p$ v.a. **correlacionadas** num novo conjunto de $p$ v.a. **não correlacionadas**, mantendo a **variabilidade total**. A redução de dimensão (reter poucas CPs) **só** é viável quando as originais estão correlacionadas; caso contrário, a ACP apenas **ordena** por variâncias.
+
+II) As CPs são obtidas por **ordem decrescente de importância** (variância).
+
+------------------------------------------------------------------------
+
+III) A ACP é adequada quando **todas** as variáveis estão em “pé de igualdade” (não há variáveis resposta vs. explicativas, ao contrário de MANOVA/AD).
+
+IV) **Não** aplicar ACP a **variáveis qualitativas** (mesmo com codificação numérica arbitrária).
+
+------------------------------------------------------------------------
+
+## 4. Observações importantes sobre a ACP (II)
+
+V)  Em R, ACP com `prcomp`:
+
+``` r
+# Se pretende CPs da matriz de correlações (recomendado com escalas distintas):
+pc <- prcomp(X, center = TRUE, scale. = TRUE)
+# CPs da matriz de covariâncias (todas as variáveis na mesma escala/unidade):
+pc_cov <- prcomp(X, center = TRUE, scale. = FALSE)
+summary(pc)     # variâncias (valores próprios), PVE, PVE acumulada
+biplot(pc)      # biplot (scores e loadings)
+```
+
+VI) Quantas CPs reter?
+
+-   Meta prática: explicar **80–90%** da variabilidade com poucas CPs.
+
+------------------------------------------------------------------------
+
+## 5. Exemplo/Exercício — Dados *iris*
+
+Considere *iris* sem a coluna `Species`.
+
+1)  Obtenha a matriz de **covariâncias** $S$; calcule **valores próprios** e **vetores próprios (norma 1)** de $S$.
+
+2)  Verifique que:
+
+-   Valores próprios de $S$ = **variâncias** das CPs;\
+-   Coeficientes das CPs coincidem (a menos de sinal) com os **vetores próprios** de $S$;\
+-   **Traço** de $S$ = soma dos valores próprios = soma das variâncias das CPs.
+
+------------------------------------------------------------------------
+
+3)  Identifique as CPs e a **proporção de variância** explicada por cada uma; **interprete** as CPs.
+
+4)  Calcule a **matriz de correlação** dos **scores** e faça o **diagrama de dispersão** das duas primeiras CPs; comente a separação entre espécies (mesmo não usadas no ajuste).
+
+------------------------------------------------------------------------

@@ -1,0 +1,170 @@
+---
+title: "Test 1 — EDA, Multiple Linear Regression and Regularization (2 hours)"
+author: "Student's name: __________________"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+html_document: default
+pdf_document: default
+editor_options:
+chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 4.6)
+set.seed(123)
+```
+
+# Instructions
+
+* **Duration:** 2 hours.
+* **Submit:** this `.Rmd` with **code** and **answers** (text + figures).
+* **Datasets used:** `ggplot2::mpg`, `gapminder::gapminder`, `ggplot2::diamonds`.
+
+```{r pacotes}
+# Install if necessary
+req <- c("tidyverse","broom","gapminder","glmnet","janitor", "car")
+new <- setdiff(req, rownames(installed.packages()))
+if(length(new)) install.packages(new)
+
+library(tidyverse)
+library(broom)
+library(gapminder)
+library(glmnet)
+library(janitor)
+library(car)
+```
+
+---
+
+# Part A — EDA & Visualization
+
+## A1. MPG (ggplot2): highway fuel economy and car characteristics
+
+**Data:** `ggplot2::mpg`.
+
+```{r A2-data}
+mpg <- ggplot2::mpg |> janitor::clean_names()
+glimpse(mpg)
+```
+
+**a)** Make a **scatter plot** of `hwy` (highway MPG) vs `displ` (engine displacement). Distinguish observations by `class` and by `drv` (drivetrain) in whatever graphical way you find most appropriate (you may consider side-by-side plots).
+*Comment on the overall pattern (fuel economy–displacement relationship) and differences by drivetrain.*
+
+```{r A2a}
+# Your code here
+```
+
+**b)** Produce a **boxplot** of `hwy` by `class`.
+*State which two classes have the **lowest highway fuel economy* and which class has the **greatest variability** in highway fuel economy.*
+
+
+```{r A2b}
+# Your code here
+```
+
+**c)** Create the metric `eff_ratio = hwy / cty` (highway/city efficiency). Plot the **mean of `eff_ratio` by `trans`** (transmission type).
+
+```{r A2c}
+# Your code here
+```
+
+**d)** For the **8 manufacturers** with the most observations, show a **line plot** of mean `hwy` by **year** — one line per manufacturer.
+*Comment on improvement/deterioration between 1999 and 2008 and differences across manufacturers.*
+
+```{r A2d}
+# Your code here
+```
+
+---
+
+# Part B — Multiple Linear Regression
+
+## B1. Gapminder: what explains life expectancy?
+
+**Data:** `gapminder::gapminder`. Variable of interest: **`life_exp`**.
+
+```{r B1-data}
+gp <- gapminder::gapminder |> janitor::clean_names()
+glimpse(gp)
+```
+
+**a)** Create helper variables: `log_gdp = log10(gdp_per_cap)` and `year_c = year - 2000`.
+Fit the linear model:
+$$
+\texttt{life_exp} \sim \texttt{log_gdp} + \texttt{year_c} + \texttt{continent}.
+$$
+*Report the coefficient estimates.* Interpret the coefficients associated with the variable `continent`.
+
+```{r B1a}
+# Your code here
+```
+
+**b)** Indicate which covariates are statistically significant in explaining the variability of life expectancy.
+
+```{r B1b}
+# Your code here
+```
+
+**c)** Include the interaction `log_gdp:continent`. Compare with the base model (defined in a)).
+*Does the interaction improve the fit? Explain.*
+
+```{r B1e}
+# Your code here
+```
+
+**d)** Perform a model diagnostic analysis and compute **VIF** (`car::vif`) of model defined in a).
+*Identify potential issues and comment on the VIF values.*
+
+```{r B1f}
+# Your code here
+```
+
+**e)** Prediction for new profiles (year 2007 ⇒ `year_c = 7`) based on model defined in a):
+
+1. `continent = "Europe"`, `log_gdp = 4.2`.
+   *Compute the point prediction, 95% Confidence Interval (CI) for the mean, and 95% Predictive Interval (PI); compare CI vs PI.*
+
+```{r B1bonus}
+# Your code here
+```
+
+---
+
+# Part C — Regularization: Lasso / Ridge
+
+## C1. Diamonds (ggplot2): effects of penalization and stability
+
+**Data:** `ggplot2::diamonds`. Response: `log(price)`.
+
+```{r C1-data}
+data("diamonds", package = "ggplot2")
+dm <- diamonds |> janitor::clean_names() |> mutate(log_price = log(price)) |>
+  select(-price)
+```
+
+**a)** Split the sample into training and test sets. Fit **Lasso** on the training data. **Plot the coefficient paths** (as a function of -log(λ)).
+*Identify the 2 predictors with the highest relevance across a broad range of lambda values.*
+
+```{r C1a}
+# Your code here
+```
+
+**b)** Choose a value of lambda based on cross-validation and justify your choice.
+For that value of λ, report: (i) the number of nonzero coefficients (counting dummies), (ii) the test RMSE.
+
+```{r C1b}
+# Your code here
+```
+
+**c)** Do **B = 20** *subsamples* of the training set (e.g., 80% without replacement), fit **Lasso** in each sample (use the same λ selection criterion within each *subsample*), and compute the **selection frequency** (proportion of times with a nonzero coefficient) for each variable.
+*List the top 3 variables by frequency and interpret the stability of the ranking.*
+
+```{r C1c}
+# Your code here
+```
+
+**d)** Compare Lasso and Ridge. Report the test RMSEs of the two models and comment.
+
+```{r C1d}
+# Your code here
+```

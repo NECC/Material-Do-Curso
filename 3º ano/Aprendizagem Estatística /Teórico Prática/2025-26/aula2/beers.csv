@@ -1,0 +1,501 @@
+"","id","date","brand","brewery","city","region","is_craft","product","style","abv","ibu","package","volume_ml","price_eur","rating","ratings_n","on_promo"
+"1",1,2024-10-14,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA pressão (copo)","IPA",6.20639067057074,62.8477216035553,"pressão (copo)",500,6.82,3.88,121,FALSE
+"2",2,2024-11-15,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn pressão (copo)","Pilsner",5.17800431580489,20.7002368690483,"pressão (copo)",500,5.63,3.3,394,FALSE
+"3",3,2024-01-10,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Weiss pressão (copo)","Weiss",4.81843606142784,10.2575176854599,"pressão (copo)",500,6.32,3.35,119,FALSE
+"4",4,2024-06-26,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Pilsn garrafa 33cl","Pilsner",5.47612325427093,22.8900635148313,"garrafa 33cl",330,3.08,3.97,125,FALSE
+"5",5,2024-06-15,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Lager lata 33cl","Lager",4.75667219323145,23.7299394604899,"lata 33cl",330,2.57,4.14,115,FALSE
+"6",6,2024-09-05,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA garrafa 50cl","NEIPA",8.88539863916087,41.6476070304377,"garrafa 50cl",500,3.64,4.11,125,FALSE
+"7",7,2024-03-27,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Sour pressão (copo)","Sour",3.90145293256644,8.50097605220518,"pressão (copo)",500,6.63,3.88,115,FALSE
+"8",8,2024-08-18,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 50cl","Lager",4.31481102427833,11.3106634971912,"garrafa 50cl",500,3.03,3.23,423,FALSE
+"9",9,2024-10-01,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Pilsn lata 33cl","Pilsner",5.14231090020328,29.3064367569977,"lata 33cl",330,2.49,3.23,105,FALSE
+"10",10,2024-01-09,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Amber garrafa 33cl","Amber Ale",5.50533341816,25.3551055038041,"garrafa 33cl",330,2.77,3.17,102,FALSE
+"11",11,2024-09-19,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 33cl","Lager",4.79534288920239,NA,"garrafa 33cl",330,1.83,3.11,388,FALSE
+"12",12,2024-06-12,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Stout garrafa 33cl","Stout",6.00658529275672,17.9171831467018,"garrafa 33cl",330,2.76,3.95,121,FALSE
+"13",13,2024-12-01,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA pressão (copo)","IPA",5.09385947683975,57.4950091964591,"pressão (copo)",500,6.39,3.13,129,FALSE
+"14",14,2024-01-31,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn pressão (copo)","Pilsner",3.82364292821907,NA,"pressão (copo)",500,5.61,3.31,376,FALSE
+"15",15,2024-09-09,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.76972777922353,8.87578096709581,"garrafa 50cl",500,3.24,3.42,400,FALSE
+"16",16,2024-02-13,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Amber pressão (copo)","Amber Ale",4.55318793880649,29.2701267197382,"pressão (copo)",500,6.48,4,97,TRUE
+"17",17,2024-06-07,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 50cl","Lager",4.68932468286798,23.177863821453,"garrafa 50cl",500,3.08,3.3,395,FALSE
+"18",18,2024-01-29,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 33cl","Lager",5.78278853327958,NA,"garrafa 33cl",330,1.75,3.1,411,FALSE
+"19",19,2024-01-08,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Stout garrafa 50cl","Stout",6.02650172942547,40.500014761679,"garrafa 50cl",500,3.89,4.05,124,FALSE
+"20",20,2024-02-19,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager pressão (copo)","Lager",4.73200200933748,NA,"pressão (copo)",500,5.39,3.23,383,TRUE
+"21",21,2024-10-04,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager lata 33cl","Lager",4.97172654478009,9.52464333380013,"lata 33cl",330,1.54,2.79,415,FALSE
+"22",22,2024-09-24,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 33cl","IPA",5.63436517029522,53.9272817457652,"garrafa 33cl",330,2.95,3.78,129,FALSE
+"23",23,2024-11-04,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager pressão (copo)","Lager",4.58127639241106,11.0838466912213,"pressão (copo)",500,4.93,3.15,411,TRUE
+"24",24,2024-06-09,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Stout lata 33cl","Stout",7.72511876579227,23.2047347447302,"lata 33cl",330,2.19,4.25,127,FALSE
+"25",25,2024-12-03,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn garrafa 50cl","Pilsner",4.65327178644603,NA,"garrafa 50cl",500,2.62,2.96,408,FALSE
+"26",26,2024-05-20,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout lata 33cl","Stout",6.05065615002859,37.8263571789212,"lata 33cl",330,2.88,4.26,112,FALSE
+"27",27,2024-01-20,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Pilsn garrafa 33cl","Pilsner",4.99034208797252,34.6794545023817,"garrafa 33cl",330,2.62,3.79,122,FALSE
+"28",28,2024-08-29,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn garrafa 50cl","Pilsner",5.33712038471953,29.1556018148356,"garrafa 50cl",500,3.45,2.94,382,FALSE
+"29",29,2024-05-09,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA garrafa 33cl","NEIPA",8.67612175802097,51.2488634027107,"garrafa 33cl",330,2.45,3.99,102,FALSE
+"30",30,2024-10-28,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager pressão (copo)","Lager",4.49399896653518,25.9644537527965,"pressão (copo)",500,5.59,3.27,433,TRUE
+"31",31,2024-06-13,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 33cl","Lager",4.62127220517646,9.30692461923927,"garrafa 33cl",330,1.24,3.49,413,TRUE
+"32",32,2024-10-16,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Porte pressão (copo)","Porter",4.50293807955374,30.2836374220762,"pressão (copo)",500,5.73,2.95,369,FALSE
+"33",33,2024-12-26,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Stout garrafa 50cl","Stout",5.94313228470413,52.5340216183382,"garrafa 50cl",500,4.19,3.42,110,FALSE
+"34",34,2024-02-29,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Weiss lata 33cl","Weiss",4.71128948360289,17.2077488696376,"lata 33cl",330,2.74,3.55,104,FALSE
+"35",35,2024-09-15,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Porte garrafa 33cl","Porter",5.16565667903794,21.6306876257026,"garrafa 33cl",330,2.68,3.6,102,FALSE
+"36",36,2024-11-28,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal IPA lata 33cl","IPA",5.57611752184458,NA,"lata 33cl",330,1.76,3.32,377,FALSE
+"37",37,2024-01-09,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 50cl","Lager",4.95143491004144,6.02292213203437,"garrafa 50cl",500,3.06,3.12,414,FALSE
+"38",38,2024-11-28,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.56032382547456,23.321923412597,"lata 33cl",330,1.27,3.22,390,FALSE
+"39",39,2024-06-24,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Porte lata 33cl","Porter",5.37374042338854,22.9503368804381,"lata 33cl",330,2.54,4.02,125,FALSE
+"40",40,2024-04-18,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA garrafa 33cl","IPA",4.74475500328056,49.7513351812478,"garrafa 33cl",330,2.92,3.81,113,FALSE
+"41",41,2024-10-10,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",3.9520425459756,12.7645519504336,"garrafa 50cl",500,3.13,3.3,365,FALSE
+"42",42,2024-10-01,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Porte pressão (copo)","Porter",5.28192991984086,25.3292773339542,"pressão (copo)",500,6.09,3.91,113,FALSE
+"43",43,2024-12-12,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Stout garrafa 33cl","Stout",5.22885684866783,35.1321404286134,"garrafa 33cl",330,2.45,3.91,127,FALSE
+"44",44,2024-09-15,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA garrafa 33cl","NEIPA",6.81421283629305,36.9305997597007,"garrafa 33cl",330,2.45,3.63,100,FALSE
+"45",45,2024-12-07,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Porte garrafa 50cl","Porter",5.0596996548428,40.2880318192898,"garrafa 50cl",500,3.7,4.18,122,FALSE
+"46",46,2024-02-03,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA garrafa 50cl","NEIPA",7.38582820814945,45.6770021550368,"garrafa 50cl",500,4.13,4.32,133,FALSE
+"47",47,2024-07-13,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA lata 33cl","IPA",5.51601521036957,38.576744729401,"lata 33cl",330,2.31,3.7,113,FALSE
+"48",48,2024-05-31,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",5.3388587034961,13.6652496788143,"garrafa 33cl",330,1.84,3.12,395,FALSE
+"49",49,2024-01-12,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 33cl","Lager",4.12043807298989,NA,"garrafa 33cl",330,1.23,3.1,385,FALSE
+"50",50,2024-10-15,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Amber pressão (copo)","Amber Ale",6.09110673235355,26.6467988840966,"pressão (copo)",500,6.83,3.74,123,FALSE
+"51",51,2024-04-16,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",4.7320610862861,NA,"garrafa 33cl",330,1.65,3.22,379,TRUE
+"52",52,2024-09-10,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Amber garrafa 33cl","Amber Ale",5.04271189781387,19.4878881852368,"garrafa 33cl",330,2.9,3.89,130,FALSE
+"53",53,2024-04-02,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn garrafa 50cl","Pilsner",5.48255596031649,36.9782479323361,"garrafa 50cl",500,2.9,3.21,391,FALSE
+"54",54,2024-05-24,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn lata 33cl","Pilsner",5.0275067340929,NA,"lata 33cl",330,1.48,3.23,428,FALSE
+"55",55,2024-05-30,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Amber pressão (copo)","Amber Ale",5.46613302421847,23.1158186304524,"pressão (copo)",500,6.55,3.71,121,FALSE
+"56",56,2024-05-05,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Porte pressão (copo)","Porter",5.81758367568231,41.6358608215854,"pressão (copo)",500,5.45,3.36,407,FALSE
+"57",57,2024-01-16,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn lata 33cl","Pilsner",5.10354082447028,20.8879122726229,"lata 33cl",330,1.32,3.19,405,TRUE
+"58",58,2024-11-28,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Stout pressão (copo)","Stout",6.65739342304712,54.6782415679458,"pressão (copo)",500,6.5,4.31,116,FALSE
+"59",59,2024-09-27,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA pressão (copo)","IPA",6.90432462166101,84.8874475914496,"pressão (copo)",500,6.48,4.34,113,FALSE
+"60",60,2024-09-07,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine IPA garrafa 50cl","IPA",5.16187642061896,36.0442428102169,"garrafa 50cl",500,4.19,3.78,119,FALSE
+"61",61,2024-06-18,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 33cl","Pilsner",4.87860603312097,24.9419449409474,"garrafa 33cl",330,1.99,2.89,414,TRUE
+"62",62,2024-07-02,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Weiss garrafa 50cl","Weiss",5.12521395536494,13.143420896005,"garrafa 50cl",500,4.27,4.1,107,FALSE
+"63",63,2024-08-16,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Sour garrafa 50cl","Sour",3.52424797304664,4.35299192891867,"garrafa 50cl",500,4.22,3.75,137,FALSE
+"64",64,2024-02-16,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Weiss pressão (copo)","Weiss",4.76367757776825,18.9532077128119,"pressão (copo)",500,5.79,3.04,413,TRUE
+"65",65,2024-09-30,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",5.55188414989648,25.6960790392495,"garrafa 33cl",330,1.6,3.19,448,FALSE
+"66",66,2024-02-10,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Amber lata 33cl","Amber Ale",5.6236486832029,14.8525825364744,"lata 33cl",330,2.3,3.84,109,FALSE
+"67",67,2024-04-06,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Weiss lata 33cl","Weiss",5.10091588950308,9.17074941855246,"lata 33cl",330,2.65,3.54,113,FALSE
+"68",68,2024-10-08,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 50cl","Lager",4.88652318799937,NA,"garrafa 50cl",500,2.91,3.04,382,FALSE
+"69",69,2024-12-25,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Pilsn pressão (copo)","Pilsner",5.28194854072405,33.9011180792361,"pressão (copo)",500,6.17,3.13,423,FALSE
+"70",70,2024-10-26,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 33cl","Lager",5.11161369326375,33.5497820856083,"garrafa 33cl",330,1.42,2.88,363,TRUE
+"71",71,2024-05-30,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Porte pressão (copo)","Porter",5.50964307568094,NA,"pressão (copo)",500,5.27,3.08,374,FALSE
+"72",72,2024-02-02,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Lager pressão (copo)","Lager",4.8454134026889,24.3956107930921,"pressão (copo)",500,6.87,4.17,124,FALSE
+"73",73,2024-06-24,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Porte pressão (copo)","Porter",6.18379102228764,20.6011513179906,"pressão (copo)",500,6.19,3.71,121,FALSE
+"74",74,2024-08-11,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 33cl","Lager",4.37048180825473,22.3335957630482,"garrafa 33cl",330,1.71,2.94,433,FALSE
+"75",75,2024-08-30,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",5.18444623957936,16.8738044810626,"lata 33cl",330,2.1,3.22,419,FALSE
+"76",76,2024-12-02,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Amber garrafa 33cl","Amber Ale",4.44437602804899,31.5616770709538,"garrafa 33cl",330,3.03,3.49,113,FALSE
+"77",77,2024-09-23,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Stout garrafa 33cl","Stout",5.29454050778286,19.2827044328617,"garrafa 33cl",330,2.57,4.11,108,FALSE
+"78",78,2024-12-20,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine IPA pressão (copo)","IPA",6.53755698906627,72.5194079665891,"pressão (copo)",500,6.43,3.46,119,FALSE
+"79",79,2024-04-24,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Lager lata 33cl","Lager",5.43152693423596,11.0992692667027,"lata 33cl",330,2.46,3.47,123,TRUE
+"80",80,2024-02-25,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Pilsn garrafa 33cl","Pilsner",4.91015551656102,26.294419209691,"garrafa 33cl",330,2.43,3.07,131,FALSE
+"81",81,2024-10-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber garrafa 33cl","Amber Ale",5.07423645592746,27.5845403090789,"garrafa 33cl",330,2.35,3.76,130,FALSE
+"82",82,2024-12-10,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",5.12027418207508,18.6817611006344,"pressão (copo)",500,5.53,3.33,409,FALSE
+"83",83,2024-12-26,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber pressão (copo)","Amber Ale",5.74849240028931,27.3181303446922,"pressão (copo)",500,6.34,3.67,129,FALSE
+"84",84,2024-08-23,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 50cl","Pilsner",4.66129677274886,22.8818440267601,"garrafa 50cl",500,3.03,3.12,436,FALSE
+"85",85,2024-12-05,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 50cl","Lager",4.59655816960335,19.2433878681519,"garrafa 50cl",500,2.93,3.11,401,FALSE
+"86",86,2024-02-15,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 33cl","Lager",4.12948991846628,16.3579354545514,"garrafa 33cl",330,1.02,3.11,421,FALSE
+"87",87,2024-02-03,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn pressão (copo)","Pilsner",4.86353403460413,33.148451396164,"pressão (copo)",500,5.22,2.68,405,FALSE
+"88",88,2024-05-04,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",5.35937294956636,13.8485215974011,"lata 33cl",330,1.43,3.33,410,TRUE
+"89",89,2024-11-29,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 33cl","Lager",4.76926478317306,23.8717434768003,"garrafa 33cl",330,1.9,2.76,417,FALSE
+"90",90,2024-12-28,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos IPA pressão (copo)","IPA",5.42608720374517,62.5711697092928,"pressão (copo)",500,6.71,3.98,141,FALSE
+"91",91,2024-12-09,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA pressão (copo)","NEIPA",7.20854679479092,38.3283968311264,"pressão (copo)",500,5.98,4.17,122,FALSE
+"92",92,2024-10-29,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Stout lata 33cl","Stout",6.04962578422311,38.0382546811046,"lata 33cl",330,2.77,3.9,121,FALSE
+"93",93,2024-03-14,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager pressão (copo)","Lager",5.03541633095571,26.6842006612532,"pressão (copo)",500,5.78,3.31,429,FALSE
+"94",94,2024-02-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Porte garrafa 50cl","Porter",5.77508842886634,32.1851285515301,"garrafa 50cl",500,3.75,4.14,129,FALSE
+"95",95,2024-07-03,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 33cl","NEIPA",7.07322374845143,31.4130366945094,"garrafa 33cl",330,2.78,4.83,127,FALSE
+"96",96,2024-02-12,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA garrafa 50cl","NEIPA",6.46472141891962,46.4233561686452,"garrafa 50cl",500,4.08,4.07,138,FALSE
+"97",97,2024-11-03,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA pressão (copo)","NEIPA",6.41386792125447,20.521122135959,"pressão (copo)",500,6.63,3.72,93,FALSE
+"98",98,2024-02-03,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Pilsn garrafa 50cl","Pilsner",4.80969214276551,29.500788104696,"garrafa 50cl",500,4.24,4.12,107,FALSE
+"99",99,2024-12-12,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Porte lata 33cl","Porter",6.25464432224593,19.8120885902972,"lata 33cl",330,2.81,4.1,120,FALSE
+"100",100,2024-08-02,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 50cl","Lager",4.92064661377084,NA,"garrafa 50cl",500,3.1,2.77,401,TRUE
+"101",101,2024-08-27,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Weiss lata 33cl","Weiss",5.18382289871677,15.4899689800833,"lata 33cl",330,2.7,3.07,124,FALSE
+"102",102,2024-11-12,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Weiss garrafa 50cl","Weiss",4.52905722500183,17.2257087407833,"garrafa 50cl",500,4.47,3.47,109,TRUE
+"103",103,2024-01-22,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 33cl","Pilsner",4.91468826927298,35.1680572595029,"garrafa 33cl",330,1.94,3.11,380,TRUE
+"104",104,2024-05-02,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 50cl","IPA",6.52287001816738,41.7424072507627,"garrafa 50cl",500,4.21,3.79,123,FALSE
+"105",105,2024-03-31,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn garrafa 33cl","Pilsner",5.40367113292346,25.4152422140794,"garrafa 33cl",330,2.23,2.92,377,FALSE
+"106",106,2024-04-17,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Sour garrafa 50cl","Sour",3.79987103405717,8.01831579352389,"garrafa 50cl",500,3.84,3.97,101,FALSE
+"107",107,2024-08-27,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Weiss lata 33cl","Weiss",4.24700446881327,15.3390626534588,"lata 33cl",330,2.67,3.75,118,FALSE
+"108",108,2024-10-20,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn garrafa 33cl","Pilsner",4.82495071857434,NA,"garrafa 33cl",330,2.49,3.33,393,TRUE
+"109",109,2024-09-14,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA garrafa 50cl","NEIPA",6.9030906062099,46.3428507223326,"garrafa 50cl",500,3.83,4.65,113,FALSE
+"110",110,2024-06-08,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA lata 33cl","NEIPA",6.22341979419868,34.47486057251,"lata 33cl",330,2.59,3.81,116,FALSE
+"111",111,2024-11-21,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Porte garrafa 50cl","Porter",4.77746657100293,17.856065832961,"garrafa 50cl",500,3.61,4.8,112,TRUE
+"112",112,2024-09-27,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 50cl","Lager",4.48587263293655,NA,"garrafa 50cl",500,3.23,3.11,422,FALSE
+"113",113,2024-02-09,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Lager lata 33cl","Lager",5.27152307734866,12.3396420603846,"lata 33cl",330,2.33,3.76,107,FALSE
+"114",114,2024-07-06,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Stout garrafa 50cl","Stout",7.30124251742018,37.6047709599831,"garrafa 50cl",500,4.07,3.44,120,FALSE
+"115",115,2024-12-20,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.66396352377343,NA,"lata 33cl",330,1.84,2.95,396,FALSE
+"116",116,2024-04-12,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",5.59457068093355,NA,"garrafa 33cl",330,1.43,3.26,393,FALSE
+"117",117,2024-01-01,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Weiss pressão (copo)","Weiss",5.19678654791356,NA,"pressão (copo)",500,5.24,2.91,406,FALSE
+"118",118,2024-01-07,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA pressão (copo)","IPA",6.84813646520307,52.7649733910117,"pressão (copo)",500,6.73,3.79,124,FALSE
+"119",119,2024-02-28,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Sour garrafa 33cl","Sour",4.42068483456521,7.23280406806593,"garrafa 33cl",330,2.58,4.49,106,FALSE
+"120",120,2024-05-09,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 50cl","Lager",5.38871198314339,9.47475108541074,"garrafa 50cl",500,2.96,3.43,403,FALSE
+"121",121,2024-10-27,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA lata 33cl","NEIPA",4.8641054177659,42.998087400847,"lata 33cl",330,2.38,3.87,124,FALSE
+"122",122,2024-08-29,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA garrafa 50cl","NEIPA",4.31949895760219,22.3983638653463,"garrafa 50cl",500,3.83,4.09,125,FALSE
+"123",123,2024-03-14,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA pressão (copo)","IPA",6.17460568002811,40.3440469392053,"pressão (copo)",500,6.65,3.62,125,FALSE
+"124",124,2024-05-15,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Amber lata 33cl","Amber Ale",6.04246406124075,34.4346461189413,"lata 33cl",330,2.76,4.03,115,FALSE
+"125",125,2024-05-18,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Stout pressão (copo)","Stout",6.0430671192399,59.0731563583933,"pressão (copo)",500,6.44,3.39,129,TRUE
+"126",126,2024-09-05,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Lager garrafa 33cl","Lager",4.97129021584053,30.2601881271486,"garrafa 33cl",330,2.78,3.66,119,FALSE
+"127",127,2024-01-25,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout pressão (copo)","Stout",6.88745253508516,42.2973838017042,"pressão (copo)",500,6.12,3.65,111,FALSE
+"128",128,2024-02-20,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber lata 33cl","Amber Ale",5.3353729723946,26.2074017501611,"lata 33cl",330,2.81,3.9,129,FALSE
+"129",129,2024-11-26,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Porte pressão (copo)","Porter",5.5220650469455,19.9187994238046,"pressão (copo)",500,5.51,3.57,418,FALSE
+"130",130,2024-08-28,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA garrafa 33cl","NEIPA",5.46033460409054,37.1646265473512,"garrafa 33cl",330,2.54,3.73,119,FALSE
+"131",131,2024-11-30,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 50cl","Lager",4.39439839320224,11.396779146162,"garrafa 50cl",500,3.18,2.56,404,TRUE
+"132",132,2024-11-10,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA lata 33cl","IPA",6.39001314233813,51.4895068162502,"lata 33cl",330,2.87,4.05,119,FALSE
+"133",133,2024-05-21,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",5.29180174477709,17.1212286767114,"lata 33cl",330,1.66,3.04,376,FALSE
+"134",134,2024-11-02,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.16759213982867,19.3406887403326,"garrafa 50cl",500,3.03,3.56,392,FALSE
+"135",135,2024-09-07,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Porte pressão (copo)","Porter",6.2812095418122,21.8361021157168,"pressão (copo)",500,5.7,3.68,373,TRUE
+"136",136,2024-02-11,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA pressão (copo)","NEIPA",8.06726041539443,43.0070486221746,"pressão (copo)",500,6.42,3.95,120,FALSE
+"137",137,2024-01-18,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa NEIPA lata 33cl","NEIPA",7.3188247565767,33.7445051114949,"lata 33cl",330,2.23,4.08,118,FALSE
+"138",138,2024-01-27,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 50cl","Lager",4.34701734776669,29.1679717211369,"garrafa 50cl",500,2.74,3.01,402,FALSE
+"139",139,2024-08-01,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 50cl","Lager",4.55711681844777,NA,"garrafa 50cl",500,2.94,3.17,382,FALSE
+"140",140,2024-01-27,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA lata 33cl","NEIPA",5.75680464646137,47.2041204625589,"lata 33cl",330,2.24,4.11,112,FALSE
+"141",141,2024-06-28,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn garrafa 33cl","Pilsner",5.04423444528974,44.790799504394,"garrafa 33cl",330,1.65,2.92,376,FALSE
+"142",142,2024-03-06,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Pilsn garrafa 33cl","Pilsner",4.74760922125435,38.3883609995676,"garrafa 33cl",330,2.9,3.77,126,FALSE
+"143",143,2024-04-23,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",3.98404579602785,NA,"lata 33cl",330,1.83,3.3,444,FALSE
+"144",144,2024-03-14,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Pilsn garrafa 50cl","Pilsner",5.00450775893452,31.1294150485253,"garrafa 50cl",500,3.73,3.88,137,FALSE
+"145",145,2024-05-03,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.92197455343632,13.6212449212711,"lata 33cl",330,1.58,3.02,420,FALSE
+"146",146,2024-04-04,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA lata 33cl","IPA",6.27619297728484,45.0407813674436,"lata 33cl",330,2.29,3.73,110,FALSE
+"147",147,2024-12-30,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 50cl","Lager",5.51491587941738,13.0121337848511,"garrafa 50cl",500,2.88,3.16,424,FALSE
+"148",148,2024-05-26,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn garrafa 33cl","Pilsner",5.39493775894616,24.8934002728119,"garrafa 33cl",330,1.21,3.06,375,FALSE
+"149",149,2024-02-27,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager pressão (copo)","Lager",5.14818639306761,13.8354185756254,"pressão (copo)",500,5.66,3.07,404,FALSE
+"150",150,2024-07-16,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Amber lata 33cl","Amber Ale",5.19591755858454,13.150850067694,"lata 33cl",330,2.84,4.04,129,FALSE
+"151",151,2024-07-16,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Weiss garrafa 50cl","Weiss",4.53741171961068,15.3457220911658,"garrafa 50cl",500,3.6,3.64,113,FALSE
+"152",152,2024-09-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA pressão (copo)","NEIPA",5.15232144534578,45.7403483289669,"pressão (copo)",500,6.23,4.16,125,FALSE
+"153",153,2024-01-20,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 50cl","Lager",4.81331787129418,20.9385978592701,"garrafa 50cl",500,3.05,3.17,414,TRUE
+"154",154,2024-08-16,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 33cl","IPA",7.3766199629259,65.1873739030643,"garrafa 33cl",330,2.26,3.91,124,FALSE
+"155",155,2024-12-26,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA lata 33cl","IPA",6.65136510661796,53.6309490812707,"lata 33cl",330,3.05,4,115,FALSE
+"156",156,2024-09-30,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager lata 33cl","Lager",4.63423118239983,11.452780509119,"lata 33cl",330,1.16,3.38,365,FALSE
+"157",157,2024-04-24,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 50cl","Lager",4.81624056682705,NA,"garrafa 50cl",500,3.62,2.66,414,FALSE
+"158",158,2024-03-20,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 33cl","Lager",4.86650852407512,NA,"garrafa 33cl",330,1.75,3,402,FALSE
+"159",159,2024-01-10,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Pilsn lata 33cl","Pilsner",4.69176447003245,39.9737805120532,"lata 33cl",330,1.25,3.03,412,FALSE
+"160",160,2024-10-13,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Amber pressão (copo)","Amber Ale",5.52487865748675,33.7850639863717,"pressão (copo)",500,6.06,3.29,102,FALSE
+"161",161,2024-05-02,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 50cl","Pilsner",5.48915841564315,NA,"garrafa 50cl",500,3.02,3.18,416,FALSE
+"162",162,2024-07-15,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn lata 33cl","Pilsner",5.10916548968886,25.5481404172973,"lata 33cl",330,1.56,3.86,417,FALSE
+"163",163,2024-02-06,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout garrafa 50cl","Stout",5.8199608088388,30.6271842183211,"garrafa 50cl",500,4.1,3.99,116,FALSE
+"164",164,2024-11-30,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Pilsn garrafa 50cl","Pilsner",5.5678410284866,24.8124117117899,"garrafa 50cl",500,3.32,2.65,401,FALSE
+"165",165,2024-09-10,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Stout pressão (copo)","Stout",7.60418011074683,59.0288006000961,"pressão (copo)",500,6.57,4.14,116,FALSE
+"166",166,2024-06-16,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA lata 33cl","IPA",6.54177863688057,45.739095031465,"lata 33cl",330,3.04,2.95,100,FALSE
+"167",167,2024-05-28,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",5.13112070284578,NA,"pressão (copo)",500,5.31,3.32,391,FALSE
+"168",168,2024-05-22,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",5.22003896641617,44.6360890091486,"pressão (copo)",500,5.12,3.47,402,TRUE
+"169",169,2024-08-21,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Stout pressão (copo)","Stout",3.56848317344314,11.8229185846929,"pressão (copo)",500,6.29,3.65,129,FALSE
+"170",170,2024-09-27,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA lata 33cl","NEIPA",7.00023838972702,28.5276734255695,"lata 33cl",330,2.79,3.54,132,FALSE
+"171",171,2024-12-02,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos IPA garrafa 33cl","IPA",4.67161865536872,53.470197510548,"garrafa 33cl",330,2.75,3.81,121,FALSE
+"172",172,2024-07-09,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine IPA pressão (copo)","IPA",7.01647817244307,55.5931966332582,"pressão (copo)",500,6.67,3.53,116,FALSE
+"173",173,2024-03-11,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA pressão (copo)","IPA",5.58372331457241,37.2808199970237,"pressão (copo)",500,6.64,4.06,122,FALSE
+"174",174,2024-04-07,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Pilsn lata 33cl","Pilsner",4.49731178271655,31.8891155818933,"lata 33cl",330,2.25,3.95,128,FALSE
+"175",175,2024-05-03,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",4.67232356400959,21.5230290397139,"pressão (copo)",500,5.25,2.92,420,FALSE
+"176",176,2024-09-27,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA garrafa 33cl","NEIPA",7.94849680836066,45.1845112830679,"garrafa 33cl",330,2.39,3.84,119,FALSE
+"177",177,2024-04-22,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager lata 33cl","Lager",4.29514093944064,NA,"lata 33cl",330,1.68,3.48,404,FALSE
+"178",178,2024-01-21,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",4.52000048010757,10.6041232148212,"garrafa 33cl",330,1.23,3.54,385,FALSE
+"179",179,2024-01-21,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA garrafa 50cl","NEIPA",4.55515824688331,31.6183941844331,"garrafa 50cl",500,4.56,3.66,111,FALSE
+"180",180,2024-10-13,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager pressão (copo)","Lager",5.15938795321418,13.8294575721348,"pressão (copo)",500,5.61,3.4,427,FALSE
+"181",181,2024-10-01,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Weiss lata 33cl","Weiss",4.824161096457,0,"lata 33cl",330,2.7,3.93,138,FALSE
+"182",182,2024-07-27,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Weiss pressão (copo)","Weiss",4.7387897491288,10.4173238687811,"pressão (copo)",500,6.73,3.61,125,FALSE
+"183",183,2024-06-14,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Stout garrafa 50cl","Stout",4.99479742993289,43.981026637632,"garrafa 50cl",500,3.05,3.28,392,FALSE
+"184",184,2024-04-12,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA garrafa 50cl","IPA",6.67084354012602,71.5524314873261,"garrafa 50cl",500,3.75,3.42,117,TRUE
+"185",185,2024-10-31,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Amber garrafa 50cl","Amber Ale",4.10885837620249,32.7763695826277,"garrafa 50cl",500,4.06,3.36,118,FALSE
+"186",186,2024-03-23,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA lata 33cl","IPA",5.44108675763935,44.7768717457398,"lata 33cl",330,2.43,4.43,126,FALSE
+"187",187,2024-01-23,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Amber garrafa 50cl","Amber Ale",5.32177621277836,34.3504894140421,"garrafa 50cl",500,4.07,3.57,130,FALSE
+"188",188,2024-11-04,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Lager lata 33cl","Lager",4.56831451564649,19.2842608202521,"lata 33cl",330,2.1,3.81,107,FALSE
+"189",189,2024-02-17,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 50cl","Lager",5.20506366163146,15.7511344569159,"garrafa 50cl",500,2.76,3.55,369,FALSE
+"190",190,2024-05-30,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",5.17111901779647,NA,"pressão (copo)",500,5.22,3.28,390,FALSE
+"191",191,2024-02-28,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Amber garrafa 33cl","Amber Ale",5.17985067094523,NA,"garrafa 33cl",330,1.35,3.27,399,FALSE
+"192",192,2024-12-07,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Weiss garrafa 33cl","Weiss",4.95885131644234,14.7738552890827,"garrafa 33cl",330,2.19,4.41,116,FALSE
+"193",193,2024-07-20,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn garrafa 50cl","Pilsner",4.88783684968087,NA,"garrafa 50cl",500,3.1,2.99,382,FALSE
+"194",194,2024-08-04,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Weiss pressão (copo)","Weiss",4.51795285829516,14.5147707959909,"pressão (copo)",500,6.01,3.92,125,FALSE
+"195",195,2024-07-08,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral NEIPA garrafa 50cl","NEIPA",7.8793973554122,28.9972489523998,"garrafa 50cl",500,3.09,3.25,374,FALSE
+"196",196,2024-11-15,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA garrafa 50cl","NEIPA",7.63159230363507,36.5837031749741,"garrafa 50cl",500,3.5,4.59,109,FALSE
+"197",197,2024-06-07,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres NEIPA garrafa 50cl","NEIPA",5.36016459214612,32.3697340510642,"garrafa 50cl",500,2.81,3.1,408,FALSE
+"198",198,2024-05-23,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn pressão (copo)","Pilsner",5.83242511759245,34.8481772236304,"pressão (copo)",500,5.58,3.71,401,FALSE
+"199",199,2024-05-01,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine IPA lata 33cl","IPA",6.50298683302554,40.8602712444314,"lata 33cl",330,2.15,3.99,126,FALSE
+"200",200,2024-03-04,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",4.72487907566495,NA,"pressão (copo)",500,5.02,3.17,418,FALSE
+"201",201,2024-05-13,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA pressão (copo)","IPA",4.93792008692037,43.9215039772818,"pressão (copo)",500,6.3,3.36,114,FALSE
+"202",202,2024-06-08,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn garrafa 50cl","Pilsner",4.68972146760796,31.8283189608088,"garrafa 50cl",500,3.19,3.4,393,FALSE
+"203",203,2024-03-20,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager pressão (copo)","Lager",5.0224290206605,17.9835722071621,"pressão (copo)",500,5.32,3.07,369,FALSE
+"204",204,2024-04-01,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Stout garrafa 33cl","Stout",5.70432996565508,NA,"garrafa 33cl",330,1.24,3.47,364,FALSE
+"205",205,2024-11-27,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Sour lata 33cl","Sour",3.72236015158371,5.06386359353948,"lata 33cl",330,2.29,3.98,137,FALSE
+"206",206,2024-10-26,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Pilsn garrafa 33cl","Pilsner",5.29393869420752,41.5866114714421,"garrafa 33cl",330,2.66,3.81,136,FALSE
+"207",207,2024-09-11,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Weiss garrafa 33cl","Weiss",5.78687198793529,17.3491521902008,"garrafa 33cl",330,2.78,4.02,130,FALSE
+"208",208,2024-01-16,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn lata 33cl","Pilsner",5.62945292441069,37.8801401956876,"lata 33cl",330,0.98,2.96,386,FALSE
+"209",209,2024-12-30,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",5.18950399041677,32.7217218186842,"pressão (copo)",500,5.47,3.13,408,FALSE
+"210",210,2024-10-17,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Weiss garrafa 50cl","Weiss",4.84585263057336,18.5869894602491,"garrafa 50cl",500,4.49,3.76,144,FALSE
+"211",211,2024-10-18,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.76640056400072,NA,"garrafa 50cl",500,2.97,3.2,398,FALSE
+"212",212,2024-12-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA garrafa 33cl","NEIPA",6.84590952849063,43.1417297955994,"garrafa 33cl",330,2.75,3.84,115,FALSE
+"213",213,2024-05-19,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Porte lata 33cl","Porter",5.47167154896263,23.6726316065686,"lata 33cl",330,2.34,3.36,406,FALSE
+"214",214,2024-09-11,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Amber pressão (copo)","Amber Ale",4.70530806196087,37.597163755763,"pressão (copo)",500,6.75,3.65,128,FALSE
+"215",215,2024-05-29,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber pressão (copo)","Amber Ale",4.31679170970567,28.9067298862172,"pressão (copo)",500,6.27,3.64,120,FALSE
+"216",216,2024-07-11,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout garrafa 33cl","Stout",6.50599479713565,40.335012073229,"garrafa 33cl",330,2.65,3.92,129,FALSE
+"217",217,2024-10-15,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA garrafa 50cl","IPA",5.7244389774121,77.2780427073288,"garrafa 50cl",500,4.11,4.41,108,FALSE
+"218",218,2024-08-14,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 50cl","Lager",4.59223049685873,NA,"garrafa 50cl",500,2.87,3.28,385,FALSE
+"219",219,2024-01-24,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout garrafa 50cl","Stout",4.8244412923605,36.1142716568256,"garrafa 50cl",500,3.92,4.08,125,FALSE
+"220",220,2024-12-05,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Stout lata 33cl","Stout",6.52673261234832,63.0356684354552,"lata 33cl",330,2.53,3.57,122,FALSE
+"221",221,2024-10-02,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",5.3618382335249,12.7601195484456,"garrafa 33cl",330,1.84,2.87,417,FALSE
+"222",222,2024-03-26,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager pressão (copo)","Lager",4.37762094373867,NA,"pressão (copo)",500,5.72,3.12,425,FALSE
+"223",223,2024-04-01,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn garrafa 33cl","Pilsner",5.69899251665962,NA,"garrafa 33cl",330,1.53,2.61,404,FALSE
+"224",224,2024-06-13,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Weiss garrafa 33cl","Weiss",4.76253805768803,5.2708850486797,"garrafa 33cl",330,2.68,3.05,120,TRUE
+"225",225,2024-09-06,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Weiss lata 33cl","Weiss",4.82402722527161,11.53856094211,"lata 33cl",330,1.31,3.17,399,FALSE
+"226",226,2024-01-03,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",4.64995716294858,23.6339060580903,"pressão (copo)",500,5.5,2.61,423,FALSE
+"227",227,2024-02-19,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn pressão (copo)","Pilsner",5.16185628601843,NA,"pressão (copo)",500,5.15,3.44,407,FALSE
+"228",228,2024-09-20,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Stout lata 33cl","Stout",7.44023966933768,21.3880549137065,"lata 33cl",330,2.7,3.48,133,FALSE
+"229",229,2024-12-18,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock NEIPA garrafa 33cl","NEIPA",6.38625977692501,56.788849181644,"garrafa 33cl",330,1.55,3.23,406,FALSE
+"230",230,2024-05-22,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Weiss pressão (copo)","Weiss",4.92890022106508,NA,"pressão (copo)",500,5.19,3.02,415,FALSE
+"231",231,2024-06-19,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA pressão (copo)","IPA",4.78566340942746,43.6006271582197,"pressão (copo)",500,6.03,3.82,143,FALSE
+"232",232,2024-01-03,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Weiss pressão (copo)","Weiss",4.90671497716374,11.9527148994824,"pressão (copo)",500,5.82,3.66,409,FALSE
+"233",233,2024-12-07,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn garrafa 33cl","Pilsner",4.72981563378105,39.8469277834327,"garrafa 33cl",330,1.82,3.3,401,FALSE
+"234",234,2024-11-13,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa NEIPA garrafa 33cl","NEIPA",7.0595643340021,6.06604584129012,"garrafa 33cl",330,2.75,4.28,121,FALSE
+"235",235,2024-09-01,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Weiss lata 33cl","Weiss",5.37403616399386,8.70634482419787,"lata 33cl",330,2.8,4.28,115,FALSE
+"236",236,2024-10-01,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa NEIPA lata 33cl","NEIPA",5.60518235672197,26.1564918100328,"lata 33cl",330,2.37,3.51,130,FALSE
+"237",237,2024-06-02,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 33cl","Lager",4.75138955041296,NA,"garrafa 33cl",330,1.63,3.16,363,TRUE
+"238",238,2024-01-28,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral IPA garrafa 50cl","IPA",5.56160246612813,47.4527553217575,"garrafa 50cl",500,3.3,3.35,388,FALSE
+"239",239,2024-02-05,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager lata 33cl","Lager",4.29568860509962,NA,"lata 33cl",330,1.68,3.29,372,FALSE
+"240",240,2024-05-20,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Weiss garrafa 33cl","Weiss",5.3301406037164,10.6663605608267,"garrafa 33cl",330,2.87,3.44,123,FALSE
+"241",241,2024-03-30,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",5.61072939980147,21.733005812006,"garrafa 33cl",330,1.95,3.46,402,FALSE
+"242",242,2024-09-21,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Weiss garrafa 33cl","Weiss",4.89128664712604,16.7926960873282,"garrafa 33cl",330,1.97,2.78,395,FALSE
+"243",243,2024-08-26,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn pressão (copo)","Pilsner",5.36819556834185,NA,"pressão (copo)",500,5.49,3.35,424,FALSE
+"244",244,2024-03-23,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Lager lata 33cl","Lager",4.10105382570541,16.2277657205013,"lata 33cl",330,2.47,4.34,112,FALSE
+"245",245,2024-06-18,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Weiss lata 33cl","Weiss",5.5667853110355,NA,"lata 33cl",330,1.38,3.16,350,FALSE
+"246",246,2024-03-04,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",4.91155735615828,27.3237858548479,"garrafa 33cl",330,1.92,2.92,380,FALSE
+"247",247,2024-08-28,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal NEIPA lata 33cl","NEIPA",6.64260811235275,34.3185275996721,"lata 33cl",330,1.47,3.24,401,FALSE
+"248",248,2024-11-21,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 50cl","Lager",4.48426039663319,23.5546082698202,"garrafa 50cl",500,3.07,3.44,431,FALSE
+"249",249,2024-05-08,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 33cl","NEIPA",6.89661098187347,38.4788923887836,"garrafa 33cl",330,2.63,3.7,119,FALSE
+"250",250,2024-08-07,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA pressão (copo)","NEIPA",5.62611750298648,31.360527490688,"pressão (copo)",500,6.51,3.17,101,FALSE
+"251",251,2024-01-07,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Sour lata 33cl","Sour",4.63699011177207,5.71961929044662,"lata 33cl",330,3.04,3.55,131,FALSE
+"252",252,2024-06-08,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa IPA lata 33cl","IPA",4.12333273291188,59.322197852782,"lata 33cl",330,2.27,4.9,114,FALSE
+"253",253,2024-08-09,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",4.49600813727361,20.4145726313339,"garrafa 33cl",330,1.66,2.79,419,FALSE
+"254",254,2024-01-24,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Amber garrafa 33cl","Amber Ale",4.34680157436667,15.3588072747611,"garrafa 33cl",330,2.37,3.9,91,TRUE
+"255",255,2024-04-25,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn pressão (copo)","Pilsner",4.70645411715094,33.0695807857251,"pressão (copo)",500,5.49,3.11,425,TRUE
+"256",256,2024-11-28,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Porte pressão (copo)","Porter",5.09892820336724,40.2270819694297,"pressão (copo)",500,6.17,3.65,115,FALSE
+"257",257,2024-01-09,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn lata 33cl","Pilsner",4.68048226882331,25.7313228300138,"lata 33cl",330,1.59,3.59,422,FALSE
+"258",258,2024-11-14,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn lata 33cl","Pilsner",5.13375834521398,NA,"lata 33cl",330,1.58,3.14,379,TRUE
+"259",259,2024-08-13,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager lata 33cl","Lager",4.77275763853169,NA,"lata 33cl",330,1.41,2.34,410,FALSE
+"260",260,2024-09-10,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos IPA lata 33cl","IPA",5.95532864989915,61.3728320668196,"lata 33cl",330,2.9,4,136,FALSE
+"261",261,2024-04-22,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina NEIPA garrafa 33cl","NEIPA",5.86074370907785,44.1225665849366,"garrafa 33cl",330,2.37,3.89,111,FALSE
+"262",262,2024-08-09,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA garrafa 33cl","NEIPA",5.07494727917132,43.8819811018279,"garrafa 33cl",330,2.62,3.68,133,FALSE
+"263",263,2024-05-05,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos IPA garrafa 50cl","IPA",5.30985786043257,54.3937821611711,"garrafa 50cl",500,3.56,3.61,113,FALSE
+"264",264,2024-12-07,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",4.80245535190282,NA,"garrafa 33cl",330,1.41,3.89,396,FALSE
+"265",265,2024-06-18,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn pressão (copo)","Pilsner",4.07505252289088,24.1909045211628,"pressão (copo)",500,5.43,3.3,387,TRUE
+"266",266,2024-05-20,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.72426349721532,NA,"lata 33cl",330,1.68,3.68,441,TRUE
+"267",267,2024-05-12,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Amber lata 33cl","Amber Ale",5.74225587436674,NA,"lata 33cl",330,1.18,3.31,390,FALSE
+"268",268,2024-03-11,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA garrafa 33cl","NEIPA",7.18480603644491,31.5262423351827,"garrafa 33cl",330,2.42,4.13,121,FALSE
+"269",269,2024-11-04,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",4.95279396770731,15.8179325931587,"pressão (copo)",500,5.35,2.88,451,FALSE
+"270",270,2024-01-20,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock IPA pressão (copo)","IPA",4.37488839219313,56.9579537605803,"pressão (copo)",500,5.43,3.15,384,FALSE
+"271",271,2024-12-09,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Sour lata 33cl","Sour",4.2601555107645,0,"lata 33cl",330,2.58,4.36,118,FALSE
+"272",272,2024-04-16,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager lata 33cl","Lager",5.77152929039541,15.0964765517753,"lata 33cl",330,1.26,3.13,399,FALSE
+"273",273,2024-01-28,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn lata 33cl","Pilsner",5.83831082337887,20.3676988584507,"lata 33cl",330,1.54,3.11,409,FALSE
+"274",274,2024-05-13,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",4.54079472098147,NA,"garrafa 33cl",330,2.17,2.98,395,FALSE
+"275",275,2024-08-30,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.6256527081033,27.1628667513887,"garrafa 50cl",500,3.22,3.29,399,TRUE
+"276",276,2024-05-30,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Porte pressão (copo)","Porter",4.66259346264072,40.1988326450824,"pressão (copo)",500,6.33,3.99,116,FALSE
+"277",277,2024-07-22,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",5.17478295978475,29.315912522995,"pressão (copo)",500,5.11,2.98,386,FALSE
+"278",278,2024-02-19,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa NEIPA pressão (copo)","NEIPA",5.19771001400641,41.0800822367394,"pressão (copo)",500,6.74,4.9,103,FALSE
+"279",279,2024-12-26,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Lager lata 33cl","Lager",4.38308067265069,14.6971274397389,"lata 33cl",330,3.16,3.47,136,FALSE
+"280",280,2024-09-16,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager lata 33cl","Lager",5.36715955868319,12.2433157351928,"lata 33cl",330,1.34,3.01,407,FALSE
+"281",281,2024-06-11,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Amber garrafa 50cl","Amber Ale",5.73295043251578,NA,"garrafa 50cl",500,3.24,3,425,TRUE
+"282",282,2024-02-08,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Pilsn pressão (copo)","Pilsner",5.39182602541232,31.931274792365,"pressão (copo)",500,6.6,4.49,133,FALSE
+"283",283,2024-03-22,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager pressão (copo)","Lager",5.49734403774884,NA,"pressão (copo)",500,5.81,3.59,408,TRUE
+"284",284,2024-07-10,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.64646721873801,NA,"garrafa 50cl",500,3.04,3.26,419,FALSE
+"285",285,2024-08-15,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 50cl","IPA",5.22984466320517,53.6043230455489,"garrafa 50cl",500,3.93,3.8,110,FALSE
+"286",286,2024-01-13,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA pressão (copo)","IPA",6.5438205972108,68.3917096474918,"pressão (copo)",500,6.45,3.93,118,FALSE
+"287",287,2024-11-17,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA lata 33cl","NEIPA",6.65226579831885,33.7098338704838,"lata 33cl",330,2.2,4.09,116,FALSE
+"288",288,2024-08-26,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Porte pressão (copo)","Porter",4.07597786248642,39.529812441178,"pressão (copo)",500,6.48,4.14,126,FALSE
+"289",289,2024-05-05,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager pressão (copo)","Lager",4.84320013733713,NA,"pressão (copo)",500,5.68,3.04,418,FALSE
+"290",290,2024-12-04,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Porte lata 33cl","Porter",5.59362525992807,NA,"lata 33cl",330,1.28,3.12,386,FALSE
+"291",291,2024-01-23,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager lata 33cl","Lager",6.19536928562074,NA,"lata 33cl",330,1.95,3.01,369,FALSE
+"292",292,2024-03-19,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Porte garrafa 50cl","Porter",5.76412006586894,46.8393190605886,"garrafa 50cl",500,3.73,3.93,124,FALSE
+"293",293,2024-01-21,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",5.02706214222096,33.7364819966709,"pressão (copo)",500,5,3.08,383,TRUE
+"294",294,2024-04-29,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Amber pressão (copo)","Amber Ale",5.20470645844652,36.6484374669854,"pressão (copo)",500,6.67,4.06,120,FALSE
+"295",295,2024-12-04,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Lager lata 33cl","Lager",5.14835454205941,20.8560101849518,"lata 33cl",330,2.71,3.84,113,FALSE
+"296",296,2024-09-11,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa IPA garrafa 50cl","IPA",3.63179856773439,41.3906353812657,"garrafa 50cl",500,3.99,4.03,118,TRUE
+"297",297,2024-02-03,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Sour garrafa 33cl","Sour",4.20748993127465,7.0143602086342,"garrafa 33cl",330,2.62,4.38,127,TRUE
+"298",298,2024-04-27,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Sour garrafa 33cl","Sour",4.89699806921559,15.1394395893282,"garrafa 33cl",330,2.77,4.19,121,FALSE
+"299",299,2024-01-02,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos IPA garrafa 33cl","IPA",6.79761456187976,38.479974768996,"garrafa 33cl",330,2.83,3.8,125,FALSE
+"300",300,2024-04-27,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA pressão (copo)","NEIPA",6.2025169444622,38.0257680871618,"pressão (copo)",500,6.12,4.31,129,FALSE
+"301",301,2024-09-12,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager pressão (copo)","Lager",4.73431503200554,NA,"pressão (copo)",500,5.49,2.78,361,TRUE
+"302",302,2024-01-28,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager lata 33cl","Lager",5.48706813760618,NA,"lata 33cl",330,1.5,3.33,419,FALSE
+"303",303,2024-05-04,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager pressão (copo)","Lager",4.85563475546204,16.6672927018236,"pressão (copo)",500,5.3,3.17,361,TRUE
+"304",304,2024-08-25,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager pressão (copo)","Lager",4.9072368021643,NA,"pressão (copo)",500,5.45,3.02,367,FALSE
+"305",305,2024-05-08,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 50cl","Lager",4.84044214712563,NA,"garrafa 50cl",500,3.03,2.93,384,FALSE
+"306",306,2024-07-25,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA lata 33cl","IPA",7.45257809651142,51.1620878636185,"lata 33cl",330,2.29,3.42,107,TRUE
+"307",307,2024-10-19,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn lata 33cl","Pilsner",5.1902869203009,NA,"lata 33cl",330,1,2.95,398,FALSE
+"308",308,2024-07-27,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn pressão (copo)","Pilsner",4.58586099743579,NA,"pressão (copo)",500,5.3,2.87,438,FALSE
+"309",309,2024-10-15,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager lata 33cl","Lager",5.18455991305961,NA,"lata 33cl",330,1.52,2.58,378,TRUE
+"310",310,2024-05-27,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",4.18386825130741,NA,"lata 33cl",330,1,3.32,392,FALSE
+"311",311,2024-05-10,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Porte lata 33cl","Porter",6.56879448879344,29.1865100895103,"lata 33cl",330,2.52,3.54,124,FALSE
+"312",312,2024-03-15,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn lata 33cl","Pilsner",5.38696436640411,NA,"lata 33cl",330,1.19,3.33,395,FALSE
+"313",313,2024-04-16,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina NEIPA pressão (copo)","NEIPA",7.02836862824034,46.5379926982476,"pressão (copo)",500,6.29,3.68,119,FALSE
+"314",314,2024-11-05,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 50cl","Lager",5.02878230569625,NA,"garrafa 50cl",500,3.27,2.91,427,FALSE
+"315",315,2024-07-03,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber garrafa 50cl","Amber Ale",5.73667314675701,33.9110569944235,"garrafa 50cl",500,4.37,3.78,126,FALSE
+"316",316,2024-06-13,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 50cl","Pilsner",5.2875390491055,NA,"garrafa 50cl",500,3.26,3.08,393,TRUE
+"317",317,2024-07-13,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA lata 33cl","IPA",6.21083939079303,44.8998053394912,"lata 33cl",330,2.49,4.04,119,FALSE
+"318",318,2024-11-01,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA garrafa 33cl","NEIPA",7.17387593539894,45.8229934788657,"garrafa 33cl",330,3.01,4.07,121,FALSE
+"319",319,2024-04-10,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Pilsn lata 33cl","Pilsner",4.94113598053886,22.3357894892488,"lata 33cl",330,2.54,3.64,125,FALSE
+"320",320,2024-12-06,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Amber pressão (copo)","Amber Ale",5.00406271841296,15.9643923049739,"pressão (copo)",500,5.9,2.47,389,FALSE
+"321",321,2024-05-11,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Amber pressão (copo)","Amber Ale",4.67355580620736,25.2976324434735,"pressão (copo)",500,6.76,3.58,106,FALSE
+"322",322,2024-01-17,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA pressão (copo)","IPA",6.55322183370967,60.3790979333074,"pressão (copo)",500,6.67,4.21,122,FALSE
+"323",323,2024-06-11,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Amber lata 33cl","Amber Ale",5.15802894975751,14.8374239928297,"lata 33cl",330,2.47,3.94,147,FALSE
+"324",324,2024-04-07,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA lata 33cl","NEIPA",7.36534476710431,57.77397171054,"lata 33cl",330,2.56,3.94,114,FALSE
+"325",325,2024-09-20,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.78944356672671,11.8700794956043,"garrafa 50cl",500,3.09,2.83,431,FALSE
+"326",326,2024-06-22,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA garrafa 33cl","IPA",7.5294027870397,53.8711068003624,"garrafa 33cl",330,2.54,3.53,110,FALSE
+"327",327,2024-07-07,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn pressão (copo)","Pilsner",4.84306199521183,NA,"pressão (copo)",500,5.17,3.07,403,TRUE
+"328",328,2024-03-28,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA lata 33cl","IPA",4.48784532247814,49.2137104686109,"lata 33cl",330,2.7,4.06,110,FALSE
+"329",329,2024-12-03,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 50cl","Lager",4.61767849252461,NA,"garrafa 50cl",500,2.86,3.22,380,FALSE
+"330",330,2024-12-19,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Amber garrafa 33cl","Amber Ale",6.53524382288573,28.449287952123,"garrafa 33cl",330,2.78,4.02,106,FALSE
+"331",331,2024-07-08,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager pressão (copo)","Lager",5.32158833366237,17.1164487895569,"pressão (copo)",500,5.43,2.81,407,FALSE
+"332",332,2024-07-05,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn lata 33cl","Pilsner",4.67364987727007,22.1019045174304,"lata 33cl",330,1.65,2.77,408,FALSE
+"333",333,2024-02-13,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Weiss lata 33cl","Weiss",4.50848000607666,9.11627004836972,"lata 33cl",330,2.48,3.85,146,FALSE
+"334",334,2024-05-21,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus IPA pressão (copo)","IPA",4.31541599363593,NA,"pressão (copo)",500,5.26,3.11,392,TRUE
+"335",335,2024-01-07,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager pressão (copo)","Lager",3.82717709774542,NA,"pressão (copo)",500,5.62,3.2,391,TRUE
+"336",336,2024-05-16,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",3.53044270826244,6.62065061796275,"lata 33cl",330,1.88,3.45,428,FALSE
+"337",337,2024-05-15,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn garrafa 50cl","Pilsner",5.41004624217444,NA,"garrafa 50cl",500,3.05,3.03,401,TRUE
+"338",338,2024-09-06,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Amber garrafa 33cl","Amber Ale",5.75037095920964,21.0638343203235,"garrafa 33cl",330,2.27,3.38,119,FALSE
+"339",339,2024-08-16,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Porte pressão (copo)","Porter",4.77389149774565,40.5031861976762,"pressão (copo)",500,6.6,4.23,122,FALSE
+"340",340,2024-04-18,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA garrafa 50cl","NEIPA",6.48694209205903,46.4995659200163,"garrafa 50cl",500,3.94,4.21,113,FALSE
+"341",341,2024-05-01,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 33cl","IPA",6.12753230905232,65.3004549554907,"garrafa 33cl",330,2.36,3.75,122,FALSE
+"342",342,2024-01-08,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina NEIPA garrafa 33cl","NEIPA",7.98254446079669,25.2899809978464,"garrafa 33cl",330,2.68,4.3,129,FALSE
+"343",343,2024-07-31,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Stout garrafa 33cl","Stout",4.65601452895354,23.3108289438,"garrafa 33cl",330,2.92,3.92,135,FALSE
+"344",344,2024-12-30,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Porte pressão (copo)","Porter",4.94586573495491,40.2274436368106,"pressão (copo)",500,6.65,4.05,113,FALSE
+"345",345,2024-01-21,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine IPA lata 33cl","IPA",6.60437291065067,73.2802054026682,"lata 33cl",330,2.46,3.38,125,FALSE
+"346",346,2024-01-07,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Weiss pressão (copo)","Weiss",5.08476824410418,7.91252994941583,"pressão (copo)",500,5.77,3.04,418,FALSE
+"347",347,2024-10-20,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Porte garrafa 33cl","Porter",4.41384418935211,27.4314620459757,"garrafa 33cl",330,2.5,3.86,127,FALSE
+"348",348,2024-01-26,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Weiss garrafa 33cl","Weiss",5.70383101184981,15.3587721503425,"garrafa 33cl",330,2.91,3.38,107,FALSE
+"349",349,2024-08-20,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa NEIPA garrafa 33cl","NEIPA",5.48409895847775,35.4764879339178,"garrafa 33cl",330,2.72,3.66,114,FALSE
+"350",350,2024-03-06,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager pressão (copo)","Lager",5.49408626400777,17.9599772033765,"pressão (copo)",500,5.34,2.7,401,FALSE
+"351",351,2024-04-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Weiss garrafa 33cl","Weiss",4.57661879180652,14.9336518934256,"garrafa 33cl",330,2.85,3.57,120,FALSE
+"352",352,2024-05-31,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Stout lata 33cl","Stout",4.31365813357306,41.1652318694829,"lata 33cl",330,2.49,3.6,113,FALSE
+"353",353,2024-08-05,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Pilsn lata 33cl","Pilsner",4.59977468845603,34.461344330487,"lata 33cl",330,1.51,2.92,381,FALSE
+"354",354,2024-08-20,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA garrafa 50cl","IPA",6.40236597858088,41.9387502224227,"garrafa 50cl",500,4.23,4.11,124,FALSE
+"355",355,2024-05-05,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Stout lata 33cl","Stout",6.23912126316513,39.8610134283265,"lata 33cl",330,2.64,3.9,103,TRUE
+"356",356,2024-03-09,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager lata 33cl","Lager",4.62407949292611,9.59260423132072,"lata 33cl",330,1.36,3.24,393,FALSE
+"357",357,2024-05-25,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",5.09036902465117,14.5374241285107,"lata 33cl",330,1.81,3,408,FALSE
+"358",358,2024-01-28,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA pressão (copo)","IPA",6.59114451307847,60.6381713850622,"pressão (copo)",500,6.28,3.74,109,FALSE
+"359",359,2024-11-28,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager pressão (copo)","Lager",4.5544495482975,NA,"pressão (copo)",500,5.69,2.87,397,FALSE
+"360",360,2024-09-14,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 33cl","Lager",5.12428738951761,NA,"garrafa 33cl",330,2.28,3.08,395,FALSE
+"361",361,2024-06-01,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA garrafa 33cl","IPA",6.39043747253524,53.9629418673043,"garrafa 33cl",330,2.67,3.92,109,FALSE
+"362",362,2024-12-24,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn pressão (copo)","Pilsner",3.8721966304142,26.4229456324847,"pressão (copo)",500,5.95,2.97,408,FALSE
+"363",363,2024-12-06,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 50cl","IPA",7.10110313849898,41.9944031756425,"garrafa 50cl",500,3.74,4.29,105,TRUE
+"364",364,2024-04-21,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn pressão (copo)","Pilsner",5.73534132493612,NA,"pressão (copo)",500,5.66,3.32,408,TRUE
+"365",365,2024-12-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber garrafa 50cl","Amber Ale",6.04571720875605,36.8456719630655,"garrafa 50cl",500,4.1,3.96,113,FALSE
+"366",366,2024-06-28,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Amber garrafa 50cl","Amber Ale",5.16025558852192,28.3245077580714,"garrafa 50cl",500,2.99,3.38,384,FALSE
+"367",367,2024-07-02,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Sour garrafa 33cl","Sour",4.05419743479465,10.1360981558666,"garrafa 33cl",330,2.81,4.1,122,FALSE
+"368",368,2024-07-23,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn pressão (copo)","Pilsner",5.14862188147209,41.8671427776059,"pressão (copo)",500,5.7,3,396,TRUE
+"369",369,2024-02-11,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Pilsn pressão (copo)","Pilsner",4.64919766615053,47.1960517009357,"pressão (copo)",500,5.28,2.82,416,FALSE
+"370",370,2024-01-20,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 33cl","NEIPA",5.57766278718704,26.623083302272,"garrafa 33cl",330,2.4,3.85,114,FALSE
+"371",371,2024-12-25,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",5.78740266106146,NA,"garrafa 33cl",330,1.51,3.13,445,FALSE
+"372",372,2024-01-04,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager pressão (copo)","Lager",5.07410416281935,NA,"pressão (copo)",500,5.35,2.95,362,TRUE
+"373",373,2024-12-18,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Pilsn garrafa 50cl","Pilsner",5.26048297455227,44.3530724325185,"garrafa 50cl",500,3.79,3.4,133,FALSE
+"374",374,2024-02-05,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa Stout pressão (copo)","Stout",6.33872153244651,18.8608854940061,"pressão (copo)",500,6.08,4.36,114,FALSE
+"375",375,2024-06-07,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA lata 33cl","IPA",4.89913356915495,45.2140652824861,"lata 33cl",330,2.59,3.4,114,FALSE
+"376",376,2024-07-14,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA lata 33cl","IPA",4.98312141864702,75.5234613700855,"lata 33cl",330,2.53,4.51,104,FALSE
+"377",377,2024-02-12,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA garrafa 33cl","IPA",7.77761876933205,63.3968829652541,"garrafa 33cl",330,2.54,3.78,127,FALSE
+"378",378,2024-01-23,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Amber garrafa 50cl","Amber Ale",4.43225603694489,36.8315702635658,"garrafa 50cl",500,4.38,3.58,117,TRUE
+"379",379,2024-08-30,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 33cl","Lager",4.41143708337138,NA,"garrafa 33cl",330,1.44,2.87,383,FALSE
+"380",380,2024-10-24,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Weiss garrafa 33cl","Weiss",5.00188784429181,12.6997708397752,"garrafa 33cl",330,2.8,4.07,142,FALSE
+"381",381,2024-08-27,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Sour garrafa 33cl","Sour",4.36967473795451,7.24889751587712,"garrafa 33cl",330,2.55,4.03,143,FALSE
+"382",382,2024-08-12,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Weiss garrafa 50cl","Weiss",5.43008953876989,12.8907670306459,"garrafa 50cl",500,2.78,2.94,445,FALSE
+"383",383,2024-05-24,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Lager pressão (copo)","Lager",4.99389284183157,15.3004770937329,"pressão (copo)",500,6.48,4.06,124,FALSE
+"384",384,2024-04-19,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Pilsn lata 33cl","Pilsner",4.69055549076112,31.4789869383383,"lata 33cl",330,1.66,3.19,407,FALSE
+"385",385,2024-10-28,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra IPA garrafa 33cl","IPA",6.16264173404688,61.091219509663,"garrafa 33cl",330,3.05,3.85,105,FALSE
+"386",386,2024-05-02,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA garrafa 50cl","IPA",5.54442572425827,52.4870846390514,"garrafa 50cl",500,4.25,4,111,FALSE
+"387",387,2024-10-15,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Lager lata 33cl","Lager",4.12629693623224,20.9689731005642,"lata 33cl",330,2.41,3.07,127,FALSE
+"388",388,2024-05-20,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock IPA garrafa 50cl","IPA",5.39685514008406,46.4174188170065,"garrafa 50cl",500,2.97,3.33,384,FALSE
+"389",389,2024-08-20,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA pressão (copo)","NEIPA",6.39590960803389,24.4319245310908,"pressão (copo)",500,6.58,3.55,144,FALSE
+"390",390,2024-09-17,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.27689730154887,10.7110605711034,"lata 33cl",330,1.42,2.88,391,FALSE
+"391",391,2024-11-28,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Stout pressão (copo)","Stout",5.13608393996596,39.5091754036836,"pressão (copo)",500,6.74,3.34,119,FALSE
+"392",392,2024-11-28,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn garrafa 33cl","Pilsner",4.81563077532108,NA,"garrafa 33cl",330,1.92,2.94,401,FALSE
+"393",393,2024-06-13,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA pressão (copo)","IPA",6.56305660551236,48.5742223473449,"pressão (copo)",500,6.55,4.12,135,FALSE
+"394",394,2024-05-04,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA garrafa 50cl","IPA",6.20201074535796,46.3340618717172,"garrafa 50cl",500,4.21,3.88,119,FALSE
+"395",395,2024-09-24,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout pressão (copo)","Stout",6.7246587158862,20.7975110527912,"pressão (copo)",500,6.51,3.65,136,FALSE
+"396",396,2024-02-02,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 33cl","Lager",4.985792758616,9.10533816462404,"garrafa 33cl",330,1.99,2.92,436,FALSE
+"397",397,2024-09-27,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 50cl","NEIPA",6.35539790838201,40.1345402910706,"garrafa 50cl",500,3.91,4.3,115,FALSE
+"398",398,2024-08-19,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Porte garrafa 50cl","Porter",6.96161671043999,30.6876589019037,"garrafa 50cl",500,4.55,4.12,146,FALSE
+"399",399,2024-04-04,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Stout pressão (copo)","Stout",6.13250952989686,45.8986743702087,"pressão (copo)",500,6.33,3.47,116,FALSE
+"400",400,2024-03-04,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA lata 33cl","NEIPA",5.06497241575018,35.1584120440725,"lata 33cl",330,2.33,3.85,109,FALSE
+"401",401,2024-11-03,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 33cl","Lager",5.37652086444653,18.3113360222597,"garrafa 33cl",330,1.81,2.85,393,FALSE
+"402",402,2024-10-25,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Sour garrafa 50cl","Sour",4.17888985286449,9.72876152123203,"garrafa 50cl",500,4.3,3.56,106,FALSE
+"403",403,2024-02-15,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 50cl","Lager",4.13111471418603,17.9591661155602,"garrafa 50cl",500,3.05,3.27,384,FALSE
+"404",404,2024-10-29,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Weiss garrafa 50cl","Weiss",4.66311412907637,1.47914415224609,"garrafa 50cl",500,3.8,3.48,122,FALSE
+"405",405,2024-03-17,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Amber garrafa 50cl","Amber Ale",4.75229055742875,24.9569257195938,"garrafa 50cl",500,2.83,3.22,416,FALSE
+"406",406,2024-02-28,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager pressão (copo)","Lager",4.81066741826398,13.4133058787442,"pressão (copo)",500,5.45,2.96,375,FALSE
+"407",407,2024-01-18,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn lata 33cl","Pilsner",5.31542817851085,NA,"lata 33cl",330,0.89,3.22,394,FALSE
+"408",408,2024-12-18,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn lata 33cl","Pilsner",6.04733540204735,NA,"lata 33cl",330,1.24,3.08,405,TRUE
+"409",409,2024-10-30,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn lata 33cl","Pilsner",5.50457287684205,31.5341014360761,"lata 33cl",330,1.56,3.56,392,TRUE
+"410",410,2024-09-07,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager pressão (copo)","Lager",4.72614300041296,NA,"pressão (copo)",500,5.77,2.97,391,FALSE
+"411",411,2024-11-13,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 50cl","Lager",5.13169128664236,23.9869378005207,"garrafa 50cl",500,2.95,2.98,405,FALSE
+"412",412,2024-02-26,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 50cl","Pilsner",4.09194717204409,28.6632940280892,"garrafa 50cl",500,3.08,3.39,387,FALSE
+"413",413,2024-11-21,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager garrafa 33cl","Lager",3.96468466333088,14.3147109067222,"garrafa 33cl",330,1.25,3.25,405,FALSE
+"414",414,2024-09-11,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",3.54675301943676,NA,"garrafa 33cl",330,1.3,3.03,371,FALSE
+"415",415,2024-08-14,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout garrafa 50cl","Stout",6.80754525614559,73.1021550844353,"garrafa 50cl",500,3.94,3.39,115,FALSE
+"416",416,2024-05-24,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos NEIPA garrafa 33cl","NEIPA",7.43730204664365,25.0163093389875,"garrafa 33cl",330,2.87,3.97,118,FALSE
+"417",417,2024-03-20,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Weiss lata 33cl","Weiss",4.90258195783598,19.1949368426007,"lata 33cl",330,1.27,3.43,410,TRUE
+"418",418,2024-02-21,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager garrafa 50cl","Lager",4.91184620893076,22.0864115151038,"garrafa 50cl",500,3.18,3.62,411,TRUE
+"419",419,2024-08-03,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina Pilsn lata 33cl","Pilsner",5.11359608153659,27.7097011429879,"lata 33cl",330,2.42,3.89,117,FALSE
+"420",420,2024-02-05,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA garrafa 33cl","NEIPA",6.98880106349417,33.460016673089,"garrafa 33cl",330,2.61,3.59,127,FALSE
+"421",421,2024-01-14,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA garrafa 33cl","IPA",6.68928869316634,47.7506798101708,"garrafa 33cl",330,2.14,3.45,123,TRUE
+"422",422,2024-07-22,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 50cl","NEIPA",5.71445024711498,51.1354226220008,"garrafa 50cl",500,3.79,4.32,109,FALSE
+"423",423,2024-07-22,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Lager lata 33cl","Lager",4.89152186401718,4.9586539627972,"lata 33cl",330,1.6,2.94,396,FALSE
+"424",424,2024-01-27,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Pilsn pressão (copo)","Pilsner",4.51372585908737,20.61625277198,"pressão (copo)",500,6.22,3.49,121,FALSE
+"425",425,2024-03-29,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Pilsn garrafa 33cl","Pilsner",4.94266376304163,38.4325990093588,"garrafa 33cl",330,2.71,3.27,119,FALSE
+"426",426,2024-05-13,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",4.7483711951458,NA,"garrafa 33cl",330,1.7,3.3,368,FALSE
+"427",427,2024-08-16,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager pressão (copo)","Lager",4.55727015320743,NA,"pressão (copo)",500,5.38,2.86,412,FALSE
+"428",428,2024-01-28,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra NEIPA lata 33cl","NEIPA",7.08397837411572,15.6218126229403,"lata 33cl",330,2.44,3.79,116,FALSE
+"429",429,2024-01-30,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Pilsn lata 33cl","Pilsner",4.96274129300207,27.2888441205051,"lata 33cl",330,2.37,2.7,122,FALSE
+"430",430,2024-09-04,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Pilsn pressão (copo)","Pilsner",4.4879726597963,33.9698713947673,"pressão (copo)",500,6.86,3.47,133,FALSE
+"431",431,2024-05-22,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA pressão (copo)","IPA",6.40024506754516,34.2018872403442,"pressão (copo)",500,6.36,4.28,134,FALSE
+"432",432,2024-01-25,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 33cl","Lager",5.00643328306185,NA,"garrafa 33cl",330,1.8,3.29,378,FALSE
+"433",433,2024-04-10,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA pressão (copo)","IPA",6.00609084604525,50.8086630124127,"pressão (copo)",500,6.43,3.7,113,TRUE
+"434",434,2024-06-13,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",4.75422891800819,15.7695974042959,"lata 33cl",330,1.97,3.19,425,TRUE
+"435",435,2024-07-26,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada IPA garrafa 33cl","IPA",6.53448582269903,63.6479716386214,"garrafa 33cl",330,2.65,3.28,145,FALSE
+"436",436,2024-09-08,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.63404740859987,20.7474803281383,"lata 33cl",330,1.2,3.13,386,FALSE
+"437",437,2024-12-13,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn pressão (copo)","Pilsner",5.64795058754318,29.7616974895294,"pressão (copo)",500,5.56,3.22,427,FALSE
+"438",438,2024-03-01,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra IPA garrafa 50cl","IPA",4.66070208988946,NA,"garrafa 50cl",500,2.65,3.49,384,FALSE
+"439",439,2024-07-31,"Letra","Cerveja LETRA","Vila Verde","Braga",TRUE,"Letra Amber garrafa 33cl","Amber Ale",5.2209418321278,28.5087467038424,"garrafa 33cl",330,2.91,4.07,110,FALSE
+"440",440,2024-05-30,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA lata 33cl","NEIPA",6.51904508957956,31.0611827698258,"lata 33cl",330,2.55,3.61,118,FALSE
+"441",441,2024-06-02,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 50cl","NEIPA",6.53535082011367,27.8980413854532,"garrafa 50cl",500,3.91,4,109,FALSE
+"442",442,2024-02-02,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal IPA garrafa 33cl","IPA",7.05940120628663,NA,"garrafa 33cl",330,1.82,3.22,389,FALSE
+"443",443,2024-01-02,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn pressão (copo)","Pilsner",4.92096909111108,NA,"pressão (copo)",500,5.33,3.27,437,FALSE
+"444",444,2024-10-17,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",5.1786258378792,23.831303179446,"pressão (copo)",500,5.32,2.99,413,FALSE
+"445",445,2024-04-30,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine IPA pressão (copo)","IPA",6.3079015256015,50.7154112686519,"pressão (copo)",500,6.29,4.22,108,FALSE
+"446",446,2024-06-18,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Sour pressão (copo)","Sour",4.1306214415632,11.0373270572691,"pressão (copo)",500,6.6,3.12,119,FALSE
+"447",447,2024-06-03,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA pressão (copo)","NEIPA",6.55017409197447,33.0393251406632,"pressão (copo)",500,5.98,4.58,123,FALSE
+"448",448,2024-03-25,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA pressão (copo)","NEIPA",8.74029367154626,18.2246608772025,"pressão (copo)",500,6.72,3.84,134,FALSE
+"449",449,2024-08-05,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager garrafa 33cl","Lager",5.00151772663291,8.03626427848752,"garrafa 33cl",330,1.29,3.05,401,FALSE
+"450",450,2024-12-18,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager lata 33cl","Lager",4.90539173691504,14.0707773665384,"lata 33cl",330,1.35,3.01,400,FALSE
+"451",451,2024-12-12,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine NEIPA garrafa 33cl","NEIPA",6.85723303324287,45.0030344956602,"garrafa 33cl",330,3.08,3.76,123,FALSE
+"452",452,2024-01-23,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Porte garrafa 50cl","Porter",5.57588700106487,38.7525220853398,"garrafa 50cl",500,3.92,3.61,118,FALSE
+"453",453,2024-08-17,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Porte garrafa 33cl","Porter",6.4050626335103,NA,"garrafa 33cl",330,1.79,3.68,423,FALSE
+"454",454,2024-05-12,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa IPA garrafa 50cl","IPA",6.05564472613875,56.3448393087638,"garrafa 50cl",500,4.16,4.2,118,TRUE
+"455",455,2024-01-24,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Sour garrafa 50cl","Sour",4.73717223540996,11.6477849959834,"garrafa 50cl",500,3.83,4.11,98,FALSE
+"456",456,2024-08-26,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Weiss garrafa 33cl","Weiss",4.14724628573128,13.1156931558775,"garrafa 33cl",330,2.92,3.23,99,FALSE
+"457",457,2024-07-17,"Super Bock","Super Bock Group","Leça do Balio","Porto",FALSE,"Super Bock Pilsn garrafa 33cl","Pilsner",5.10900539134665,35.773395787768,"garrafa 33cl",330,1.65,2.81,374,TRUE
+"458",458,2024-06-20,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager pressão (copo)","Lager",4.20563806861438,19.5687675949739,"pressão (copo)",500,5.48,2.9,360,FALSE
+"459",459,2024-03-26,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn garrafa 50cl","Pilsner",4.87904725473242,40.1497183839151,"garrafa 50cl",500,2.65,3.05,392,FALSE
+"460",460,2024-01-26,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Stout pressão (copo)","Stout",7.7464561647019,52.3500578758565,"pressão (copo)",500,6.6,3.31,109,FALSE
+"461",461,2024-09-03,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA garrafa 33cl","NEIPA",7.58343160789188,39.4380508462293,"garrafa 33cl",330,2.92,3.82,129,FALSE
+"462",462,2024-10-12,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA garrafa 50cl","IPA",6.99467022348523,54.4058346140837,"garrafa 50cl",500,3.79,3.66,124,FALSE
+"463",463,2024-02-11,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",5.26612241268481,16.5826508969599,"lata 33cl",330,1.78,3.39,409,FALSE
+"464",464,2024-07-28,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn pressão (copo)","Pilsner",4.778619433204,32.4945187654662,"pressão (copo)",500,5.55,2.92,401,TRUE
+"465",465,2024-04-26,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Stout lata 33cl","Stout",5.90516023483003,31.5545289010791,"lata 33cl",330,2.47,3.59,132,FALSE
+"466",466,2024-02-08,"Mean Sardine","Mean Sardine","Mafra","Lisboa",TRUE,"Mean Sardine Lager garrafa 33cl","Lager",3.94094311626135,27.6952284732594,"garrafa 33cl",330,2.4,3.54,127,FALSE
+"467",467,2024-07-05,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager pressão (copo)","Lager",5.32386912595951,NA,"pressão (copo)",500,5.09,2.99,378,FALSE
+"468",468,2024-06-17,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Lager lata 33cl","Lager",5.0372805460412,11.2709598257779,"lata 33cl",330,1.19,3.43,405,FALSE
+"469",469,2024-04-30,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager garrafa 33cl","Lager",5.47738728534345,20.6175587951349,"garrafa 33cl",330,1.85,3.03,407,FALSE
+"470",470,2024-10-19,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Porte lata 33cl","Porter",5.57935317719792,27.370632005547,"lata 33cl",330,2.55,4.22,122,FALSE
+"471",471,2024-04-05,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn pressão (copo)","Pilsner",4.57721667328949,NA,"pressão (copo)",500,5.78,3.06,431,FALSE
+"472",472,2024-02-18,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia NEIPA lata 33cl","NEIPA",5.48937575552916,32.3563519353678,"lata 33cl",330,2.43,4.06,112,FALSE
+"473",473,2024-08-27,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn garrafa 33cl","Pilsner",5.27897007262801,NA,"garrafa 33cl",330,1.83,2.98,437,TRUE
+"474",474,2024-06-09,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager garrafa 50cl","Lager",4.29998427977318,14.4572194192449,"garrafa 50cl",500,3.04,2.94,396,TRUE
+"475",475,2024-01-04,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina IPA pressão (copo)","IPA",6.62219850829109,39.166960128389,"pressão (copo)",500,6.65,4.01,132,FALSE
+"476",476,2024-12-31,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Stout garrafa 50cl","Stout",5.9278958747503,26.4490415691886,"garrafa 50cl",500,2.85,2.99,428,FALSE
+"477",477,2024-04-19,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia Pilsn pressão (copo)","Pilsner",5.23295882057624,28.437930293687,"pressão (copo)",500,6.3,3.18,125,FALSE
+"478",478,2024-07-25,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Stout garrafa 50cl","Stout",4.62762284667283,NA,"garrafa 50cl",500,2.86,3.49,419,FALSE
+"479",479,2024-12-19,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA lata 33cl","NEIPA",5.53983373263852,38.090877948913,"lata 33cl",330,2.22,3.64,110,FALSE
+"480",480,2024-02-15,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos IPA garrafa 50cl","IPA",6.68244491603812,66.6198651326428,"garrafa 50cl",500,3.97,3.84,100,FALSE
+"481",481,2024-01-12,"Dois Corvos","Cerveja Dois Corvos","Lisboa","Lisboa",TRUE,"Dois Corvos Amber lata 33cl","Amber Ale",6.54305904473654,17.4490047272521,"lata 33cl",330,2.48,4.31,135,FALSE
+"482",482,2024-10-30,"Vadia","Cerveja Vadia","Oliveira de Azeméis","Aveiro",TRUE,"Vadia IPA lata 33cl","IPA",8.99308166211893,60.8861429880906,"lata 33cl",330,2.5,3.33,122,FALSE
+"483",483,2024-08-22,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Weiss garrafa 50cl","Weiss",4.86810375884335,10.47739409112,"garrafa 50cl",500,3.34,3.22,384,FALSE
+"484",484,2024-09-26,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 50cl","Lager",5.0994804364641,12.7934993662073,"garrafa 50cl",500,2.32,3.05,393,FALSE
+"485",485,2024-11-26,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 Porte garrafa 33cl","Porter",4.81606396338135,68.2389658345427,"garrafa 33cl",330,2.43,4.12,116,FALSE
+"486",486,2024-12-07,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 IPA lata 33cl","IPA",6.31022889241272,68.6194872557913,"lata 33cl",330,2.69,4.2,116,FALSE
+"487",487,2024-07-05,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Lager lata 33cl","Lager",4.85443542798041,15.7783644329619,"lata 33cl",330,1.53,3.21,378,FALSE
+"488",488,2024-10-11,"OPO 74","OPO 74 Brewing Co.","Porto","Porto",TRUE,"OPO 74 NEIPA lata 33cl","NEIPA",5.58619825356346,32.4449567726601,"lata 33cl",330,2.54,4.19,124,TRUE
+"489",489,2024-11-04,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Lager lata 33cl","Lager",4.95949909718855,NA,"lata 33cl",330,1.47,2.95,396,FALSE
+"490",490,2024-07-20,"Tagus","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Tagus Lager garrafa 50cl","Lager",5.01830281655873,NA,"garrafa 50cl",500,3.11,3.36,387,TRUE
+"491",491,2024-12-04,"Cintra","Cerveja Cintra (hist.)","Vialonga","Lisboa",FALSE,"Cintra Pilsn garrafa 33cl","Pilsner",5.13759497390558,24.5663684260295,"garrafa 33cl",330,1.92,2.89,418,FALSE
+"492",492,2024-06-28,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada NEIPA pressão (copo)","NEIPA",7.43875122897336,24.9209329798242,"pressão (copo)",500,6.13,4.09,112,FALSE
+"493",493,2024-11-03,"Sovina","Sovina","Porto","Porto",TRUE,"Sovina NEIPA garrafa 50cl","NEIPA",7.83598326342547,38.6228223656861,"garrafa 50cl",500,3.69,3.85,122,FALSE
+"494",494,2024-05-30,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Pilsn lata 33cl","Pilsner",4.80076363361728,39.1602847708079,"lata 33cl",330,1.35,3.42,412,FALSE
+"495",495,2024-04-21,"Nortada","Fábrica de Cervejas Portuense","Porto","Porto",TRUE,"Nortada Sour garrafa 33cl","Sour",3.33496206973023,8.13157397870226,"garrafa 33cl",330,2.46,4.49,120,FALSE
+"496",496,2024-10-24,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Amber lata 33cl","Amber Ale",4.80425671486779,29.3668849770759,"lata 33cl",330,1.61,3.25,405,FALSE
+"497",497,2024-08-03,"Coral","Empresa de Cervejas da Madeira","Funchal","Madeira",FALSE,"Coral Porte pressão (copo)","Porter",5.94461173602172,NA,"pressão (copo)",500,4.94,3.22,373,FALSE
+"498",498,2024-05-07,"Cristal","Soc. Central de Cervejas","Vialonga","Lisboa",FALSE,"Cristal Lager pressão (copo)","Lager",4.83487580104845,NA,"pressão (copo)",500,5.52,3.07,378,FALSE
+"499",499,2024-02-24,"Musa","Cerveja Musa","Lisboa","Lisboa",TRUE,"Musa NEIPA garrafa 50cl","NEIPA",8.41921875280129,38.378951481577,"garrafa 50cl",500,3.79,4.02,128,FALSE
+"500",500,2024-03-29,"Sagres","Soc. Central de Cervejas (Heineken PT)","Vialonga","Lisboa",FALSE,"Sagres Pilsn pressão (copo)","Pilsner",4.59746121475493,27.5635911828277,"pressão (copo)",500,5.12,3.09,395,FALSE

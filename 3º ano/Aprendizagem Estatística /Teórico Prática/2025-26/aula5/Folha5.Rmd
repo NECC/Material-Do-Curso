@@ -1,0 +1,215 @@
+---
+title: "Exercícios - Regressão Linear Múltipla em R"
+#author: "Nome do/a aluno/a"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document:
+#    toc: true
+ #   toc_depth: 3
+  #  toc_float: true
+  pdf_document:
+  #  toc: true
+  word_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
+## Pacotes e dados
+
+```{r pacotes}
+# Instalar se necessário:
+req <- c("tidyverse","broom","palmerpenguins","nycflights13","car","performance","GGally", "see")
+new <- setdiff(req, rownames(installed.packages()))
+if(length(new)) install.packages(new)
+
+library(tidyverse)
+library(broom)
+library(palmerpenguins)
+library(nycflights13)
+library(car)           # VIF e diagnóstico
+library(performance)   # checks de suposições
+library(GGally)        # ggpairs
+library(see)          # diagnóstico
+```
+
+## Conjunto de dados A: `penguins`
+
+Descrição curta: pinguins de 3 espécies na Antártida, com medidas morfológicas e sexo.
+
+```{r glimpse-penguins}
+penguins <- palmerpenguins::penguins |> drop_na()
+glimpse(penguins)
+summary(penguins)
+```
+
+## Conjunto de dados B: `nycflights13::flights`
+
+Descrição curta: todos os voos a partir de NYC em 2013. Para tornar leve, usaremos uma amostra filtrada.
+
+```{r flights-prep}
+flts <- nycflights13::flights |>
+  filter(!is.na(dep_delay), !is.na(arr_delay),
+         !is.na(distance), !is.na(air_time)) |>
+  # amostra reprodutível
+  slice_sample(n = 30000, replace = FALSE)
+glimpse(flts)
+```
+
+---
+
+# Exercício 1 — Exploração inicial (EDA)
+
+**1.1 (Penguins)**
+(a) Faça um *pair plot* das variáveis contínuas `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g` usando a função ggpairs do package GGally.
+(b) Calcule a matriz de correlações (com coeficiente de Pearson).
+(c) Comente potenciais colinearidades e relações com a resposta `body_mass_g`.
+
+```{r eda-penguins}
+
+```
+
+**1.2 (Flights)**
+(a) Faça um *pair plot* de `arr_delay` (resposta), `dep_delay`, `distance`, `air_time`.
+(b) Calcule correlações e comente.
+
+```{r eda-flights}
+
+```
+
+---
+
+# Exercício 2 — Modelo base (Penguins)
+
+**Objetivo:** modelar `body_mass_g` a partir de medidas do bico e da barbatana, controlando por espécie e sexo.
+
+2.1. Ajuste o modelo:
+$$
+\texttt{body_mass_g} \sim \texttt{bill_length_mm} + \texttt{bill_depth_mm} * \texttt{flipper_length_mm} + \texttt{species} + \texttt{sex}.
+$$
+
+```{r fit-penguins-base}
+
+```
+
+2.2. Interprete os coeficientes das variáveis contínuas (incluindo unidades) e o efeito marginal de `species` e `sex` (comparação com a categoria de referência).
+
+2.3. Calcule os **VIFs** e comente a multicolinearidade.
+
+```{r vif-penguins}
+
+```
+
+---
+
+# Exercício 3 — Diagnóstico do modelo (Penguins)
+
+3.1. Faça gráficos padrão de diagnóstico e comente: linearidade, homoscedasticidade, normalidade dos resíduos, pontos influentes. Depois experimente usar a função check_model do package performance.
+
+```{r diag-penguins}
+
+```
+
+3.2. Se necessário, proponha **transformações** (por ex., `log(body_mass_g)` ou padronizar os preditores). Ajuste o modelo transformado e compare AIC, BIC e R² ajustado.
+
+```{r penguins-transform}
+
+```
+
+---
+
+# Exercício 4 — Interações (Penguins)
+
+4.1. Teste se o efeito de `flipper_length_mm` **varia por espécie**: inclua a interação `flipper_length_mm:species`.
+
+```{r penguins-interaction}
+
+```
+
+Interprete um coeficiente de interação: o que significa para o declive entre `flipper_length_mm` e `body_mass_g` em, por exemplo, `species = Gentoo`?
+
+
+4.2 — Efeito parcial de `flipper_length_mm` mantendo as outras variáveis constantes (com *ribbon*)
+
+**Tarefa:** Trace a curva de predição média de `body_mass_g` em função de `flipper_length_mm`, **mantendo constantes** `bill_length_mm`, `bill_depth_mm`, `sex` e `species`. Use **intervalos de confiança de 95%** com `geom_ribbon()`.
+
+> Dica: fixe as covariáveis nos seus valores medianos e varie `flipper_length_mm` numa grelha regular.
+
+
+
+---
+
+# Exercício 5 — Seleção de variáveis e validação
+
+**5.1.** Em `penguins`, compare os modelos `m1` (base) e `m2` (com interação) usando AIC e (R^2) ajustado. Qual prefere e porquê?
+
+```{r compare-penguins}
+
+```
+
+
+
+---
+
+
+## Exercício 6 — Predição pontual e intervalos (Penguins)
+
+**6.1.** Usando o modelo selecionado para `penguins` (por ex., `m2`), faça **predições pontuais** e **intervalos de confiança** para a **média** e **intervalos de predição** para uma **nova observação** com:
+
+* `bill_length_mm = 45`, `bill_depth_mm = 18`, `flipper_length_mm = 200`,
+* `species = "Adelie"`, `sex = "male"`.
+
+Compare numericamente **IC (mean)** vs **IP (pred)**.
+
+
+---
+
+
+# Exercício 7 — Modelo para atrasos de voo (Flights)
+
+**Objetivo:** modelar `arr_delay` a partir de `dep_delay`, `distance`, `air_time` e efeitos *dummies* de companhia (`carrier`).
+
+7.1. Ajuste o modelo:
+$$
+\texttt{arr_delay} \sim \texttt{dep_delay} + \log(\texttt{distance}) + \texttt{air_time} + \texttt{carrier}.
+$$
+
+```{r flights-model}
+
+```
+
+7.2. Discuta a interpretação do coeficiente de `dep_delay`. Explique por que `log(distance)` pode ser preferível a `distance`.
+
+7.3. Verifique **heteroscedasticidade**. 
+
+```{r flights-hetero}
+
+```
+
+7.4. Avalie **multicolinearidade** (VIF) e **pontos influentes** (Cook’s distance).
+
+```{r flights-vif-influence}
+
+```
+
+---
+
+
+
+# Exercício 8 — Comunicação de resultados
+
+**Tarefa:** produza um pequeno relatório (5–10 linhas) para cada conjunto de dados com:
+
+* modelo final escolhido,
+* interpretação de 2–3 coeficientes chave,
+* verificação sumária das suposições (inclua uma figura),
+* métrica de desempenho 
+
+---
+
+
+

@@ -1,0 +1,92 @@
+---
+title: "Exercício – Testes de Hipóteses para Comparação entre Dois Grupos"
+author: ""
+output: html_document
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+set.seed(123)
+```
+
+
+# Exercício – Efeito de um medicamento
+
+Um estudo clínico simples avaliou o efeito de um **novo medicamento** na redução da pressão arterial sistólica (em mmHg).
+
+Foram selecionados 20 doentes com hipertensão ligeira, que foram aleatoriamente divididos em dois grupos:
+
+* **Grupo Controlo**: recebeu um placebo.
+* **Grupo Tratamento**: recebeu o novo medicamento.
+
+Após 8 semanas, mediu-se a **redução na pressão arterial** (diferença entre a medição inicial e final). Valores positivos indicam diminuição da pressão arterial.
+
+Os dados (em mmHg) são os seguintes:
+
+```{r}
+redução_controlo   <- c(2, 0, 3, -1, 1, 2, 0, 1, -2, 2)
+redução_tratamento <- c(5, 7, 4, 6, 3, 8, 5, 6, 4, 7)
+
+redução_controlo
+redução_tratamento
+```
+
+Pretende-se testar se o **novo medicamento é mais eficaz** na redução da pressão arterial do que o placebo.
+
+---
+
+## 1. Exploração inicial dos dados
+
+1. (a) Calcule, para cada grupo, a média, o desvio padrão e o tamanho amostral.
+
+
+2. (b) Faça um **boxplot** comparando os dois grupos e comente, de forma exploratória, se o grupo de tratamento parece ter maior redução da pressão arterial.
+
+
+3. (c) Com base apenas na exploração gráfica e nas estatísticas descritivas, formule uma **hipótese informal** sobre qual dos grupos tem, em média, maior redução da pressão arterial.
+
+---
+
+## 2. Formulação das hipóteses estatísticas
+
+1. (a) Formule as hipóteses estatísticas para comparar as **médias populacionais de redução** nos dois grupos:
+
+   * Escreva claramente $H_0$ e $H_1$ em termos de $\mu_C$ (controlo) e $\mu_T$ (tratamento).
+
+2. (b) Indique se o teste é **unilateral** ou **bilateral** e justifique a sua escolha com base na pergunta de investigação (“o medicamento é mais eficaz?”).
+
+---
+
+## 3. Condições para o teste t
+
+1. (a) Explique quais são as **principais suposições** do teste t para comparação de duas médias em amostras independentes.
+
+2. (b) Utilize o R para construir gráficos simples que ajudem a avaliar a plausibilidade da normalidade aproximada em cada grupo.
+
+
+3. (c) Comente, de forma qualitativa, se considera razoável aplicar o teste t a estes dados.
+
+---
+
+## 4. Teste t para comparação de médias
+
+1. (a) Utilizando o R, aplique um **teste t para amostras independentes** para comparar as médias dos dois grupos.
+
+
+2. (b) Identifique, na saída do R:
+
+   * o valor da estatística de teste t;
+   * o $p$-valor.
+
+3. (c) A um nível de significância $\alpha = 0.05$, qual é a sua **decisão** relativamente a $H_0$?
+
+   * Indique se **rejeita** ou **não rejeita** $H_0$ e justifique com base no $p$-valor.
+
+4. (d) Interprete o resultado em **linguagem simples**, no contexto do estudo:
+
+   * O que é que os resultados sugerem sobre a eficácia do novo medicamento em comparação com o placebo?
+
+---

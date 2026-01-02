@@ -1,0 +1,326 @@
+---
+title: "Manipulação de Dados em R"
+#subtitle: "Introdução prática com tidyverse"
+author: "Soraia Pereira"
+date: today
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: true
+    code-overflow: wrap
+    incremental: true
+    transition: fade
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+# Pacotes (instale previamente se necessário)
+suppressPackageStartupMessages({
+  library(tidyverse)       # dplyr, tidyr, readr, ggplot2, stringr, forcats, tibble
+  library(nycflights13)    # datasets exemplo
+})
+```
+
+## Objetivos da aula
+
+* Entender o **pipeline** de manipulação com `%>%` ou `|>`
+* Dominar os **verbos principais do dplyr**: `select()`, `filter()`, `arrange()`, `mutate()`, `summarise()`, `group_by()`
+* Reestruturar dados com **tidyr**: `pivot_longer()`, `pivot_wider()`, `separate()`, `unite()`
+* Realizar **junções** (joins) entre tabelas
+* **exercícios** finais
+
+---
+
+## Filosofia tidyverse
+
+* Tabelas como **tibbles**
+* Cada passo faz **uma coisa clara**
+* Leitura “de cima para baixo” com **pipes**
+
+```{r}
+tibble::tibble(modelo = rownames(mtcars),
+               mtcars) |>
+  dplyr::glimpse()
+```
+
+---
+
+## Pipes: `%>%` vs `|>`
+
+* `%>%` (magrittr) e `|>` (pipe nativo do R) encadeiam passos de forma legível.
+
+```{r}
+mtcars |>
+  as_tibble(rownames = "modelo") |>
+  select(modelo, mpg, cyl, hp) |>
+  arrange(desc(mpg)) |>
+  head(5)
+```
+
+---
+
+## Seleção de colunas — `select()`
+
+* Selecionar, **renomear**, **reordenar** colunas
+* *Helpers*: `starts_with()`, `ends_with()`, `contains()`, `matches()`
+
+```{r}
+starwars |>
+  select(name, height, mass, starts_with("home")) |>
+  head(8)
+```
+
+---
+
+## Filtrar linhas — `filter()`
+
+* Mantém casos que satisfazem condições lógicas
+
+```{r}
+starwars |>
+  filter(species == "Human", height >= 180) |>
+  select(name, height, mass) |>
+  arrange(desc(height))
+```
+
+---
+
+## Ordenação — `arrange()`
+
+* Ordena por colunas (crescente/decrescente)
+
+```{r}
+mtcars |>
+  as_tibble(rownames = "modelo") |>
+  arrange(desc(hp), mpg) |>
+  select(modelo, hp, mpg) |>
+  head(10)
+```
+
+---
+
+## Criar/transformar variáveis — `mutate()`
+
+* Cria novas colunas a partir das existentes
+* Funções úteis: `if_else()`, `case_when()`, `rowSums()`, etc.
+
+```{r}
+mtcars |>
+  as_tibble(rownames = "modelo") |>
+  mutate(kmpl = mpg * 0.4251,
+         potencia_cat = case_when(
+           hp < 100 ~ "baixa",
+           hp < 150 ~ "média",
+           TRUE     ~ "alta"
+         )) |>
+  select(modelo, mpg, kmpl, hp, potencia_cat) |>
+  head(8)
+```
+
+---
+
+## Resumos — `summarise()` + `group_by()`
+
+* Agregação por grupos com estatísticas: `mean()`, `sd()`, `n()`, `median()`, `quantile()`, …
+
+```{r}
+nycflights13::flights |>
+  group_by(carrier) |>
+  summarise(
+    n_voos = n(),
+    atraso_medio_partida = mean(dep_delay, na.rm = TRUE),
+    atraso_medio_chegada = mean(arr_delay, na.rm = TRUE)
+  ) |>
+  arrange(desc(n_voos)) |>
+  head(10)
+```
+
+---
+
+## Várias colunas de uma vez — `across()`
+
+* Aplicar a mesma função a múltiplas colunas
+
+```{r}
+mtcars |>
+  as_tibble() |>
+  summarise(across(c(mpg, hp, wt), list(media = mean, sd = sd)))
+```
+
+---
+
+## Reestruturação — `pivot_longer()` / `pivot_wider()`
+
+* Dados “longos” vs “largos”; **cada variável numa coluna**
+
+```{r}
+tbl <- tibble(id = 1:3, Jan = c(10, 12, 9), Fev = c(11, 8, 13))
+
+# Largo -> Longo
+long <- tbl |>
+  pivot_longer(cols = Jan:Fev, names_to = "mes", values_to = "valor")
+long
+```
+
+```{r}
+# Longo -> Largo
+long |>
+  pivot_wider(names_from = mes, values_from = valor)
+```
+
+---
+
+## Separar e unir colunas — `separate()` / `unite()`
+
+```{r}
+nomes <- tibble(nome_completo = c("Ana Silva","Bruno Costa","C. Rocha"))
+
+nomes |>
+  separate(nome_completo, into = c("primeiro","apelido"), sep = " ") |>
+  unite("nome_compacto", primeiro, apelido, sep = "_")
+```
+
+---
+
+## Junções (joins)
+
+* **left_join** (mantém esquerda), **inner_join** (interseção), **full_join** (união), **right_join** (mantém direita)
+
+```{r}
+clientes <- tibble(id=1:5, nome=c("Ana","Bruno","Carla","Duarte","Eva"))
+compras  <- tibble(id=c(1,1,3,6), total=c(25,15,40,10))
+
+left_join(clientes, compras, by = "id")
+```
+
+---
+
+## Tratamento de `NA`s
+
+* `is.na()`, `replace_na()`, `coalesce()`
+
+```{r}
+tibble(a = c(1,NA,3), b = c(10,20,30)) |>
+  mutate(a_sem_na = replace_na(a, 0),
+         a_fallback= coalesce(a, b))
+```
+
+---
+
+## Mini-exercícios 
+
+1. Usando `starwars`:
+
+   * selecione `name`, `species`, `height`, `mass`
+   * filtre apenas *Humans* com `height > 170`
+   * crie `imc = mass / (height/100)^2`
+   * resuma IMC médio por `sex`
+
+2. Usando `nycflights13::flights`:
+
+   * compute o atraso médio de chegada por `dest`
+   * junte (`left_join`) com `airports` para obter `name`
+   * ordene do maior para o menor atraso
+
+3. Crie uma pequena tabela larga e converta para **longo** com `pivot_longer()`; depois reconverta para largo.
+
+---
+
+## Soluções (exemplo 1)
+
+```{r}
+starwars |>
+  select(name, species, height, mass, sex) |>
+  filter(species == "Human", height > 170) |>
+  mutate(imc = mass / (height/100)^2) |>
+  group_by(sex) |>
+  summarise(n = n(),
+            imc_medio = mean(imc, na.rm = TRUE)) |>
+  arrange(desc(imc_medio))
+```
+
+---
+
+## Soluções (exemplo 2)
+
+```{r}
+atraso_dest <- flights |>
+  group_by(dest) |>
+  summarise(atraso_med = mean(arr_delay, na.rm = TRUE))
+
+left_join(atraso_dest, nycflights13::airports, by = c("dest" = "faa")) |>
+  select(dest, name, atraso_med) |>
+  arrange(desc(atraso_med)) |>
+  head(10)
+```
+
+---
+
+## Junção de tabelas — conceitos
+
+- **Chaves (keys)**: variáveis que identificam registos para ligar tabelas.  
+  - Chave simples (ex.: `id`) ou composta (ex.: `year`, `month`, `day`, `hour`, `origin`).  
+- **Nomes diferentes**: use `by = c("colA" = "colB")`.  
+
+```{r}
+# Tabelas do nycflights13 para exemplos
+library(nycflights13)
+list(
+  flights = dim(flights),
+  airlines = dim(airlines),
+  airports = dim(airports),
+  planes = dim(planes),
+  weather = dim(weather)
+)
+```
+
+---
+
+## left_join (o mais usado)
+
+* Mantém **todas** as linhas da tabela da esquerda.
+* Junta colunas da direita quando há correspondência.
+
+```{r}
+# Adicionar o nome da companhia (carrier) aos voos
+flights |>
+  select(year, month, day, carrier, flight, origin, dest) |>
+  left_join(airlines, by = "carrier") |>
+  select(year, month, day, carrier, name, flight, origin, dest) |>
+  head(6)
+```
+
+---
+
+## inner_join, right_join, full_join
+
+* `inner_join`: mantém **apenas** correspondências (interseção).
+* `right_join`: mantém todas as linhas da **direita**.
+* `full_join`: **união** (tudo de ambos).
+
+```{r}
+# Ex.: destinos (dest) com info de aeroportos (airports)
+base <- flights |>
+  count(dest, name = "n_voos")
+
+inner_join(base, airports, by = c("dest" = "faa")) |>   # só destinos com aeroporto conhecido
+  select(dest, n_voos, name, lat, lon) |>
+  arrange(desc(n_voos)) |>
+  head(5)
+```
+
+```{r}
+# full_join para ver destinos sem metadados (ou metadados sem voos)
+full_join(base, airports, by = c("dest" = "faa")) |>
+  summarise(
+    sem_meta = sum(is.na(name)),
+    sem_voos = sum(is.na(n_voos))
+  )
+```
+

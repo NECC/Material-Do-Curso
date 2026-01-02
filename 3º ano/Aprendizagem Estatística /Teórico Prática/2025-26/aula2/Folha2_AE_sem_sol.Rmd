@@ -1,0 +1,91 @@
+---
+title: "Folha de Exercícios — Manipulação de Dados em R"
+subtitle: "dplyr • tidyr • joins"
+#author: "Soraia Pereira"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(nycflights13) # flights, airlines, airports, planes, weather
+  # library(lubridate)  # se precisar de datas
+})
+```
+
+---
+
+## Exercício 1 — Aquecimento com `select`, `filter`, `arrange`, `mutate`
+
+1. A partir de `mtcars`, crie uma tibble com coluna `modelo` (vinda do rowname) e selecione apenas `modelo`, `mpg`, `cyl`, `hp`.
+2. Filtre carros com `mpg > 25` e `cyl %in% c(4, 6)`.
+3. Crie `kmpl = mpg * 0.4251` e uma categoria de potência:
+
+   * `hp < 100` → "baixa", `100 ≤ hp < 150` → "média", `≥ 150` → "alta".
+4. Ordene por `desc(kmpl)` e mostre as 8 primeiras linhas.
+
+```{r}
+
+```
+
+---
+
+## Exercício 2 — `summarise` + `group_by` + `across`
+
+Com o dataset `nycflights13::flights`:
+
+1. Calcule, por `carrier`, o número de voos (`n()`), o atraso médio de partida (`dep_delay`) e de chegada (`arr_delay`) ignorando `NA`.
+2. Use `across()` para obter **média** e **desvio-padrão** de `dep_delay` e `arr_delay` por `carrier`.
+3. Ordene do maior para o menor número de voos e mostre o top-10.
+
+```{r}
+
+```
+
+---
+
+## Exercício 3 — `pivot_longer` / `pivot_wider` e `separate` / `unite`
+
+1. Crie a tibble:
+
+   ```r
+   vendas <- tibble(
+     id = 1:4,
+     Jan = c(10, 12, 9, 11),
+     Fev = c(11, 8, 13, 10),
+     Mar = c(9, 12, 7, 15)
+   )
+   ```
+2. Converta de **largo → longo** (`mes`, `valor`) com `pivot_longer`.
+3. Volte de **longo → largo** com `pivot_wider`.
+4. Crie `nomes <- tibble(nome_completo = c("Ana Silva","Bruno Costa","C. Rocha"))`.
+   Use `separate` para `primeiro`, `apelido` e depois `unite` para `nome_compacto = "primeiro_apelido"`.
+
+```{r}
+
+```
+
+---
+
+## Exercício 4 — **Junções** I (left/inner/full)
+
+1. Com `flights`, obtenha uma tabela de contagem por destino: `voos_dest <- flights |> count(dest, name = "n_voos")`.
+2. Faça `left_join` com `airports` (chave: `dest` ↔ `faa`) para obter o nome e coordenadas dos aeroportos.
+3. Faça `inner_join` e compare o número de linhas com o `left_join`.
+4. Use `full_join` para verificar quantos destinos não têm metadados em `airports` e quantos aeroportos não aparecem em `flights`.
+
+```{r}
+
+```
+
+
+

@@ -1,0 +1,80 @@
+---
+title: "AED — Taxa de Desemprego (Total, por Sexo e por Idade)"
+subtitle: "Folha de Exercícios — enunciado"
+#author: "Docente: ________"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+ #   number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE)
+```
+
+> **Dados**: `dados_eurostat.RData` (coloca o ficheiro na mesma pasta deste `.Rmd`).
+
+> **Tarefa**: Para cada questão, escolhe e implementa o **gráfico** mais adequado e escreve **1–2 frases** com interpretação.
+
+---
+
+## 1) Importação dos dados
+
+1. Importa o ficheiro `.RData`.
+2. Identifica os tipos de variáveis.
+
+
+---
+
+## 2) Evolução temporal nacional
+
+Qual a **tendência temporal** da **taxa de desemprego global** em Portugal?
+
+
+---
+
+## 3) Diferença por sexo (ano mais recente)
+
+No **ano mais recente**, quais os **5 países** com maior **diferença** mulheres − homens?
+
+
+
+---
+
+## 4) Jovens vs adultos (últimos 5 anos)
+
+Em média nos **últimos 5 anos**, qual o rácio
+$$
+r_{\text{juv/ad}}=\frac{\text{tx_desemp_15_24}}{\text{tx_desemp_25_54}}
+$$
+por **país**?
+
+* Apresenta **top-5** países com maior rácio.
+* Comenta brevemente.
+
+
+---
+
+## 5) Comparação entre países
+
+Quais os **5 países** com maior **taxa global** ao longo de todo o período?
+
+* Mostra a **distribuição** por país (toda a série).
+
+
+---
+
+
+## 6) Evolução por sexo nos países mais afetados
+
+No ano mais recente, seleciona os **5 países** com maior **taxa global**.
+
+* Para esses países, mostra a **evolução temporal** de **homens vs mulheres** (duas séries).
+* Comenta se as curvas **convergem** ou **divergem**.
+
+---
+

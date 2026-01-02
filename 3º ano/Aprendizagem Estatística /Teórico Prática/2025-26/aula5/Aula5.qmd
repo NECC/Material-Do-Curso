@@ -1,0 +1,340 @@
+---
+title: "Regressão Linear Múltipla"
+#subtitle: "Contexto, motivação e exemplos interpretados em R (nível superior — Matemática)"
+#author: "Departamento de Matemática"
+date: "16-10-2025"
+lang: pt
+format:
+  revealjs:
+    theme: [default, simple]
+    slide-number: true
+    fig-format: retina
+    df-print: default
+ #   toc: true
+#    toc-depth: 2
+    hash: true
+    incremental: false
+    code-overflow: wrap
+execute:
+  eval: true 
+  echo: true
+  warning: false
+  message: true
+---
+
+
+---
+
+## Porquê regressão linear **múltipla**? 
+
+- **Fenómenos multicausais**: fenómenos reais raramente dependem de uma única variável.
+- **Melhor predição**: ao considerar variáveis relevantes reduzimos erro de predição.
+- **Separar efeitos**: pretendemos isolar o impacto de cada variável **mantendo as outras constantes**.
+- **Interações**: o efeito de uma variável pode **depender** do nível de outra (ex.: efeito do treino depende da dieta).
+
+---
+
+## Modelo: forma escalar e matricial
+
+Dados $(y_i, x_{i1},\dots,x_{ip})$, $i=1,\dots,n$:
+$$
+y_i \;=\; \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + \varepsilon_i,
+$$
+
+$\mathbb E[\varepsilon_i]=0,\; 
+\mathrm{Var}(\varepsilon_i)=\sigma^2,\; 
+\mathrm{Cov}(\varepsilon)=0.$
+
+\
+
+Notação matricial: $\mathbf y = X\beta + \varepsilon$, $\varepsilon \sim (0,\sigma^2 I)$. 
+
+---
+
+**MMQ (OLS)**: $\hat\beta = (X^\top X)^{-1}X^\top \mathbf y$.  
+Interpretação de $\beta_j$: variação **média** em $Y$ por **unidade** de $X_j$, **mantendo** as restantes fixas.
+
+
+O estimador MMQ
+  $$
+  \hat\beta=(X^\top X)^{-1}X^\top y
+  $$
+  só existe (e é único) se $X^\top X$ for invertível ⇒ colunas de $X$ **linearmente independentes**.
+
+---
+
+
+## Pressupostos sobre os **erros** 
+
+1) **Média zero**  
+$E[\varepsilon\mid X]=0$ 
+
+2) **Homocedasticidade (variância constante)**  
+$\operatorname{Var}(\varepsilon\mid X)=\sigma^2$ 
+
+
+3) **Independência / ausência de autocorrelação**  
+$\operatorname{Cov}(\varepsilon_i,\varepsilon_j\mid X)=0\ (i\neq j)$ 
+
+
+---
+
+## O que esperar dos resíduos se OLS é adequado
+
+- $\sum_i \hat{\varepsilon}_i=0$ (modelo com intercept).  
+- $X^\top \hat{\varepsilon} = 0$ (resíduos ortogonais aos regressores).  
+- Resíduos vs ajustados: **sem padrão** e variância aproximadamente constante.  
+- QQ-plot: pontos próximos da reta (se normalidade).
+
+
+
+## Exemplo A : `mtcars` — consumo vs massa, potência e caixa
+
+```{r}
+data(mtcars)
+library(tidyverse)
+library(broom)
+mt <- mtcars |>
+  mutate(am = factor(am, labels = c("auto","manual")),
+         wt_kg = wt * 453.592 / 1000)  # wt em milhares de libras; converter para kg
+modA <- lm(mpg ~ wt_kg + hp + am, data = mt)
+summary(modA)
+tidy(modA, conf.int = TRUE)
+glance(modA)[, c("r.squared","adj.r.squared","sigma")]
+```
+
+**Interpretação.**  
+- **wt_kg**: variação média de **mpg** por +1 kg, **controlando** hp e am (espera-se coeficiente negativo).  
+- **hp**: efeito parcial de potência (mpg ↓ quando hp ↑, dado wt e am fixos).  
+- **am**: diferença média entre **manual** e **auto**, para os mesmos wt_kg e hp.  
+- $R^2$ ajustado e $\hat\sigma$ medem qualidade do ajuste e dispersão residual.
+
+---
+
+## Efeitos marginais e previsões com incerteza
+
+```{r eval=TRUE}
+# Grella para explorar efeito de wt_kg mantendo hp, am fixos
+grid_wt <- mt |>
+  summarize(hp = median(hp), am = am[1]) |>
+  crossing(wt_kg = seq(min(mt$wt_kg), max(mt$wt_kg), length.out = 50))
+
+pred <- predict(modA, newdata = grid_wt, interval = "confidence")
+pred_p <- predict(modA, newdata = grid_wt, interval = "prediction")
+
+bind_cols(grid_wt, as_tibble(pred), tibble(lwr_pred = pred_p[,3], upr_pred = pred_p[,3])) |> head()
+```
+
+---
+
+
+```{r eval=TRUE}
+#| fig-width: 2
+#| fig-height: 2
+pred_df <- bind_cols(grid_wt, as_tibble(pred)) |>
+  rename(fit=fit, lwr=lwr, upr=upr)
+
+ggplot(pred_df, aes(wt_kg, fit)) +
+  geom_ribbon(aes(ymin=lwr, ymax=upr), alpha=.2) +
+  geom_line(linewidth=1) +
+  labs(x="Massa (kg)", y="mpg (média prevista)",
+       title="Efeito marginal de wt_kg com IC da média (95%) — hp e am fixos")
+```
+
+
+**Leitura.** Banda é **IC da média**; intervalo de **predição** seria mais largo (variação individual).
+
+---
+
+## Diagnóstico e robustez: resíduos, QQ, distância de Cook
+
+```{r fig.width=9, fig.height=3.2}
+par(mfrow=c(1,3))
+plot(modA, which = 1)
+plot(modA, which = 2)
+plot(modA, which = 5)
+par(mfrow=c(1,1))
+```
+
+
+---
+
+## Multicolinearidade: VIF e interpretação
+
+- VIF (Variance Inflation Factor) mede quanto a **variância** de $\hat\beta_j$ é **inflacionada** pela colinearidade de $X_j$ com os restantes.
+- Definição via regressão auxiliar de $X_j$ nas outras preditoras $X_{-j}$:
+ $$
+  \text{VIF}_j \;=\; \frac{1}{1-R_j^2},
+  \qquad
+  R_j^2 \;=\; R^2\Big(\,X_j \sim X_{-j}\,\Big).
+ $$
+---
+
+- Relação com a variância de $\hat\beta_j$:
+ $$
+  \operatorname{Var}(\hat\beta_j)
+  \;=\;
+  \sigma^2\,\frac{\text{VIF}_j}{\sum_i (x_{ij}-\bar x_j)^2}.
+ $$
+
+```{r}
+library(car)
+
+mod <- lm(mpg ~ wt + hp, data = mtcars)
+car::vif(mod)
+```
+
+---
+
+
+- **Regra prática:**  
+  - VIF ≈ 1: sem colinearidade relevante  
+  - VIF ≳ 5 (às vezes 10): **preocupante** → investigar/reparametrizar
+  
+- **Efeito:** VIF alto ⇒ **erros-padrão grandes**, ICs **largos**, sinais/valores de $\hat\beta$ podem oscilar com pequenas mudanças nos dados.
+
+---
+
+
+## Fatores 
+
+- Em `lm(mpg ~ wt_kg + hp + am)`, onde `am` é **fator** com níveis `"auto"` e `"manual"`, o R cria **variáveis indicadoras** (0/1) para representar os níveis.  
+
+  → Um nível fica como **base** (escolhido automaticamente, tipicamente o primeiro); os restantes têm um **coeficiente** que mede o desvio face a essa base.
+
+- **Como ler os coeficientes** (sem interações):
+  - `ammanual`: **diferença média** (*manual − base*) em `mpg`, **mantendo** `wt_kg` e `hp` fixos.  
+    Ex.: `ammanual = 2.5` ⇒ carros *manuais* têm **+2.5 mpg** face à base para o mesmo peso e potência.
+
+
+
+
+```{r}
+coef(lm(mpg ~ wt_kg + hp + am, data = mt))
+```
+
+---
+
+## Interações: quando o efeito depende de outra variável
+
+```{r}
+modA_int <- lm(mpg ~ wt_kg * am + hp, data = mt)
+tidy(modA_int, conf.int = TRUE)
+```
+
+---
+
+```{r fig.width=7, fig.height=4}
+# Visualizar duas retas (auto vs manual) em função de wt_kg
+new_auto   <- tibble(wt_kg = seq(min(mt$wt_kg), max(mt$wt_kg), length.out=50),
+                     hp = median(mt$hp), am = factor("auto", levels=levels(mt$am)))
+new_manual <- new_auto; new_manual$am <- factor("manual", levels=levels(mt$am))
+
+pred_auto   <- bind_cols(new_auto,   as_tibble(predict(modA_int, new_auto, interval="confidence")))
+pred_manual <- bind_cols(new_manual, as_tibble(predict(modA_int, new_manual, interval="confidence")))
+
+ggplot() +
+  geom_ribbon(data=pred_auto, aes(wt_kg, ymin=lwr, ymax=upr), alpha=.15) +
+  geom_line(data=pred_auto, aes(wt_kg, fit), size=1) +
+  geom_ribbon(data=pred_manual, aes(wt_kg, ymin=lwr, ymax=upr), alpha=.15) +
+  geom_line(data=pred_manual, aes(wt_kg, fit), size=1) +
+  labs(x="Massa (kg)", y="mpg previsto",
+       title="Interação wt_kg × am: inclinações distintas por tipo de caixa")
+```
+
+**Leitura.** Se o termo de interação é significativo, o **efeito de wt_kg** difere entre `auto` e `manual`.
+
+---
+
+## Exemplo B (aplicação socioeconómica): `swiss`
+
+```{r}
+data(swiss)
+modS <- lm(Fertility ~ Agriculture + Examination + Education + Catholic + Infant.Mortality,
+           data = swiss)
+summary(modS)
+tidy(modS, conf.int = TRUE)
+```
+
+**Interpretação.**  
+- Sinal de `Education` (negativo) sugere menor fertilidade em regiões com mais educação, **controlando** restantes.  
+- `Catholic` positivo: efeito marginal mantendo o resto. **Cuidado**: correlação entre preditores muda a interpretação.
+
+```{r fig.width=7, fig.height=3.2}
+par(mfrow=c(1,3)); plot(modS, which=1); plot(modS, which=2); plot(modS, which=5); par(mfrow=c(1,1))
+```
+
+---
+
+## Coeficientes padronizados
+
+- Coeficientes **padronizados** permitem comparar magnitudes relativas.
+
+```{r}
+swiss_z <- swiss |> mutate(across(everything(), scale))
+coef(lm(Fertility ~ . , data = swiss_z))
+```
+
+
+---
+
+## AIC e BIC — critérios de seleção de modelos 
+
+- Ideia: equilibrar **qualidade de ajustamento** (log-verosimilhança) e **complexidade** (nº de parâmetros $k$).
+
+- Definições gerais:
+$$
+  \mathrm{AIC} \;=\; -2\log L(\hat\theta) \;+\; 2k,
+  \qquad
+  \mathrm{BIC} \;=\; -2\log L(\hat\theta) \;+\; k\log n.
+ $$
+**AIC** (Akaike Information Criterion) privilegia **previsão** (penalização $2k$); 
+
+**BIC** favorece **parcimónia** (penalização $k\log n$).
+
+
+---
+
+**Como usar** 
+- **Quanto menor, melhor** (AIC/BIC em valores absolutos não têm significado isolado).  
+- Compare **modelos ajustados aos mesmos dados**; não é preciso serem aninhados.  
+
+**Notas**
+
+- Preferir **AIC** se o objetivo principal é **previsão**.  
+- Preferir **BIC** se privilegia **simplicidade**/interpretação (penaliza mais o número de parâmetros).  
+- Não substitui **diagnóstico** do modelo (resíduos, colinearidade, etc.).
+
+---
+
+```{r}
+mods <- list(
+  base  = lm(mpg ~ 1, data = mt),
+  pars  = lm(mpg ~ wt_kg + hp, data = mt),
+  int   = lm(mpg ~ wt_kg * am + hp, data = mt),
+  full  = lm(mpg ~ wt_kg + hp + am + qsec + gear, data = mt)
+)
+tibble(modelo = names(mods),
+       AIC = sapply(mods, AIC),
+       BIC = sapply(mods, BIC))
+```
+
+
+---
+
+## Boas práticas
+
+1. Verificar pressupostos pela análise dos resíduos.
+2. Verificar **pontos influentes**.  
+3. Causalidade ≠ correlação.  
+4. Explicar coeficientes em **unidades** e **cenários** relevantes.  
+5. Quantificar incerteza: **ICs** e **intervalos de predição**.
+
+---
+
+## Exercício
+
+- Ajustar $\text{mpg} \sim \text{wt}_\text{kg} + \text{hp} + \text{am}$ e reportar IC(95%) de cada coeficiente.  
+- Testar a interação $\text{wt}_\text{kg}:\text{am}$ e interpretar o termo cruzado.  
+- Em `swiss`, calcular VIFs e discutir colinearidade; refazer o modelo com variáveis padronizadas.  
+- Construir um cenário de previsão com **IC da média** e **intervalo de predição**.

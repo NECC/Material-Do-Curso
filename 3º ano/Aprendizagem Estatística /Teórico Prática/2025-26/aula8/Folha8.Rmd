@@ -1,0 +1,108 @@
+---
+title: "Exercícios — Regressão Logística (R)"
+author: ""
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: html_document
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+set.seed(123)
+```
+
+# -------------------------------------------------------------
+# Exercício 1 — Sobrevivência no Titanic (modelo simples com treino/teste)
+
+Use o conjunto de dados `titanic_train` do package **titanic**, contendo variáveis como `Survived`, `Pclass`, `Sex`, `Age` e `Fare`.
+
+```{r E1-dados, eval=FALSE}
+library(titanic)
+library(dplyr)
+
+dados_titanic <- titanic_train %>%
+  select(Survived, Pclass, Sex, Age, Fare) %>%
+  na.omit()
+
+dados_titanic$Sex <- factor(dados_titanic$Sex, levels = c("male", "female"))
+
+```
+
+
+1. Separe os dados em treino (80%) e teste (20%). Explique porque não se deve avaliar o desempenho do modelo nos mesmos dados usados para o ajustar.
+
+2. Ajuste, **apenas nos dados de treino**, o modelo:
+
+$$
+\operatorname{logit}\Big(
+P(\text{Survived}=1 \mid \text{Pclass}, \text{Sex}, \text{Age}, \text{Fare})
+\Big)
+=
+\beta_0
++ \beta_1\,\text{Pclass}
++ \beta_2\,\text{Sex}
++ \beta_3\,\text{Age}
++ \beta_4\,\text{Fare}.
+$$
+
+   Interprete:
+   - o sinal de $\beta_1$ (classe),
+   - o sinal e significância de $\beta_2$ (sexo).
+
+3. Usando o **conjunto de teste**, calcule as probabilidades previstas $\hat p_i$.  
+   Com threshold $t = 0.5$, construa a matriz de confusão e calcule:
+   - accuracy,  
+   - sensibilidade (TPR),  
+   - especificidade (TNR).
+
+4. Com a package `pROC`, obtenha a **curva ROC** e a **AUC**.  
+   Interprete a AUC.
+
+---
+
+# -------------------------------------------------------------
+# Exercício 2 — Crédito ao consumo (`Default`, ISLR2)
+
+```{r E2-dados, eval=FALSE}
+library(ISLR2)
+dados_default <- Default
+```
+
+Considere modelar a probabilidade de **incumprimento** (default = "Yes").
+
+1. Crie $Y = 1$ se `default="Yes"`, $Y=0$ caso contrário.  
+   Explique por que a regressão logística é adequada (e a regressão linear não).
+
+2. Divida os dados em **treino (60%)** e **teste (40%)**.  
+   Compare a proporção de incumpridores nos dois conjuntos.
+
+3. Ajuste o modelo:
+
+$$
+\operatorname{logit}\Big(
+P(Y=1 \mid \text{balance}, \text{income}, \text{student})
+\Big)
+=
+\beta_0
++ \beta_1\,\text{balance}
++ \beta_2\,\text{income}
++ \beta_3\,\text{student}.
+$$
+
+   Interprete:
+   - o sinal de $\beta_1$ (saldo),
+   - o efeito de ser estudante ($\beta_3$),
+   - o significado de $\exp(\beta_1)$ e $\exp(\beta_3)$ como *odds ratios*.
+
+4. Usando o modelo, calcule previsões no **teste** com threshold $t=0.5$ e obtenha:  
+   - matriz de confusão,  
+   - sensibilidade,  
+   - especificidade.  
+   Comente tendo em conta o risco financeiro de falsos negativos.
+
+5. Produza a curva ROC, AUC e determine um threshold ótimo pelo **índice de Youden**.  
+   Compare o desempenho entre $t=0.5$ e o threshold ótimo.
+
+---
+

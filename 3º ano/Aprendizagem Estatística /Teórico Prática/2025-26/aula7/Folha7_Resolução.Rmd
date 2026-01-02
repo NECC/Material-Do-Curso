@@ -1,0 +1,240 @@
+---
+title: "Análise de Componentes Principais (ACP) — **Resolução**"
+author: ""
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: false
+  pdf_document: default
+lang: pt
+fontsize: 11pt
+geometry: margin=2.5cm
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+set.seed(123)
+```
+
+> Pacotes usados: `ISLR2`, `mlbench`, `pls`, `ggplot2`, `dplyr`, `tibble`.
+
+```{r libs}
+# Instale se necessário: install.packages(c("ISLR2","mlbench","pls","ggplot2","dplyr"))
+library(ISLR2)
+library(mlbench)
+library(pls)
+library(ggplot2)
+library(dplyr)
+library(tibble)
+```
+
+# Exercício 1 — NCI60 (expressão génica; p ≈ 6.830)
+
+**Dados**: `ISLR2::NCI60` (64 linhas; ~6.830 genes).
+
+## (1) Dimensão e valores em falta
+
+```{r E1-1}
+# Obter matriz de expressão
+X_raw <- NCI60$data
+labs   <- NCI60$labs
+n <- nrow(X_raw); p <- ncol(X_raw)
+# Contagem de NA
+na_total <- sum(is.na(X_raw))
+list(n_observacoes = n, p_variaveis = p, faltantes_total = na_total)
+```
+
+**Comentário.** `p` é grande face a `n`; não há (tipicamente) valores em falta no objeto original.
+
+## (2) Padronização e justificação
+
+```{r E1-2}
+X <- scale(X_raw)  # centrar e padronizar por gene
+# Confirmar centragem/padronização
+summ <- as_tibble(X) |>
+  summarise(across(everything(), list(media = ~mean(.x), sd = ~sd(.x))))
+# Mostrar apenas primeiras 6 colunas (para inspeção)
+round(as.matrix(summ)[,1:12], 3)
+```
+
+**Porquê correlações (padronizar)**: variâncias dos genes diferem muito em escala; sem padronização, CP1 seria dominada pelos genes de maior variância. Usar a matriz de **correlações** (equivalente a padronizar e fazer PCA na matriz centrada) dá a cada gene o mesmo peso inicial.
+
+## (3) PCA: valores proprios, PVE e plots
+
+```{r E1-3}
+pc_nci <- prcomp(X, center = FALSE, scale. = FALSE)
+# Autovalores (variâncias dos scores)
+ev  <- pc_nci$sdev^2
+pve <- ev / sum(ev)
+cpve <- cumsum(pve)
+# Tabela com as 15 primeiras CPs
+resumo_pve <- tibble(
+  CP = seq_along(ev),
+  autovalor = ev,
+  PVE = pve,
+  PVE_acumulada = cpve
+) |>
+  slice(1:15)
+resumo_pve
+```
+
+**Scree plot** e **PVE acumulada**:
+
+```{r E1-3-plots, fig.height=4.2}
+# Scree
+qplot(y = ev, x = seq_along(ev), geom = c("line","point")) +
+  labs(x = "Componente", y = "Autovalor", title = "NCI60 — Scree plot") +
+  theme_minimal()
+# PVE acumulada
+qplot(y = cpve, x = seq_along(cpve), geom = c("line","point")) +
+  labs(x = "Componente", y = "PVE acumulada", title = "NCI60 — PVE acumulada") +
+  theme_minimal()
+```
+
+## (4) Scores CP1 vs CP2 com cores por tipo de cancro
+
+```{r E1-4, fig.height=4.2}
+Scores <- as_tibble(pc_nci$x[,1:2], .name_repair = "minimal") |>
+  mutate(tipo = labs)
+colnames(Scores)[1:2] <- c("CP1","CP2")
+# Ordenar níveis para legenda estável
+Scores$tipo <- factor(Scores$tipo)
+
+ggplot(Scores, aes(CP1, CP2, color = tipo)) +
+  geom_point(size = 2, alpha = 0.9) +
+  labs(title = "NCI60 — Scores CP1 vs CP2", color = "Tipo") +
+  theme_minimal() +
+  theme(legend.position = "right")
+```
+
+**Comentário.** Observa‑se frequentemente agrupamento parcial por tipo (e.g., leucemias vs melanomas), evidenciando estrutura biológica nas primeiras CPs.
+
+## (5) Top 25 genes por |loading| em CP1 e CP2
+
+```{r E1-5}
+load <- pc_nci$rotation  # loadings (p x p)
+ord1 <- order(abs(load[,1]), decreasing = TRUE)[1:25]
+ord2 <- order(abs(load[,2]), decreasing = TRUE)[1:25]
+Top_CP1 <- tibble(gene = colnames(X_raw)[ord1], loading = load[ord1,1])
+Top_CP2 <- tibble(gene = colnames(X_raw)[ord2], loading = load[ord2,2])
+list(Top25_CP1 = Top_CP1, Top25_CP2 = Top_CP2,
+     sobreposicao = length(intersect(Top_CP1$gene, Top_CP2$gene)))
+```
+
+**Discussão.** Normalmente há pouca sobreposição: CPs ortogonais capturam eixos distintos de variação; genes dominantes em CP1 tendem a não repetir em CP2.
+
+---
+
+# Exercício 2 — Sonar (sinais; p = 60)
+
+## (1) Preparação
+
+```{r E2-1}
+data(Sonar)
+X_sonar <- scale(as.matrix(Sonar[,1:60]))
+y_sonar <- Sonar$Class
+c(dim(X_sonar), classes = levels(y_sonar))
+```
+
+## (2) PCA, PVE e scree plot
+
+```{r E2-2}
+pc_sonar <- prcomp(X_sonar, center = FALSE)
+ev2  <- pc_sonar$sdev^2
+pve2 <- ev2 / sum(ev2)
+cpve2 <- cumsum(pve2)
+head(tibble(CP = 1:10, PVE = pve2[1:10], PVE_acum = cpve2[1:10]))
+# Scree plot
+qplot(y = ev2, x = seq_along(ev2), geom = c("line","point")) +
+  labs(x = "Componente", y = "Autovalor", title = "Sonar — Scree plot") +
+  theme_minimal()
+```
+
+## (3) CP1 vs CP2 colorido por classe (M/R)
+
+```{r E2-3, fig.height=4}
+sc2 <- as_tibble(pc_sonar$x[,1:2]) |>
+  mutate(Class = y_sonar)
+colnames(sc2)[1:2] <- c("CP1","CP2")
+
+ggplot(sc2, aes(CP1, CP2, color = Class)) +
+  geom_point(size = 2) +
+  labs(title = "Sonar — Scores CP1 vs CP2") +
+  theme_minimal()
+```
+
+**Comentário.** A separação raramente é perfeita, mas costuma haver tendência de distinção parcial entre M e R nas primeiras CPs.
+
+## (4) Biplot e top‑5 variáveis por |loading|
+
+```{r E2-4, fig.height=4}
+# Biplot base (pode ficar visualmente carregado)
+biplot(pc_sonar, scale = 0)
+# Top-5 por |loading| em CP1 e CP2
+load2 <- pc_sonar$rotation
+Top5_CP1 <- tibble(var = colnames(Sonar)[1:60][order(abs(load2[,1]), decreasing = TRUE)[1:5]],
+                   loading = load2[order(abs(load2[,1]), decreasing = TRUE)[1:5],1])
+Top5_CP2 <- tibble(var = colnames(Sonar)[1:60][order(abs(load2[,2]), decreasing = TRUE)[1:5]],
+                   loading = load2[order(abs(load2[,2]), decreasing = TRUE)[1:5],2])
+list(Top5_CP1 = Top5_CP1, Top5_CP2 = Top5_CP2)
+```
+
+---
+
+# Exercício 3 — Espectroscopia NIR (*yarn*; p ≈ 268)
+
+## (1) Carregar e construir matriz de espectros
+
+```{r E3-1}
+X_yarn <- scale(yarn$NIR)  # apenas espectros; padronizar por coluna
+dim(X_yarn)
+```
+
+## (2) PCA, valores proprios, PVE e gráficos
+
+```{r E3-2}
+pc_yarn <- prcomp(X_yarn, center = FALSE)
+ev3  <- pc_yarn$sdev^2
+pve3 <- ev3 / sum(ev3)
+cpve3 <- cumsum(pve3)
+head(tibble(CP = 1:10, PVE = round(pve3[1:10], 4), PVE_acum = round(cpve3[1:10],4)))
+# Scree plot
+qplot(y = ev3, x = seq_along(ev3), geom = c("line","point")) +
+  labs(x = "Componente", y = "Autovalor", title = "yarn — Scree plot") +
+  theme_minimal()
+# PVE acumulada
+qplot(y = cpve3, x = seq_along(cpve3), geom = c("line","point")) +
+  labs(x = "Componente", y = "PVE acumulada", title = "yarn — PVE acumulada") +
+  theme_minimal()
+```
+
+## (3) Scores plots (CP1 vs CP2 e CP2 vs CP3)
+
+```{r E3-3, fig.height=4.5}
+sc3 <- as_tibble(pc_yarn$x[,1:3])
+colnames(sc3) <- c("CP1","CP2","CP3")
+
+p1 <- ggplot(sc3, aes(CP1, CP2)) + geom_point(size = 2) + theme_minimal() +
+  labs(title = "yarn — Scores CP1 vs CP2")
+p2 <- ggplot(sc3, aes(CP2, CP3)) + geom_point(size = 2) + theme_minimal() +
+  labs(title = "yarn — Scores CP2 vs CP3")
+print(p1); print(p2)
+```
+
+**Comentário.** Em espectros, CP1 e CP2 tendem a capturar variações largas de base e bandas específicas; padrões de lote podem emergir.
+
+## (4) Bandas com maior contribuição (|loadings|) em CP1 e CP2
+
+```{r E3-4}
+load3 <- pc_yarn$rotation
+idx1 <- order(abs(load3[,1]), decreasing = TRUE)[1:15]
+idx2 <- order(abs(load3[,2]), decreasing = TRUE)[1:15]
+TopBand_CP1 <- tibble(indice_onda = idx1, loading = load3[idx1,1])
+TopBand_CP2 <- tibble(indice_onda = idx2, loading = load3[idx2,2])
+list(TopBand_CP1 = TopBand_CP1, TopBand_CP2 = TopBand_CP2,
+     sobreposicao = length(intersect(idx1, idx2)))
+```
+
+---

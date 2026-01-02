@@ -1,0 +1,383 @@
+---
+title: "Exercícios — Regressão Logística (R)"
+author: ""
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: html_document
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+set.seed(123)
+```
+
+## Exercício 1 — Titanic
+
+### 1. Por que não avaliar no mesmo conjunto usado para ajustar?
+
+Se ajustarmos o modelo **e** avaliarmos o desempenho (accuracy, sensibilidade, especificidade, AUC) nos **mesmos dados**:
+
+* o modelo foi “treinado” para se adaptar àquele conjunto,
+* tende a **sobreajustar** (overfitting),
+* as métricas serão **otimistas**: medem quão bem o modelo se ajusta aos dados vistos, não quão bem generaliza para novos passageiros.
+
+Ao usar:
+
+* dados de treino para **ajustar**
+* dados de teste para **avaliar**
+
+obtemos uma estimativa mais realista do desempenho em dados futuros.
+
+---
+
+### 2. Ajustar o modelo logístico e interpretar coeficientes
+
+```{r}
+library(titanic)
+library(dplyr)
+
+dados_titanic <- titanic_train %>%
+select(Survived, Pclass, Sex, Age, Fare) %>%
+na.omit()
+
+dados_titanic$Sex <- factor(dados_titanic$Sex,
+levels = c("male", "female"))
+
+set.seed(123)
+n <- nrow(dados_titanic)
+idx_treino <- sample(seq_len(n), size = 0.8 * n)
+
+dados_titanic_treino <- dados_titanic[idx_treino, ]
+dados_titanic_teste  <- dados_titanic[-idx_treino, ]
+
+modelo_titanic <- glm(
+Survived ~ Pclass + Sex + Age + Fare,
+data   = dados_titanic_treino,
+family = binomial
+)
+
+summary(modelo_titanic)
+
+```
+
+
+=====
+
+
+#### Interpretação de (\beta_1) (Pclass)
+
+* `Pclass` é codificada como 1, 2, 3 (1ª, 2ª, 3ª classe).
+* Tipicamente o estimador vem **negativo**: $\hat\beta_1 < 0$.
+
+Interpretação:
+
+* À medida que a classe **aumenta** (passa de 1 para 2, ou de 2 para 3), ou seja, o passageiro vai para uma classe **mais baixa**,
+  a **log-odds** de sobreviver **diminuem**.
+* Logo, passageiros em classes mais altas (1ª) tendem a ter **maior probabilidade de sobrevivência** que os de 2ª, que por sua vez têm maior probabilidade que os de 3ª (mantendo sexo, idade e fare fixos).
+
+#### Interpretação de $\beta_2$ (Sex)
+
+Com `Sex` codificada como fator com níveis `male` (referência) e `female`:
+
+* O coeficiente reportado é para `Sexfemale`.
+* Tipicamente, $\hat\beta_2 > 0$ e altamente significativo.
+
+Interpretação:
+
+* $\hat\beta_2 > 0$: a **log-odds** de sobreviver é maior para mulheres do que para homens, tudo o resto constante.
+* $e^{\hat\beta_2}$ é a **odds ratio**: quantas vezes as *odds* de sobrevivência de uma mulher são maiores do que as de um homem com mesma Pclass, Age e Fare.
+
+---
+
+### 3. Previsões no conjunto de teste, matriz de confusão e métricas
+
+
+Obter probabilidades previstas:
+
+```{r}
+prob_teste <- predict(
+  modelo_titanic,
+  newdata = dados_titanic_teste,
+  type = "response"
+)
+
+head(prob_teste)
+```
+
+Classificar com threshold (t = 0.5):
+
+```{r}
+pred_class <- ifelse(prob_teste >= 0.5, 1, 0)
+
+tab <- table(
+  Observado  = dados_titanic_teste$Survived,
+  Previsto   = pred_class
+)
+tab
+```
+
+A partir da matriz:
+
+* (TP) = verdadeiros positivos (Survived=1 e Previsto=1)
+* (TN) = verdadeiros negativos
+* (FP) = falsos positivos
+* (FN) = falsos negativos
+
+```{r}
+TP <- tab["1","1"]
+TN <- tab["0","0"]
+FP <- tab["0","1"]
+FN <- tab["1","0"]
+
+accuracy  <- (TP + TN) / sum(tab)
+sens      <- TP / (TP + FN)  # TPR
+espec     <- TN / (TN + FP)  # TNR
+
+accuracy
+sens
+espec
+```
+
+Interpretação típica:
+
+* **Accuracy** → proporção global de classificações corretas.
+* **Sensibilidade** → entre os que sobreviveram, que fração o modelo identificou como “sobrevive”?
+* **Especificidade** → entre os que não sobreviveram, que fração o modelo identificou corretamente como “não sobrevive”?
+
+---
+
+### 4. Curva ROC e AUC com `pROC`
+
+```{r}
+library(pROC)
+
+roc_titanic <- roc(
+  response = dados_titanic_teste$Survived,
+  predictor = prob_teste
+)
+
+plot(roc_titanic, main = "Curva ROC - Titanic (teste)")
+auc(roc_titanic)
+```
+
+* A curva ROC mostra o **trade-off** entre sensibilidade e 1 − especificidade para todos os thresholds.
+* A **AUC** é a área sob a curva:
+
+  * AUC ≈ 0.5 → modelo aleatório
+  * AUC perto de 1 → excelente capacidade discriminativa
+  * Para este tipo de modelo Titanic simples, é comum obter AUC > 0.8 (indica boa separação entre sobreviventes e não sobreviventes).
+
+Interpretação:
+
+> A AUC pode ser interpretada como a probabilidade de o modelo atribuir uma probabilidade mais alta de sobrevivência a um passageiro que de facto sobreviveu do que a um passageiro que não sobreviveu, escolhidos ao acaso.
+
+---
+
+## Exercício 2 — Default (ISLR2)
+
+### 1. Criar (Y) binário e justificar regressão logística
+
+```{r}
+library(ISLR2)
+
+dados_default <- Default
+dados_default$Y <- ifelse(dados_default$default == "Yes", 1, 0)
+table(dados_default$Y)
+```
+
+Por que **regressão logística** em vez de linear?
+
+* A resposta (Y) é **binária** (0/1).
+
+* A regressão linear pode prever valores **fora de [0,1]** e não respeita a estrutura de probabilidade.
+
+* A regressão logística modela:
+
+  $$
+  \operatorname{logit}(P(Y=1 \mid X)) = \beta_0 + \cdots
+  $$
+
+  e garante que $0 \le P(Y=1 \mid X) \le 1$.
+
+* A função de verosimilhança é adequada a dados binários (modelo Bernoulli/Binomial).
+
+---
+
+### 2. Divisão treino/teste e proporções de incumpridores
+
+```{r}
+set.seed(123)
+
+n <- nrow(dados_default)
+idx_treino <- sample(seq_len(n), size = 0.6 * n)
+
+treino_default <- dados_default[idx_treino, ]
+teste_default  <- dados_default[-idx_treino, ]
+
+prop_treino <- mean(treino_default$Y)
+prop_teste  <- mean(teste_default$Y)
+
+prop_treino
+prop_teste
+```
+
+* As proporções devem ser relativamente semelhantes (se a amostragem foi aleatória), o que é desejável para ter treino e teste representativos.
+
+---
+
+### 3. Ajustar o modelo logístico e interpretar coeficientes
+
+```{r}
+modelo_default <- glm(
+  Y ~ balance + income + student,
+  data   = treino_default,
+  family = binomial
+)
+
+summary(modelo_default)
+```
+
+
+#### $\beta_1$ (balance)
+
+* Tipicamente, $\hat\beta_1 > 0$ e altamente significativo.
+* Interpretação:
+
+  * Quanto maior o **saldo médio** no cartão (`balance`), maiores as **log-odds** de incumprimento.
+  * $e^{\hat\beta_1}$ é o fator pela qual as *odds* de incumprimento se multiplicam quando o saldo aumenta uma unidade (por exemplo, 1 dólar, dependendo da unidade usada).
+
+#### $\beta_3$ (student)
+
+Com `student` como factor (`No` de referência e `Yes`):
+
+* Se $\hat\beta_3 > 0$:
+
+  * ser estudante aumenta as log-odds de incumprimento, comparado a não ser estudante, a `balance` e `income` fixos.
+* Se $\hat\beta_3 < 0$:
+
+  * ser estudante diminui as log-odds de incumprimento.
+
+Em qualquer dos casos:
+
+* $e^{\hat\beta_3}$ é a **odds ratio** entre estudantes e não estudantes:
+
+  * valor > 1 → estudantes têm maior risco,
+  * valor < 1 → estudantes têm menor risco, ajustando para `balance` e `income`.
+
+---
+
+### 4. Previsões no teste, matriz de confusão, sensibilidade e especificidade
+
+Probabilidades previstas no teste:
+
+```{r}
+prob_default_teste <- predict(
+  modelo_default,
+  newdata = teste_default,
+  type = "response"
+)
+
+head(prob_default_teste)
+```
+
+Classificação com (t = 0.5):
+
+```{r}
+pred_default <- ifelse(prob_default_teste >= 0.5, 1, 0)
+
+tab_default <- table(
+  Observado = teste_default$Y,
+  Previsto  = pred_default
+)
+tab_default
+```
+
+Métricas:
+
+```{r}
+TP <- tab_default["1","1"]
+TN <- tab_default["0","0"]
+FP <- tab_default["0","1"]
+FN <- tab_default["1","0"]
+
+accuracy  <- (TP + TN) / sum(tab_default)
+sens      <- TP / (TP + FN)   # verdadeiro positivo
+espec     <- TN / (TN + FP)   # verdadeiro negativo
+
+accuracy
+sens
+espec
+```
+
+Comentário:
+
+* Em problemas de risco de crédito, **falsos negativos** (classificar como seguro alguém que vai incumprir) são muito caros.
+* Muitas vezes é preferível **aumentar a sensibilidade** (detetar mais incumpridores), mesmo à custa de aumentar FP e baixar especificidade.
+
+---
+
+### 5. Curva ROC, AUC e threshold ótimo (Youden)
+
+```{r}
+library(pROC)
+
+roc_default <- roc(
+  response  = teste_default$Y,
+  predictor = prob_default_teste
+)
+
+plot(roc_default, main = "Curva ROC — Default (teste)")
+auc(roc_default)
+```
+
+Threshold ótimo pelo índice de Youden:
+
+```{r}
+coords_default <- coords(
+  roc_default,
+  x = "best",
+  best.method = "youden",
+  transpose = TRUE
+)
+coords_default
+```
+
+* `coords_default["threshold"]` → threshold ótimo
+* Também dá sensibilidade e especificidade nesse ponto.
+
+Recalcular matriz de confusão com threshold ótimo:
+
+```{r}
+t_opt <- coords_default["threshold"]
+
+pred_default_opt <- ifelse(prob_default_teste >= t_opt, 1, 0)
+
+tab_opt <- table(
+  Observado = teste_default$Y,
+  Previsto  = pred_default_opt
+)
+tab_opt
+
+TP2 <- tab_opt["1","1"]
+TN2 <- tab_opt["0","0"]
+FP2 <- tab_opt["0","1"]
+FN2 <- tab_opt["1","0"]
+
+accuracy2 <- (TP2 + TN2) / sum(tab_opt)
+sens2     <- TP2 / (TP2 + FN2)
+espec2    <- TN2 / (TN2 + FP2)
+
+accuracy2
+sens2
+espec2
+```
+
+Comparar:
+
+* Se o threshold ótimo estiver **abaixo de 0.5**, em geral:
+
+  * **aumenta a sensibilidade** (deteta mais incumpridores),
+  * reduz especificidade (mais falsos positivos).
+* Em contexto de crédito, isso pode ser aceitável se o custo de conceder empréstimo a um mau pagador for muito maior que o custo de recusar um bom pagador.
+

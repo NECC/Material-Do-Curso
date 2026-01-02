@@ -1,0 +1,219 @@
+---
+title: "Métodos de Regularização em Regressão: Ridge e Lasso"
+#subtitle: "Detalhe teórico e aplicações em R"
+author: Soraia Pereira
+date: "24-10-2025"
+lang: pt
+format:
+  revealjs:
+    theme: [default, simple]
+    slide-number: true
+    fig-format: retina
+    df-print: default
+ #   toc: true
+#    toc-depth: 2
+#    hash: true
+#    incremental: false
+#    code-overflow: wrap
+execute:
+  eval: true 
+  echo: true
+  warning: false
+  message: true
+---
+
+
+# Implementação em R (pacotes)
+
+```{r}
+# instalar se necessário
+pkgs <- c("glmnet","tidyverse","broom")
+new <- setdiff(pkgs, rownames(installed.packages()))
+if(length(new)) install.packages(new)
+library(glmnet); library(tidyverse); library(broom)
+```
+
+
+# Exemplo 1: `mtcars`
+
+Vamos prever `mpg` a partir de `disp`, `hp`, `wt`, `qsec`, `am`, `gear`.
+
+```{r}
+set.seed(123)
+D <- mtcars |> mutate(across(c(am, gear), factor))
+# Matriz modelo (one-hot sem intercepto)
+X <- model.matrix(mpg ~ disp + hp + wt + qsec + am + gear, data = D)[, -1]
+y <- D$mpg
+# grid de lambdas padrão do glmnet
+fit_ridge <- glmnet(X, y, alpha = 0)   # ridge
+fit_lasso <- glmnet(X, y, alpha = 1)   # lasso
+fit_ridge; fit_lasso
+```
+
+---
+
+## Curvas de coeficientes
+
+```{r}
+par(mfrow=c(1,2))
+plot(fit_ridge, xvar = "lambda", label = TRUE, main = "Ridge: caminhos dos coef.")
+plot(fit_lasso, xvar = "lambda", label = TRUE, main = "Lasso: caminhos dos coef.")
+par(mfrow=c(1,1))
+```
+
+> Observe que o **lasso** reduz coeficientes a zero à medida que $\lambda$ cresce; o **ridge** apenas contrai.
+
+---
+
+## Escolha de $\lambda$ por validação cruzada
+
+```{r}
+set.seed(123)
+cv_ridge <- cv.glmnet(X, y, alpha = 0, nfolds = 10)
+cv_lasso <- cv.glmnet(X, y, alpha = 1, nfolds = 10)
+cv_ridge$lambda.min; cv_ridge$lambda.1se
+cv_lasso$lambda.min; cv_lasso$lambda.1se
+par(mfrow=c(1,2))
+plot(cv_ridge); title("CV Ridge", line = 2.5)
+plot(cv_lasso); title("CV Lasso", line = 2.5)
+par(mfrow=c(1,1))
+```
+
+---
+
+## Modelos finais e predição 
+
+```{r}
+set.seed(1)
+idx <- sample(seq_len(nrow(X)), size = round(0.7*nrow(X)))
+Xtr <- X[idx,]; ytr <- y[idx]
+Xte <- X[-idx,]; yte <- y[-idx]
+cv_ridge2 <- cv.glmnet(Xtr, ytr, alpha = 0)
+cv_lasso2 <- cv.glmnet(Xtr, ytr, alpha = 1)
+pr_ridge <- predict(cv_ridge2, newx = Xte, s = "lambda.min")
+pr_lasso <- predict(cv_lasso2, newx = Xte, s = "lambda.min")
+rmse <- function(a,b) sqrt(mean((a-b)^2))
+res <- tibble(
+  modelo = c("ridge","lasso"),
+  RMSE = c(rmse(yte, pr_ridge[,1]), rmse(yte, pr_lasso[,1]))
+)
+res
+```
+
+
+
+# Exemplo 2 (p > n / correlações): dados sintéticos
+
+Gerar dados com colinearidade forte e $p=20$, $n=60$.
+
+```{r}
+set.seed(321)
+n <- 60; p <- 20
+Sigma <- 0.7^abs(outer(1:p, 1:p, "-"))  # matriz Toeplitz (AR1)
+Z <- MASS::mvrnorm(n, mu = rep(0, p), Sigma = Sigma)
+beta_true <- c(runif(5, 2, 4), rep(0, p-5))
+y <- Z %*% beta_true + rnorm(n, sd=3)
+X <- scale(Z)
+cv_r <- cv.glmnet(X, y, alpha = 0)
+cv_l <- cv.glmnet(X, y, alpha = 1)
+coef(cv_l, s = "lambda.min") |> as.matrix() |> head(25)
+```
+
+* **Lasso** recupera esparsidade (muitos coef. exatos 0).
+* **Ridge** tende a reter todos os preditores com pesos pequenos.
+
+
+
+# Comparação teórica resumida {.smaller}
+
+| Propriedade          | Ridge (L2)      | Lasso (L1)            |
+| -------------------- | --------------- | --------------------- |
+| Contração            | Contínua        | Contínua + zeros      |
+| Seleção de variáveis | Não             | Sim                   |
+| Colinearidade forte  | Distribui pesos | Escolhe um (instável) |
+| p > n                | Funciona        | Funciona              |
+| Solução fechada      | Sim             | Não                   |
+| Viés                 | Maior           | Pode ser maior        |
+| Variância            | Menor           | Menor (tipicamente)   |
+
+> **Regra de bolso:** quando há **muitos preditores correlacionados**, **Elastic Net** (combina L1+L2) é frequentemente superior.
+
+
+
+# Escolha de $\lambda$ e métricas
+
+* **CV k-fold** (padrão em `cv.glmnet`): escolher `lambda.min` (menor erro) ou `lambda.1se` (mais parcimonioso).
+* Métricas: RMSE, MAE, $R^2$ em validação/teste.
+* Reportar **curvas de CV** e **caminhos de coeficientes**.
+
+
+
+
+
+
+# Limitações e extensões
+
+* Lasso pode ser instável com preditores muito correlacionados.
+* Ridge não faz seleção automática.
+* **Elastic Net**: $\alpha\in[0,1]$ interpola Lasso (1) e Ridge (0).
+
+```{r}
+# Exemplo rápido: elastic net com alpha=0.5
+cv_en <- cv.glmnet(X, y, alpha = 0.5)
+coef(cv_en, s = "lambda.1se") |> as.matrix() |> head()
+```
+
+
+# Predição e incerteza
+
+* Predição pontual via `predict`.
+* Intervalos padrão de MQO não se aplicam diretamente; `glmnet` foca predição.
+* Para **intervalos de previsão**: usar re-amostragem (bootstrap) ou métodos pós-seleção.
+
+```{r}
+set.seed(99)
+# Bootstrap simples do modelo lasso (ilustrativo)
+B <- 200
+preds <- replicate(B, {
+  id <- sample(seq_len(nrow(X)), replace=TRUE)
+  fit <- cv.glmnet(X[id,], y[id], alpha=1)
+  as.numeric(predict(fit, newx = X[1,,drop=FALSE], s="lambda.min"))
+})
+quantile(preds, c(.025,.5,.975))
+```
+
+
+
+# Exemplo final
+
+```{r}
+library(dplyr)
+set.seed(7)
+idx <- sample(seq_len(nrow(mtcars)), size = 24)
+train <- mtcars[idx,]; test <- mtcars[-idx,]
+Xtr <- model.matrix(mpg ~ ., train)[,-1]; ytr <- train$mpg
+Xte <- model.matrix(mpg ~ ., test)[,-1];  yte <- test$mpg
+cv_las <- cv.glmnet(Xtr, ytr, alpha=1)
+pr <- predict(cv_las, newx = Xte, s = "lambda.1se")
+rmse <- sqrt(mean((yte - pr[,1])^2))
+list(lambda_1se = cv_las$lambda.1se, RMSE_teste = rmse)
+```
+
+
+
+# Exercícios
+
+1. Reproduza o Exemplo 1 com outro *target* (e.g., `wt`) e documente diferenças.
+2. Em dados sintéticos (p>n), compare estabilidade da seleção do Lasso com 100 *splits*.
+3. Use **Elastic Net** e faça *grid search* em $\alpha \in (0, 0.25, 0.5, 0.75, 1)$, reportando RMSE de teste e nº de variáveis selecionadas.
+4. Represente graficamente as **curvas dos coeficientes** e interprete.
+
+
+
+# Referências
+
+* Hastie, Tibshirani & Friedman (2009). *The Elements of Statistical Learning*.
+* James et al. (2021). *An Introduction to Statistical Learning*, cap. 6.
+* Documentação `glmnet` (vignette): `vignette("glmnet")`.
+
+---

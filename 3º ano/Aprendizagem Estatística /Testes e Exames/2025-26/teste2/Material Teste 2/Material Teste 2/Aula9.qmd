@@ -1,0 +1,572 @@
+---
+title: "Inferência Estatística"
+author: " "
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    incremental: true
+    chalkboard: false
+    smaller: true 
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup, echo=FALSE}
+set.seed(123)
+```
+
+
+## Motivação
+
+* Em Estatística descritiva **resumimos** dados observados.
+* Em **Inferência Estatística** pretendemos:
+
+  * Tirar **conclusões sobre a população**, a partir de uma **amostra aleatória**, e quantificar a **incerteza** dessas conclusões.
+
+Exemplos:
+
+* Estimar a **média** de uma característica numa população.
+* Estimar a **proporção** de indivíduos com determinada propriedade.
+* Testar se um novo tratamento é **mais eficaz** que o atual.
+
+---
+
+## Conceitos básicos
+
+* **População**: conjunto de todos os indivíduos/objetos.
+* **Parâmetro**: quantidade numérica de interesse na população
+  (por ex., média $\mu$, variância $\sigma^2$, proporção $p$).
+* **Amostra aleatória**: $X_1, \dots, X_n$ iid
+* **Estatística**: função da amostra (por ex., $\bar X$, $S^2$, $\hat p$).
+
+A ideia central é:
+
+> Usar uma **estatística** para aprender sobre um **parâmetro desconhecido**.
+
+---
+
+# Estimação Pontual
+
+## Estimadores
+
+Um **estimador** de um parâmetro $\theta$ é uma estatística $\hat\theta = \hat\theta(X_1,\dots,X_n)$.
+
+Exemplos:
+
+* Estimador da média populacional $\mu$:
+  $\hat\mu = \bar X = \dfrac{1}{n}\sum_{i=1}^n X_i$.
+* Estimador da variância populacional $\sigma^2$:
+  $S^2 = \dfrac{1}{n-1}\sum_{i=1}^n (X_i - \bar X)^2$.
+* Estimador da proporção populacional $p$:
+  $\hat p = \dfrac{1}{n}\sum_{i=1}^n I_{{X_i=1}}$ (nº de sucessos / $n$).
+
+---
+
+## Propriedades de estimadores
+
+Algumas propriedades desejáveis:
+
+* **Não-enviesado** (ou centrado):
+  $\mathbb{E}[\hat\theta] = \theta$.
+
+* **Consistência**:
+  $\hat\theta \to \theta$ em probabilidade, quando $n \to \infty$.
+
+* **Eficiência**:
+  Menor variância entre estimadores “razoáveis” de $\theta$.
+
+Exemplos clássicos:
+
+* Se $X_1,\dots,X_n$ iid com média $\mu$ e variância $\sigma^2$ finita,
+  então $\bar X$ é não-enviesado para $\mu$ e consistente.
+
+---
+
+## Exemplo em R: estimar a média
+
+Suponha que $X \sim N(\mu=10,\sigma^2=4)$ e recolhemos uma amostra de tamanho $n=30$.
+
+```{r}
+n <- 30
+mu <- 10
+sigma <- 2
+
+x <- rnorm(n, mean = mu, sd = sigma)
+
+mean(x)      # estimativa pontual da média
+var(x)       # estimativa (não ajustada) da variância
+sd(x)        # desvio padrão amostral
+```
+
+---
+
+Podemos repetir esta experiência muitas vezes para ver como a média amostral varia.
+
+```{r}
+B <- 1000
+medias <- numeric(B)
+
+for(b in 1:B){
+  x_b <- rnorm(n, mean = mu, sd = sigma)
+  medias[b] <- mean(x_b)
+}
+
+mean(medias)  # aproxima-se de mu = 10
+sd(medias)    # aproxima-se de sigma/sqrt(n)
+```
+
+---
+
+# Intervalos de Confiança
+
+## Ideia geral
+
+Um **intervalo de confiança** (IC) para um parâmetro $\theta$ é um intervalo aleatório:
+
+$$
+IC(X_1,\dots,X_n) = [L(X_1,\dots,X_n),, U(X_1,\dots,X_n)]
+$$
+
+tal que:
+
+$$
+\mathbb{P}\big(\theta \in [L,U]\big) = 1 - \alpha,
+$$
+
+onde $1-\alpha$ é o **nível de confiança** (por ex., 0.95).
+
+
+
+Interpretar:
+
+* O verdadeiro parâmetro estará em $(1-\alpha)*100\%$ dos intervalos calculados.
+* Não é correto dizer “a probabilidade de $\theta$ estar neste intervalo é 0.95” (em frequentista puro); o parâmetro é fixo.
+
+---
+
+## IC para a média com $\sigma$ conhecida
+
+Suponha $X_1,\dots,X_n$ iid $N(\mu,\sigma^2)$ com **$\sigma$ conhecida**.
+
+Então:
+
+$$
+\bar X \sim N\left(\mu,\frac{\sigma^2}{n}\right).
+$$
+
+Usando a normal padrão $Z$:
+
+$$
+\mathbb{P}\left(-z_{1-\alpha/2} \le
+\frac{\bar X - \mu}{\sigma/\sqrt{n}} \le z_{1-\alpha/2}\right) = 1-\alpha.
+$$
+
+Consequentemente:
+
+$$
+\mathbb{P}\left(\bar X - z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}
+\le \mu \le
+\bar X + z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1 - \alpha.
+$$
+---
+
+Logo, um IC $(1-\alpha)$ para $\mu$ é:
+
+$$
+\left[\bar X - z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},;
+\bar X + z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right].
+$$
+
+---
+
+## IC para a média com $\sigma$ desconhecida (amostras pequenas)
+
+Quando $\sigma$ é desconhecida, usamos a variância amostral $S^2$ e a distribuição $t$ de Student:
+
+$$
+T = \frac{\bar X - \mu}{S/\sqrt{n}} \sim t_{n-1},
+$$
+
+assumindo normalidade.
+
+Então um IC $(1-\alpha)$ para $\mu$ é:
+
+$$
+\left[\bar X - t_{n-1;1-\alpha/2}\frac{S}{\sqrt{n}},;
+\bar X + t_{n-1;1-\alpha/2}\frac{S}{\sqrt{n}}\right].
+$$
+
+---
+
+## IC para proporção populacional $p$
+
+Seja $X \sim \text{Bin}(n,p)$, número de sucessos numa amostra de tamanho $n$.
+
+A proporção amostral é:
+
+$$
+\hat{p} = \frac{X}{n}.
+$$
+
+Para $n$ suficientemente grande,
+$\hat{p}$ é aproximadamente normal com média $p$ e variância $p(1-p)/n$.
+
+Um IC aproximado $(1-\alpha)$ para $p$:
+
+$$
+\left[\hat p - z_{1-\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}},;
+\hat p + z_{1-\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}\right].
+$$
+
+---
+
+## Exemplo em R: IC para a média
+
+Exemplo: amostra de tamanho $n=20$, supõe-se normalidade, $\sigma$ desconhecida.
+
+```{r}
+set.seed(123)
+n <- 20
+x <- rnorm(n, mean = 5, sd = 1.5)
+
+mean(x)
+sd(x)
+
+t.test(x, conf.level = 0.95)$conf.int
+```
+
+O `t.test()` devolve:
+
+* intervalo de confiança para a média, assumindo normalidade e $\sigma$ desconhecida.
+
+---
+
+## Exemplo em R: IC para uma proporção
+
+Suponha que, num inquérito, 40 de 100 alunos usam transporte público.
+
+```{r}
+sucessos <- 40
+n <- 100
+
+prop.test(sucessos, n)$conf.int
+```
+
+* `prop.test()` calcula um intervalo de confiança (normal aproximado com correcções).
+
+---
+
+# Testes de Hipóteses
+
+## Ideia geral
+
+Um **teste de hipóteses** é uma técnica estatística que tem como objetivo decidir, com base numa amostra, se:
+
+* Aceitamos (não rejeitamos) uma hipótese $H_0$, ou
+* Rejeitamos $H_0$ a favor de uma alternativa $H_1$.
+
+Exemplos:
+
+* $H_0: \mu = \mu_0$ vs $H_1: \mu \ne \mu_0$.
+* $H_0: p = p_0$ vs $H_1: p > p_0$.
+
+---
+
+Elementos de um teste:
+
+* **Hipótese nula** $H_0$ e **alternativa** $H_1$.
+* **Estatística de teste** ($T$).
+* **Região crítica** (ou valor crítico).
+* **p-valor**.
+* **Nível de significância** $\alpha$ (por ex., 0.05).
+
+---
+
+## Erros tipo I e tipo II
+
+* **Erro tipo I**: rejeitar $H_0$ quando $H_0$ é verdadeira.
+  A probabilidade deste erro é o nível de significância $\alpha$.
+
+* **Erro tipo II**: não rejeitar $H_0$ quando $H_1$ é verdadeira.
+  A probabilidade deste erro é $\beta$.
+
+* **Poder do teste**: $1 - \beta$ (probabilidade de rejeitar $H_0$ quando $H_1$ é verdadeira).
+
+Na prática: escolhemos $\alpha$ (por ex. 0.05) e tentamos ter um teste com poder elevado.
+
+---
+
+## Teste t para a média (1 amostra)
+
+Suponha $X_1,\dots,X_n$ iid N(\mu,\sigma^2)$, $\sigma$ desconhecida.
+
+Queremos testar:
+
+$$
+H_0: \mu = \mu_0 \quad \text{vs} \quad H_1: \mu \ne \mu_0.
+$$
+
+Estatística de teste:
+
+$$
+T = \frac{\bar X - \mu_0}{S/\sqrt{n}} \sim t_{n-1} \quad \text{sob } H_0.
+$$
+
+Regra de decisão a nível $\alpha$:
+
+* Rejeitar $H_0$ se $|T| > t_{n-1;1-\alpha/2}$, ou
+* Equivalentemente, se o $p$-valor $< \alpha$.
+
+---
+
+## Exemplo em R: teste t (1 amostra)
+
+Um fabricante afirma que a média de vida de uma lâmpada é $\mu_0 = 1000$ horas.
+Amostra de $n=25$ lâmpadas:
+
+```{r}
+set.seed(123)
+n <- 25
+mu0 <- 1000
+
+vida <- rnorm(n, mean = 980, sd = 80)
+
+mean(vida)
+sd(vida)
+```
+
+Teste:
+
+```{r}
+t.test(vida, mu = mu0, alternative = "two.sided")
+```
+
+---
+
+
+## Teste para proporção (1 amostra)
+
+Queremos testar:
+
+$$
+H_0: p = p_0 \quad vs \quad H_1: p \ne p_0.
+$$
+
+Se $X \sim \text{Bin}(n,p)$, então $\hat p = X/n$.
+
+Para $n$ grande, uma estatística de teste aproximada é:
+
+$$
+Z = \frac{\hat p - p_0}{\sqrt{p_0 (1-p_0)/n}} \approx N(0,1) \quad \text{sob } H_0.
+$$
+
+Regra: rejeitar $H_0$ se $|Z| > z_{1-\alpha/2}$ (teste bilateral).
+
+---
+
+## Exemplo em R: teste de proporção
+
+Numa amostra de $n=200$ eleitores, 120 dizem apoiar uma certa medida.
+Queremos testar $H_0: p = 0.5$ vs $H_1: p \ne 0.5$.
+
+```{r}
+x <- 120
+n <- 200
+p0 <- 0.5
+
+prop.test(x, n, p = p0, alternative = "two.sided", correct = FALSE)
+```
+
+---
+
+
+# Inferência na Regressão Linear
+
+## Modelo de regressão linear simples
+
+Suponha que temos pares de observações $(x_i,y_i)$, $i=1,\dots,n$ e que o modelo é:
+
+$$
+Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
+$$
+
+com:
+
+* $\mathbb{E}[\varepsilon_i] = 0$,
+* $\text{Var}(\varepsilon_i) = \sigma^2$,
+* $\varepsilon_i$ independentes e (para inferência clássica) normalmente distribuídos:
+  $\varepsilon_i \sim N(0,\sigma^2)$.
+
+
+Objetivos:
+
+* Estimar $\beta_0$ (intercept) e $\beta_1$ (declive).
+* Fazer **inferência** sobre estes coeficientes:
+
+  * Intervalos de confiança;
+  * Testes de hipótese: por exemplo $H_0: \beta_1 = 0$.
+
+---
+
+## Estimadores de mínimos quadrados
+
+Os **estimadores de mínimos quadrados** são:
+
+$$
+\hat\beta_1 = \frac{\sum_{i=1}^n (x_i - \bar x)(y_i - \bar y)}
+{\sum_{i=1}^n (x_i - \bar x)^2}, \quad
+\hat\beta_0 = \bar y - \hat\beta_1 \bar x.
+$$
+
+Sob as hipóteses do modelo:
+
+* $\hat\beta_0$ e $\hat\beta_1$ são estimadores **não-enviesados**.
+* As suas distribuições (com normalidade dos erros) são:
+
+$$
+\hat\beta_1 \sim N\left(\beta_1,
+\frac{\sigma^2}{\sum_{i=1}^n (x_i - \bar x)^2}\right),
+$$
+
+---
+
+$$
+\hat\beta_0 \sim N\left(\beta_0,
+\sigma^2\left[\frac{1}{n} + \frac{\bar x^2}{\sum_{i=1}^n (x_i - \bar x)^2}\right]\right).
+$$
+
+Na prática, $\sigma^2$ é desconhecida e é substituída por:
+
+$$
+\hat\sigma^2 = \frac{\text{SQR}}{n-2},
+$$
+
+onde SQR é a soma dos quadrados dos resíduos.
+
+---
+
+## Testes de hipótese sobre $\beta_1$
+
+Queremos frequentemente testar:
+
+$$
+H_0: \beta_1 = 0 \quad \text{vs} \quad H_1: \beta_1 \ne 0.
+$$
+
+* $H_0$: não há relação linear entre $x$ e $y$ (no modelo).
+* $H_1$: existe uma relação linear (coeficiente de declive diferente de zero).
+
+Estatística de teste:
+
+$$
+T = \frac{\hat\beta_1 - 0}{\text{sd}(\hat\beta_1)},
+$$
+
+---
+
+onde $\text{sd}(\hat\beta_1)$ é o erro padrão de $\hat\beta_1$.
+Sob $H_0$ e as hipóteses do modelo:
+
+$$
+T \sim t_{n-2}.
+$$
+
+Regra: rejeitar $H_0$ se $|T| > t_{n-2;1-\alpha/2}$ ou se $p$-valor $< \alpha$.
+
+---
+
+## Testes de hipótese sobre $\beta_0$
+
+Analogamente, podemos testar:
+
+$$
+H_0: \beta_0 = \beta_{0,0} \quad (\text{por ex., } 0).
+$$
+
+Estatística:
+
+$$
+T = \frac{\hat\beta_0 - \beta_{0,0}}{\text{sd}(\hat\beta_0)} \sim t_{n-2} \quad \text{sob } H_0.
+$$
+
+Na prática, muitas vezes o interesse principal está em $\beta_1$, mas:
+
+* Testar $\beta_0$ pode ser relevante em alguns contextos (por exemplo, valor esperado de $Y$ quando $x=0$).
+
+---
+
+## Exemplo em R: regressão linear simples
+
+Vamos simular dados em que o verdadeiro modelo é:
+
+$$
+Y = 2 + 0.5 X + \varepsilon, \quad \varepsilon \sim N(0,1).
+$$
+
+```{r}
+set.seed(123)
+n <- 50
+x <- runif(n, 0, 10)          # valores de X entre 0 e 10
+y <- 2 + 0.5 * x + rnorm(n)   # modelo com ruído
+
+dados <- data.frame(x = x, y = y)
+
+# Ajustar o modelo
+mod <- lm(y ~ x, data = dados)
+summary(mod)
+```
+
+---
+
+O `summary(mod)` devolve:
+
+* Estimativas de $\hat\beta_0$ e $\hat\beta_1$,
+* Erros padrão,
+* Estatísticas t e p-valores para os testes de:
+
+  * $H_0: \beta_0 = 0$,
+  * $H_0: \beta_1 = 0$.
+
+---
+
+## Interpretar a saída do R
+
+Na saída de `summary(mod)` (coluna “Coefficients”):
+
+* `Estimate`: estimativa $\hat\beta_j$;
+* `Std. Error`: erro padrão $\text{sd}(\hat\beta_j)$;
+* `t value`: $\dfrac{\hat\beta_j - 0}{\text{sd}(\hat\beta_j)}$;
+* `Pr(>|t|)`: p-valor para $H_0: \beta_j = 0$ vs $H_1: \beta_j \ne 0$.
+
+
+Perguntas típicas:
+
+* O p-valor para o coeficiente de `x` é pequeno (por ex. < 0.05)?
+  → evidência de que $\beta_1 \ne 0$ → associação linear entre $x$ e $y$.
+
+* A estimativa de $\beta_1$ é positiva ou negativa?
+  → indica a direção da relação (crescimento ou decréscimo de $y$ com $x$).
+
+---
+
+## Intervalos de confiança para $\beta_0$ e $\beta_1$
+
+Podemos construir IC $(1-\alpha)$ para os coeficientes:
+
+$$
+\hat\beta_j \pm t_{n-2;1-\alpha/2} \cdot \text{sd}(\hat\beta_j).
+$$
+
+Em R:
+
+```{r}
+confint(mod, level = 0.95)
+```
+
+* O IC para $\beta_1$ indica um intervalo de valores plausíveis para o declive.
+* Se o IC para $\beta_1$ **não contém 0**, isso é consistente com rejeitar $H_0: \beta_1 = 0$ a 5%.
+
+
