@@ -16,3 +16,7 @@ Material do Curso de LCC
 2022/23 - 
 
 2023/24 - José carlos Cruz Costa
+
+2024/25 - José Carlos Cruz Costa
+
+2025/26 - José Carlos Cruz Costa
