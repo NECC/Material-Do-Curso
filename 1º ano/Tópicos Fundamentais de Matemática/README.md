@@ -16,3 +16,7 @@ Material do Curso de LCC
 2022/23 - Maria Paula Freitas Sousa Mendes Martins
 
 2023/24 - Maria Paula Freitas Sousa Mendes Martins
+
+2024/25 - Maria Paula Freitas Sousa Mendes Martins
+
+2025/26 - Luís Filipe Ribeiro Pinto

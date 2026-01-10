@@ -16,3 +16,7 @@ Material do Curso de LCC
 2022/23 - Maria Joana Costa Cruz Oliveira Torres 
 
 2023/24 - Maria Joana Costa Cruz Oliveira Torres
+
+2024/25 - Maria Joana Costa Cruz Oliveira Torres
+
+2025/26 - Fernando Augusto Pinto Miranda
