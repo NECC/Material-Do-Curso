@@ -1,0 +1,14 @@
+start
+    pushs "Função simples que escreve 77 no monitor: "
+    writes
+    pusha f1
+    call
+    writeln
+    pushs "That's all folks!"
+    writes
+stop
+
+f1:
+    pushi 77
+    writei
+    return

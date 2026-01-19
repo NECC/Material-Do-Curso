@@ -1,0 +1,29 @@
+start
+        alloc 2
+        alloc 5
+
+        pushst 0
+        pushi 73
+        store 0 // a[0] = 73
+
+        pushst 0
+        pushi 55
+        store 1 // a[1] = 55
+
+        pushst 1
+        pushi 23
+        store 0
+
+        pushst 0
+        load 0
+        writei
+
+        pushst 0
+        load 1
+        writei
+
+        pushst 1
+        load 0
+        writei
+    
+    stop

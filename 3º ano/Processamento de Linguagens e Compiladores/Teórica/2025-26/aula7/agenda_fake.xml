@@ -1,0 +1,1189 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<agenda>
+	<entrada id="e1" tipo="pessoa">
+		<nome>José Martins Costa</nome>
+		<email>josemartinscosta@di.uminho.pt</email>
+		<telefone>253-131244</telefone>
+	</entrada>
+
+	<entrada id="e2" tipo="pessoa">
+		<nome>Rui Silva</nome>
+		<email>ruisilva@universidade.pt</email>
+		<telefone>911-948749</telefone>
+	</entrada>
+
+	<entrada id="e3" tipo="pessoa">
+		<nome>Paulo Ramalho Rodrigues</nome>
+		<telefone>218-498382</telefone>
+	</entrada>
+
+	<entrada id="e4" tipo="pessoa">
+		<nome>Carmen Santos</nome>
+		<email>carmensantos@universidade.pt</email>
+		<telefone>911-969693</telefone>
+	</entrada>
+
+	<entrada id="e5" tipo="pessoa">
+		<nome>Carmen Pereira Martins</nome>
+		<email>carmenpereiramartins@example.pt</email>
+		<telefone>913-391476</telefone>
+	</entrada>
+
+	<entrada id="e6" tipo="pessoa">
+		<nome>Carmen Carmen Rodrigues</nome>
+		<email>carmencarmenrodrigues@di.uminho.pt</email>
+		<telefone>229-660086</telefone>
+	</entrada>
+
+	<entrada id="e7" tipo="pessoa">
+		<nome>Paulo Gomes</nome>
+		<email>paulogomes@contactos.org</email>
+		<telefone>253-340174</telefone>
+	</entrada>
+
+	<entrada id="e8" tipo="pessoa">
+		<nome>Ana Pereira Correia</nome>
+		<email>apc@contactos.org</email>
+		<telefone>914-249811</telefone>
+	</entrada>
+
+	<entrada id="e9" tipo="pessoa">
+		<nome>Rui Nunes Correia</nome>
+		<email>ruinunescorreia@mail.pt</email>
+		<telefone>229-634277</telefone>
+	</entrada>
+
+	<entrada id="e10" tipo="pessoa">
+		<nome>João Oliveira</nome>
+		<email>joaooliveira@di.uminho.pt</email>
+		<telefone>914-654816</telefone>
+	</entrada>
+
+	<entrada id="e11" tipo="pessoa">
+		<nome>Rita Silva</nome>
+		<email>ritasilva@mail.pt</email>
+		<telefone>912-216970</telefone>
+	</entrada>
+
+	<entrada id="e12" tipo="pessoa">
+		<nome>Paulo Gomes</nome>
+		<email>paulogomes@di.uminho.pt</email>
+		<telefone>911-982554</telefone>
+	</entrada>
+
+	<entrada id="e13" tipo="pessoa">
+		<nome>Helena Carmen Ferreira</nome>
+		<email>helenacarmenferreira@di.uminho.pt</email>
+		<telefone>914-120422</telefone>
+	</entrada>
+
+	<entrada id="e14" tipo="pessoa">
+		<nome>Carmen Alves Martins</nome>
+		<email>carmenalvesmartins@di.uminho.pt</email>
+		<telefone>218-897549</telefone>
+	</entrada>
+
+	<entrada id="e15" tipo="pessoa">
+		<nome>Pedro Beatriz Nunes Moura</nome>
+		<email>pedrobeatriznunesmoura@example.pt</email>
+		<telefone>231-847581</telefone>
+	</entrada>
+
+	<entrada id="e16" tipo="pessoa">
+		<nome>Carmen Moura</nome>
+		<email>cm@di.uminho.pt</email>
+		<telefone>231-717024</telefone>
+	</entrada>
+
+	<entrada id="e17" tipo="pessoa">
+		<nome>Manuel Santos Santos</nome>
+		<email>mss@example.pt</email>
+		<telefone>914-324643</telefone>
+	</entrada>
+
+	<entrada id="e18" tipo="pessoa">
+		<nome>Marta Martins</nome>
+		<email>mm@di.uminho.pt</email>
+		<telefone>912-544154</telefone>
+	</entrada>
+
+	<entrada id="e19" tipo="pessoa">
+		<nome>João Costa Ramalho</nome>
+		<email>jcr@example.pt</email>
+		<telefone>914-246991</telefone>
+	</entrada>
+
+	<entrada id="e20" tipo="pessoa">
+		<nome>Carlos Pereira</nome>
+		<email>carlospereira@di.uminho.pt</email>
+		<telefone>253-197793</telefone>
+	</entrada>
+
+	<entrada id="e21" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>913-609231</telefone>
+	</entrada>
+
+	<entrada id="e22" tipo="pessoa">
+		<nome>Leonor Ferreira</nome>
+		<telefone>914-399105</telefone>
+	</entrada>
+
+	<entrada id="e23" tipo="pessoa">
+		<nome>Rita Sousa Alves</nome>
+		<email>rsa@contactos.org</email>
+		<telefone>912-159942</telefone>
+	</entrada>
+
+	<entrada id="e24" tipo="pessoa">
+		<nome>Beatriz Moura Moura</nome>
+		<email>bmm@empresa.pt</email>
+		<telefone>231-523389</telefone>
+	</entrada>
+
+	<entrada id="e25" tipo="pessoa">
+		<nome>Marta Helena Santos</nome>
+		<email>martahelenasantos@empresa.pt</email>
+		<telefone>911-314181</telefone>
+	</entrada>
+
+	<entrada id="e26" tipo="pessoa">
+		<nome>Ana Leonor Oliveira</nome>
+		<email>alo@di.uminho.pt</email>
+		<telefone>218-176819</telefone>
+	</entrada>
+
+	<entrada id="e27" tipo="pessoa">
+		<nome>Mariana Castro</nome>
+		<email>mc@example.pt</email>
+		<telefone>911-741390</telefone>
+	</entrada>
+
+	<entrada id="e28" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>253-800305</telefone>
+	</entrada>
+
+	<entrada id="e29" tipo="pessoa">
+		<nome>Luis Costa</nome>
+		<email>lc@di.uminho.pt</email>
+		<telefone>229-385577</telefone>
+	</entrada>
+
+	<entrada id="e30" tipo="pessoa">
+		<nome>Miguel Rodrigues</nome>
+		<email>miguelrodrigues@mail.pt</email>
+		<telefone>253-196781</telefone>
+	</entrada>
+
+	<entrada id="e31" tipo="pessoa">
+		<nome>Carlos Ana Oliveira</nome>
+		<email>carlosanaoliveira@empresa.pt</email>
+		<telefone>253-217308</telefone>
+	</entrada>
+
+	<entrada id="e32" tipo="pessoa">
+		<nome>Pedro Castro</nome>
+		<email>pc@mail.pt</email>
+		<telefone>253-475190</telefone>
+	</entrada>
+
+	<entrada id="e33" tipo="pessoa">
+		<nome>Rui Castro</nome>
+		<email>ruicastro@empresa.pt</email>
+		<telefone>231-270395</telefone>
+	</entrada>
+
+	<entrada id="e34" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>913-125990</telefone>
+	</entrada>
+
+	<entrada id="e35" tipo="pessoa">
+		<nome>Ana Lopes</nome>
+		<email>analopes@mail.pt</email>
+		<telefone>218-501124</telefone>
+	</entrada>
+
+	<entrada id="e36" tipo="pessoa">
+		<nome>Beatriz Sofia Castro</nome>
+		<email>bsc@di.uminho.pt</email>
+		<telefone>913-444207</telefone>
+	</entrada>
+
+	<entrada id="e37" tipo="pessoa">
+		<nome>Manuel Gomes</nome>
+		<email>manuelgomes@empresa.pt</email>
+		<telefone>253-220944</telefone>
+	</entrada>
+
+	<entrada id="e38" tipo="pessoa">
+		<nome>Carlos Carlos Santos Lopes</nome>
+		<email>carloscarlossantoslopes@universidade.pt</email>
+		<telefone>218-503906</telefone>
+	</entrada>
+
+	<entrada id="e39" tipo="empresa">
+		<nome>Oficina Auto R�pida</nome>
+		<telefone>913-101773</telefone>
+	</entrada>
+
+	<entrada id="e40" tipo="pessoa">
+		<nome>Rita Rodrigues</nome>
+		<email>ritarodrigues@mail.pt</email>
+		<telefone>218-854717</telefone>
+	</entrada>
+
+	<entrada id="e41" tipo="empresa">
+		<nome>Consultoria X</nome>
+		<telefone>913-442027</telefone>
+	</entrada>
+
+	<entrada id="e42" tipo="pessoa">
+		<nome>Luis Rodrigues</nome>
+		<telefone>229-745414</telefone>
+	</entrada>
+
+	<entrada id="e43" tipo="pessoa">
+		<nome>Leonor Silva</nome>
+		<email>leonorsilva@empresa.pt</email>
+		<telefone>914-563246</telefone>
+	</entrada>
+
+	<entrada id="e44" tipo="pessoa">
+		<nome>Miguel Ferreira</nome>
+		<email>miguelferreira@empresa.pt</email>
+		<telefone>231-805477</telefone>
+	</entrada>
+
+	<entrada id="e45" tipo="pessoa">
+		<nome>Miguel João Martins</nome>
+		<email>migueljoaomartins@universidade.pt</email>
+		<telefone>231-853240</telefone>
+	</entrada>
+
+	<entrada id="e46" tipo="pessoa">
+		<nome>Beatriz Oliveira</nome>
+		<email>beatrizoliveira@di.uminho.pt</email>
+		<telefone>231-284430</telefone>
+	</entrada>
+
+	<entrada id="e47" tipo="pessoa">
+		<nome>Mariana Nunes Costa</nome>
+		<email>mariananunescosta@contactos.org</email>
+		<telefone>912-891937</telefone>
+	</entrada>
+
+	<entrada id="e48" tipo="empresa">
+		<nome>Consultoria X</nome>
+		<telefone>913-970914</telefone>
+	</entrada>
+
+	<entrada id="e49" tipo="empresa">
+		<nome>Mercearia Central</nome>
+		<telefone>914-571932</telefone>
+	</entrada>
+
+	<entrada id="e50" tipo="pessoa">
+		<nome>Rui Gomes</nome>
+		<email>ruigomes@mail.pt</email>
+		<telefone>911-345884</telefone>
+	</entrada>
+
+	<entrada id="e51" tipo="pessoa">
+		<nome>Ana Pereira Martins</nome>
+		<email>apm@example.pt</email>
+		<telefone>913-446954</telefone>
+	</entrada>
+
+	<entrada id="e52" tipo="pessoa">
+		<nome>Inês Inês Henriques</nome>
+		<email>inesineshenriques@empresa.pt</email>
+		<telefone>253-468845</telefone>
+	</entrada>
+
+	<entrada id="e53" tipo="pessoa">
+		<nome>Leonor Lopes</nome>
+		<email>leonorlopes@example.pt</email>
+		<telefone>911-557007</telefone>
+	</entrada>
+
+	<entrada id="e54" tipo="pessoa">
+		<nome>Leonor Henriques</nome>
+		<email>leonorhenriques@empresa.pt</email>
+		<telefone>913-720644</telefone>
+	</entrada>
+
+	<entrada id="e55" tipo="pessoa">
+		<nome>José Inês Oliveira</nome>
+		<email>jio@mail.pt</email>
+		<telefone>912-453894</telefone>
+	</entrada>
+
+	<entrada id="e56" tipo="pessoa">
+		<nome>Leonor Lopes Pereira</nome>
+		<email>leonorlopespereira@di.uminho.pt</email>
+	</entrada>
+
+	<entrada id="e57" tipo="pessoa">
+		<nome>Manuel Santos</nome>
+		<telefone>253-751517</telefone>
+	</entrada>
+
+	<entrada id="e58" tipo="pessoa">
+		<nome>Pedro Costa</nome>
+		<email>pedrocosta@mail.pt</email>
+		<telefone>218-915573</telefone>
+	</entrada>
+
+	<entrada id="e59" tipo="pessoa">
+		<nome>Luis José Alves</nome>
+		<telefone>231-179688</telefone>
+	</entrada>
+
+	<entrada id="e60" tipo="pessoa">
+		<nome>Rui Luis Carvalho</nome>
+		<email>ruiluiscarvalho@di.uminho.pt</email>
+		<telefone>913-793655</telefone>
+	</entrada>
+
+	<entrada id="e61" tipo="pessoa">
+		<nome>Mariana Silva</nome>
+		<email>ms@mail.pt</email>
+		<telefone>914-841666</telefone>
+	</entrada>
+
+	<entrada id="e62" tipo="pessoa">
+		<nome>Paulo Gomes</nome>
+		<telefone>914-556732</telefone>
+	</entrada>
+
+	<entrada id="e63" tipo="pessoa">
+		<nome>Marta Martins</nome>
+		<email>martamartins@example.pt</email>
+		<telefone>913-452737</telefone>
+	</entrada>
+
+	<entrada id="e64" tipo="pessoa">
+		<nome>Ana Miguel Castro</nome>
+		<email>anamiguelcastro@contactos.org</email>
+		<telefone>253-641722</telefone>
+	</entrada>
+
+	<entrada id="e65" tipo="empresa">
+		<nome>Lavandaria Tudo Branco</nome>
+		<telefone>913-612311</telefone>
+	</entrada>
+
+	<entrada id="e66" tipo="pessoa">
+		<nome>Rui Sousa</nome>
+		<email>rs@universidade.pt</email>
+		<telefone>911-796212</telefone>
+	</entrada>
+
+	<entrada id="e67" tipo="pessoa">
+		<nome>Beatriz Castro</nome>
+		<email>bc@contactos.org</email>
+		<telefone>911-363615</telefone>
+	</entrada>
+
+	<entrada id="e68" tipo="pessoa">
+		<nome>Miguel Nunes</nome>
+		<email>mn@contactos.org</email>
+		<telefone>911-205409</telefone>
+	</entrada>
+
+	<entrada id="e69" tipo="pessoa">
+		<nome>Luis Paulo Alves Nunes</nome>
+		<email>lpan@di.uminho.pt</email>
+		<telefone>229-768854</telefone>
+	</entrada>
+
+	<entrada id="e70" tipo="pessoa">
+		<nome>Beatriz José Correia Sousa</nome>
+		<email>bjcs@di.uminho.pt</email>
+		<telefone>914-219629</telefone>
+	</entrada>
+
+	<entrada id="e71" tipo="pessoa">
+		<nome>Leonor Correia</nome>
+		<email>lc@empresa.pt</email>
+		<telefone>218-360247</telefone>
+	</entrada>
+
+	<entrada id="e72" tipo="pessoa">
+		<nome>Inês Carvalho Moura</nome>
+		<email>inescarvalhomoura@mail.pt</email>
+		<telefone>913-420214</telefone>
+	</entrada>
+
+	<entrada id="e73" tipo="pessoa">
+		<nome>João Costa</nome>
+		<email>jc@contactos.org</email>
+		<telefone>231-282256</telefone>
+	</entrada>
+
+	<entrada id="e74" tipo="pessoa">
+		<nome>Paulo Sofia Carvalho</nome>
+		<email>psc@mail.pt</email>
+		<telefone>914-174637</telefone>
+	</entrada>
+
+	<entrada id="e75" tipo="pessoa">
+		<nome>Carlos Correia</nome>
+		<telefone>231-779094</telefone>
+	</entrada>
+
+	<entrada id="e76" tipo="pessoa">
+		<nome>Carlos Pereira Alves</nome>
+		<email>carlospereiraalves@mail.pt</email>
+		<telefone>914-822131</telefone>
+	</entrada>
+
+	<entrada id="e77" tipo="pessoa">
+		<nome>Leonor Moura</nome>
+		<email>leonormoura@universidade.pt</email>
+		<telefone>911-127121</telefone>
+	</entrada>
+
+	<entrada id="e78" tipo="pessoa">
+		<nome>Marta Silva</nome>
+		<email>ms@di.uminho.pt</email>
+		<telefone>229-593355</telefone>
+	</entrada>
+
+	<entrada id="e79" tipo="pessoa">
+		<nome>Sofia Ferreira</nome>
+		<email>sofiaferreira@di.uminho.pt</email>
+		<telefone>913-449499</telefone>
+	</entrada>
+
+	<entrada id="e80" tipo="pessoa">
+		<nome>António Ramalho</nome>
+		<email>antonioramalho@universidade.pt</email>
+		<telefone>253-576919</telefone>
+	</entrada>
+
+	<entrada id="e81" tipo="pessoa">
+		<nome>Carlos Henriques</nome>
+		<email>ch@empresa.pt</email>
+		<telefone>253-296694</telefone>
+	</entrada>
+
+	<entrada id="e82" tipo="pessoa">
+		<nome>Helena Moreira</nome>
+		<email>helenamoreira@mail.pt</email>
+		<telefone>914-227324</telefone>
+	</entrada>
+
+	<entrada id="e83" tipo="pessoa">
+		<nome>Helena Ferreira</nome>
+		<email>helenaferreira@example.pt</email>
+	</entrada>
+
+	<entrada id="e84" tipo="empresa">
+		<nome>Mercearia Central</nome>
+		<telefone>229-622584</telefone>
+	</entrada>
+
+	<entrada id="e85" tipo="empresa">
+		<nome>Pastelaria Doce Lar</nome>
+		<telefone>911-535673</telefone>
+	</entrada>
+
+	<entrada id="e86" tipo="pessoa">
+		<nome>Beatriz Rita Oliveira</nome>
+		<telefone>229-173201</telefone>
+	</entrada>
+
+	<entrada id="e87" tipo="pessoa">
+		<nome>Inês Moura Silva</nome>
+		<email>ims@empresa.pt</email>
+		<telefone>914-255813</telefone>
+	</entrada>
+
+	<entrada id="e88" tipo="pessoa">
+		<nome>Beatriz Nunes</nome>
+		<email>beatriznunes@example.pt</email>
+	</entrada>
+
+	<entrada id="e89" tipo="pessoa">
+		<nome>Leonor Inês Santos</nome>
+		<email>leonorinessantos@universidade.pt</email>
+		<telefone>229-619389</telefone>
+	</entrada>
+
+	<entrada id="e90" tipo="empresa">
+		<nome>Oficina Auto Rápida</nome>
+		<telefone>912-205239</telefone>
+	</entrada>
+
+	<entrada id="e91" tipo="pessoa">
+		<nome>Sofia Sofia Silva</nome>
+		<email>sofiasofiasilva@example.pt</email>
+		<telefone>911-455007</telefone>
+	</entrada>
+
+	<entrada id="e92" tipo="pessoa">
+		<nome>Leonor Ramalho</nome>
+		<email>lr@mail.pt</email>
+		<telefone>914-667296</telefone>
+	</entrada>
+
+	<entrada id="e93" tipo="pessoa">
+		<nome>Manuel Luis Martins</nome>
+		<email>mlm@contactos.org</email>
+		<telefone>218-565230</telefone>
+	</entrada>
+
+	<entrada id="e94" tipo="pessoa">
+		<nome>Luis Santos</nome>
+		<email>ls@universidade.pt</email>
+		<telefone>913-693418</telefone>
+	</entrada>
+
+	<entrada id="e95" tipo="pessoa">
+		<nome>Paulo Manuel Carvalho</nome>
+		<email>pmc@empresa.pt</email>
+		<telefone>914-768891</telefone>
+	</entrada>
+
+	<entrada id="e96" tipo="pessoa">
+		<nome>Carlos Moreira</nome>
+		<email>cm@universidade.pt</email>
+		<telefone>911-769975</telefone>
+	</entrada>
+
+	<entrada id="e97" tipo="empresa">
+		<nome>Loja Bom Preço</nome>
+		<telefone>911-308894</telefone>
+	</entrada>
+
+	<entrada id="e98" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>231-499889</telefone>
+	</entrada>
+
+	<entrada id="e99" tipo="pessoa">
+		<nome>Marta Alves Henriques</nome>
+		<email>martaalveshenriques@contactos.org</email>
+		<telefone>253-735863</telefone>
+	</entrada>
+
+	<entrada id="e100" tipo="pessoa">
+		<nome>Luis Martins</nome>
+		<email>luismartins@empresa.pt</email>
+		<telefone>229-758765</telefone>
+	</entrada>
+
+	<entrada id="e101" tipo="pessoa">
+		<nome>João Moreira Castro</nome>
+		<email>jmc@mail.pt</email>
+		<telefone>913-284171</telefone>
+	</entrada>
+
+	<entrada id="e102" tipo="pessoa">
+		<nome>Rita Castro</nome>
+		<telefone>911-964749</telefone>
+	</entrada>
+
+	<entrada id="e103" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>912-943298</telefone>
+	</entrada>
+
+	<entrada id="e104" tipo="pessoa">
+		<nome>Manuel Rui Henriques</nome>
+		<email>mrh@universidade.pt</email>
+		<telefone>218-576877</telefone>
+	</entrada>
+
+	<entrada id="e105" tipo="pessoa">
+		<nome>Carlos Castro Martins</nome>
+		<email>carloscastromartins@empresa.pt</email>
+		<telefone>231-779112</telefone>
+	</entrada>
+
+	<entrada id="e106" tipo="pessoa">
+		<nome>Sofia Alves</nome>
+		<email>sa@di.uminho.pt</email>
+		<telefone>914-221761</telefone>
+	</entrada>
+
+	<entrada id="e107" tipo="pessoa">
+		<nome>Rita Sofia Castro</nome>
+		<email>ritasofiacastro@universidade.pt</email>
+		<telefone>229-535037</telefone>
+	</entrada>
+
+	<entrada id="e108" tipo="pessoa">
+		<nome>Beatriz Gomes Castro</nome>
+		<email>beatrizgomescastro@example.pt</email>
+		<telefone>218-818987</telefone>
+	</entrada>
+
+	<entrada id="e109" tipo="pessoa">
+		<nome>Carmen Carlos Rodrigues</nome>
+		<telefone>218-794963</telefone>
+	</entrada>
+
+	<entrada id="e110" tipo="pessoa">
+		<nome>Helena Santos</nome>
+		<email>hs@empresa.pt</email>
+		<telefone>231-714867</telefone>
+	</entrada>
+
+	<entrada id="e111" tipo="pessoa">
+		<nome>Rui Oliveira</nome>
+		<email>ro@example.pt</email>
+	</entrada>
+
+	<entrada id="e112" tipo="pessoa">
+		<nome>Paulo José Oliveira Martins</nome>
+		<email>pjom@mail.pt</email>
+		<telefone>913-651640</telefone>
+	</entrada>
+
+	<entrada id="e113" tipo="pessoa">
+		<nome>Manuel Castro</nome>
+		<email>manuelcastro@empresa.pt</email>
+		<telefone>911-580292</telefone>
+	</entrada>
+
+	<entrada id="e114" tipo="pessoa">
+		<nome>José Beatriz Henriques</nome>
+		<email>josebeatrizhenriques@universidade.pt</email>
+		<telefone>218-437758</telefone>
+	</entrada>
+
+	<entrada id="e115" tipo="pessoa">
+		<nome>Manuel Helena Correia</nome>
+		<email>manuelhelenacorreia@empresa.pt</email>
+		<telefone>913-203996</telefone>
+	</entrada>
+
+	<entrada id="e116" tipo="pessoa">
+		<nome>António Nunes</nome>
+		<email>antonionunes@example.pt</email>
+		<telefone>914-518098</telefone>
+	</entrada>
+
+	<entrada id="e117" tipo="pessoa">
+		<nome>António Ramalho</nome>
+		<email>ar@universidade.pt</email>
+		<telefone>218-197758</telefone>
+	</entrada>
+
+	<entrada id="e118" tipo="pessoa">
+		<nome>Carmen Nunes Nunes</nome>
+		<email>carmennunesnunes@universidade.pt</email>
+		<telefone>913-856086</telefone>
+	</entrada>
+
+	<entrada id="e119" tipo="pessoa">
+		<nome>Luis Castro Moura</nome>
+		<email>luiscastromoura@example.pt</email>
+		<telefone>912-986438</telefone>
+	</entrada>
+
+	<entrada id="e120" tipo="pessoa">
+		<nome>António Correia Lopes</nome>
+		<email>antoniocorreialopes@empresa.pt</email>
+		<telefone>253-738577</telefone>
+	</entrada>
+
+	<entrada id="e121" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>253-289179</telefone>
+	</entrada>
+
+	<entrada id="e122" tipo="pessoa">
+		<nome>Luis Castro Oliveira</nome>
+		<email>luiscastrooliveira@example.pt</email>
+		<telefone>253-196214</telefone>
+	</entrada>
+
+	<entrada id="e123" tipo="pessoa">
+		<nome>Miguel Moreira</nome>
+		<email>miguelmoreira@empresa.pt</email>
+		<telefone>253-263137</telefone>
+	</entrada>
+
+	<entrada id="e124" tipo="pessoa">
+		<nome>Helena Manuel Gomes</nome>
+		<email>helenamanuelgomes@universidade.pt</email>
+		<telefone>218-461939</telefone>
+	</entrada>
+
+	<entrada id="e125" tipo="pessoa">
+		<nome>Luis Correia</nome>
+		<email>lc@universidade.pt</email>
+	</entrada>
+
+	<entrada id="e126" tipo="pessoa">
+		<nome>Miguel Rodrigues</nome>
+		<email>mr@di.uminho.pt</email>
+		<telefone>913-284229</telefone>
+	</entrada>
+
+	<entrada id="e127" tipo="pessoa">
+		<nome>Rita Moura</nome>
+		<email>rm@universidade.pt</email>
+		<telefone>253-557409</telefone>
+	</entrada>
+
+	<entrada id="e128" tipo="pessoa">
+		<nome>Manuel Correia</nome>
+		<email>manuelcorreia@mail.pt</email>
+		<telefone>253-440544</telefone>
+	</entrada>
+
+	<entrada id="e129" tipo="pessoa">
+		<nome>Helena Castro Costa</nome>
+		<email>helenacastrocosta@empresa.pt</email>
+		<telefone>911-882033</telefone>
+	</entrada>
+
+	<entrada id="e130" tipo="pessoa">
+		<nome>Ana Pereira</nome>
+		<email>anapereira@mail.pt</email>
+		<telefone>229-347745</telefone>
+	</entrada>
+
+	<entrada id="e131" tipo="pessoa">
+		<nome>Carlos Helena Oliveira</nome>
+		<email>cho@contactos.org</email>
+		<telefone>914-814220</telefone>
+	</entrada>
+
+	<entrada id="e132" tipo="empresa">
+		<nome>Consultoria X</nome>
+		<telefone>912-757685</telefone>
+	</entrada>
+
+	<entrada id="e133" tipo="pessoa">
+		<nome>Sofia Sofia Alves</nome>
+		<email>ssa@di.uminho.pt</email>
+		<telefone>914-139434</telefone>
+	</entrada>
+
+	<entrada id="e134" tipo="pessoa">
+		<nome>Luis Manuel Carvalho</nome>
+		<email>luismanuelcarvalho@contactos.org</email>
+		<telefone>914-949153</telefone>
+	</entrada>
+
+	<entrada id="e135" tipo="pessoa">
+		<nome>Miguel Sousa</nome>
+		<telefone>912-849014</telefone>
+	</entrada>
+
+	<entrada id="e136" tipo="pessoa">
+		<nome>Paulo Sofia Moreira</nome>
+		<email>psm@mail.pt</email>
+		<telefone>912-811875</telefone>
+	</entrada>
+
+	<entrada id="e137" tipo="pessoa">
+		<nome>Ana António Nunes</nome>
+		<email>anaantonionunes@contactos.org</email>
+		<telefone>229-449555</telefone>
+	</entrada>
+
+	<entrada id="e138" tipo="pessoa">
+		<nome>Pedro Alves</nome>
+		<email>pa@empresa.pt</email>
+		<telefone>218-424620</telefone>
+	</entrada>
+
+	<entrada id="e139" tipo="pessoa">
+		<nome>Ana Moura Lopes</nome>
+		<email>aml@mail.pt</email>
+		<telefone>231-458332</telefone>
+	</entrada>
+
+	<entrada id="e140" tipo="empresa">
+		<nome>Mercearia Central</nome>
+		<telefone>229-262471</telefone>
+	</entrada>
+
+	<entrada id="e141" tipo="pessoa">
+		<nome>António Nunes</nome>
+		<email>an@mail.pt</email>
+		<telefone>229-726258</telefone>
+	</entrada>
+
+	<entrada id="e142" tipo="pessoa">
+		<nome>Paulo Helena Ferreira</nome>
+		<email>phf@contactos.org</email>
+		<telefone>914-740255</telefone>
+	</entrada>
+
+	<entrada id="e143" tipo="pessoa">
+		<nome>Sofia Rui Alves</nome>
+		<email>sofiaruialves@example.pt</email>
+		<telefone>914-584106</telefone>
+	</entrada>
+
+	<entrada id="e144" tipo="pessoa">
+		<nome>Leonor Lopes</nome>
+		<email>leonorlopes@example.pt</email>
+		<telefone>253-772324</telefone>
+	</entrada>
+
+	<entrada id="e145" tipo="pessoa">
+		<nome>Carmen Costa</nome>
+		<email>cc@di.uminho.pt</email>
+		<telefone>911-571145</telefone>
+	</entrada>
+
+	<entrada id="e146" tipo="empresa">
+		<nome>Oficina Auto Rápida</nome>
+		<telefone>218-332823</telefone>
+	</entrada>
+
+	<entrada id="e147" tipo="pessoa">
+		<nome>Carmen Lopes Moura</nome>
+		<email>clm@di.uminho.pt</email>
+		<telefone>253-434165</telefone>
+	</entrada>
+
+	<entrada id="e148" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>912-929822</telefone>
+	</entrada>
+
+	<entrada id="e149" tipo="pessoa">
+		<nome>João Sousa</nome>
+		<email>joaosousa@universidade.pt</email>
+		<telefone>218-119927</telefone>
+	</entrada>
+
+	<entrada id="e150" tipo="pessoa">
+		<nome>Pedro Carvalho</nome>
+		<email>pc@mail.pt</email>
+		<telefone>231-540218</telefone>
+	</entrada>
+
+	<entrada id="e151" tipo="pessoa">
+		<nome>Helena Costa</nome>
+		<email>helenacosta@contactos.org</email>
+		<telefone>231-853448</telefone>
+	</entrada>
+
+	<entrada id="e152" tipo="pessoa">
+		<nome>Inês Carmen Martins</nome>
+		<email>inescarmenmartins@empresa.pt</email>
+		<telefone>218-651613</telefone>
+	</entrada>
+
+	<entrada id="e153" tipo="pessoa">
+		<nome>Mariana Henriques</nome>
+		<email>mh@mail.pt</email>
+		<telefone>253-474440</telefone>
+	</entrada>
+
+	<entrada id="e154" tipo="pessoa">
+		<nome>Carmen António Correia</nome>
+		<email>cac@empresa.pt</email>
+		<telefone>229-970720</telefone>
+	</entrada>
+
+	<entrada id="e155" tipo="pessoa">
+		<nome>Sofia Sousa</nome>
+		<email>ss@universidade.pt</email>
+		<telefone>231-145934</telefone>
+	</entrada>
+
+	<entrada id="e156" tipo="pessoa">
+		<nome>João Alves</nome>
+		<telefone>911-138399</telefone>
+	</entrada>
+
+	<entrada id="e157" tipo="pessoa">
+		<nome>Miguel Santos</nome>
+		<email>ms@mail.pt</email>
+		<telefone>913-879414</telefone>
+	</entrada>
+
+	<entrada id="e158" tipo="pessoa">
+		<nome>Leonor Ferreira</nome>
+		<email>leonorferreira@empresa.pt</email>
+		<telefone>218-862400</telefone>
+	</entrada>
+
+	<entrada id="e159" tipo="pessoa">
+		<nome>Inês Ferreira</nome>
+		<email>if@contactos.org</email>
+		<telefone>914-731894</telefone>
+	</entrada>
+
+	<entrada id="e160" tipo="pessoa">
+		<nome>Paulo Castro</nome>
+		<email>paulocastro@empresa.pt</email>
+	</entrada>
+
+	<entrada id="e161" tipo="pessoa">
+		<nome>João Leonor Castro</nome>
+		<email>jlc@di.uminho.pt</email>
+		<telefone>914-136489</telefone>
+	</entrada>
+
+	<entrada id="e162" tipo="pessoa">
+		<nome>Rui Castro</nome>
+		<telefone>229-812048</telefone>
+	</entrada>
+
+	<entrada id="e163" tipo="pessoa">
+		<nome>Carmen Pereira</nome>
+		<email>cp@contactos.org</email>
+		<telefone>218-127172</telefone>
+	</entrada>
+
+	<entrada id="e164" tipo="pessoa">
+		<nome>Beatriz Nunes Gomes</nome>
+		<email>bng@empresa.pt</email>
+		<telefone>914-309902</telefone>
+	</entrada>
+
+	<entrada id="e165" tipo="pessoa">
+		<nome>Manuel Moreira</nome>
+		<email>manuelmoreira@mail.pt</email>
+		<telefone>218-676713</telefone>
+	</entrada>
+
+	<entrada id="e166" tipo="pessoa">
+		<nome>Luis Ferreira</nome>
+		<email>lf@example.pt</email>
+		<telefone>231-928766</telefone>
+	</entrada>
+
+	<entrada id="e167" tipo="pessoa">
+		<nome>Carmen Castro</nome>
+		<telefone>218-168941</telefone>
+	</entrada>
+
+	<entrada id="e168" tipo="pessoa">
+		<nome>Beatriz Lopes</nome>
+		<email>beatrizlopes@contactos.org</email>
+		<telefone>914-813145</telefone>
+	</entrada>
+
+	<entrada id="e169" tipo="pessoa">
+		<nome>Pedro Nunes</nome>
+		<email>pedronunes@universidade.pt</email>
+		<telefone>253-971776</telefone>
+	</entrada>
+
+	<entrada id="e170" tipo="pessoa">
+		<nome>Pedro Ferreira</nome>
+		<email>pf@empresa.pt</email>
+		<telefone>218-362778</telefone>
+	</entrada>
+
+	<entrada id="e171" tipo="pessoa">
+		<nome>Rita Alves</nome>
+		<email>ritaalves@empresa.pt</email>
+		<telefone>229-279516</telefone>
+	</entrada>
+
+	<entrada id="e172" tipo="pessoa">
+		<nome>Helena Correia Silva</nome>
+		<email>helenacorreiasilva@empresa.pt</email>
+		<telefone>231-904214</telefone>
+	</entrada>
+
+	<entrada id="e173" tipo="pessoa">
+		<nome>Helena Sousa</nome>
+		<email>helenasousa@mail.pt</email>
+		<telefone>913-411882</telefone>
+	</entrada>
+
+	<entrada id="e174" tipo="pessoa">
+		<nome>João Inês Sousa</nome>
+		<email>jis@contactos.org</email>
+		<telefone>912-518084</telefone>
+	</entrada>
+
+	<entrada id="e175" tipo="pessoa">
+		<nome>Carmen Costa</nome>
+		<email>cc@example.pt</email>
+		<telefone>253-404309</telefone>
+	</entrada>
+
+	<entrada id="e176" tipo="empresa">
+		<nome>Restaurante Mar Azul</nome>
+		<telefone>231-267457</telefone>
+	</entrada>
+
+	<entrada id="e177" tipo="pessoa">
+		<nome>Marta Rodrigues</nome>
+		<email>martarodrigues@universidade.pt</email>
+		<telefone>914-124302</telefone>
+	</entrada>
+
+	<entrada id="e178" tipo="pessoa">
+		<nome>Leonor Martins Castro</nome>
+		<email>lmc@empresa.pt</email>
+		<telefone>914-399628</telefone>
+	</entrada>
+
+	<entrada id="e179" tipo="pessoa">
+		<nome>António Gomes</nome>
+		<email>ag@universidade.pt</email>
+		<telefone>231-480133</telefone>
+	</entrada>
+
+	<entrada id="e180" tipo="pessoa">
+		<nome>Manuel Moreira</nome>
+		<email>manuelmoreira@contactos.org</email>
+		<telefone>229-201377</telefone>
+	</entrada>
+
+	<grupo gid="g1">
+		<entrada id="e181" tipo="pessoa">
+			<nome>Ana Castro</nome>
+			<email>anacastro@empresa.pt</email>
+			<telefone>253-243693</telefone>
+		</entrada>
+		<entrada id="e182" tipo="pessoa">
+			<nome>Beatriz Oliveira</nome>
+			<email>bo@empresa.pt</email>
+			<telefone>913-746447</telefone>
+		</entrada>
+		<ref entref="e76"/>
+		<ref entref="e95"/>
+		<ref entref="e158"/>
+	</grupo>
+	<grupo gid="g2">
+		<entrada id="e183" tipo="pessoa">
+			<nome>Luis Moura</nome>
+			<email>luismoura@mail.pt</email>
+			<telefone>253-486251</telefone>
+		</entrada>
+		<entrada id="e184" tipo="pessoa">
+			<nome>António Correia</nome>
+			<email>antoniocorreia@contactos.org</email>
+			<telefone>914-378428</telefone>
+		</entrada>
+		<ref entref="e57"/>
+		<ref entref="e35"/>
+		<ref entref="e123"/>
+	</grupo>
+	<grupo gid="g3">
+		<entrada id="e185">
+			<nome>Marta Santos</nome>
+			<telefone>913-254954</telefone>
+		</entrada>
+		<entrada id="e186" tipo="pessoa">
+			<nome>Rui António Rodrigues Ramalho</nome>
+			<email>ruiantoniorodriguesramalho@example.pt</email>
+			<telefone>914-989587</telefone>
+		</entrada>
+		<ref entref="e40"/>
+		<ref entref="e117"/>
+		<ref entref="e156"/>
+	</grupo>
+	<grupo gid="g4">
+		<entrada id="e187" tipo="pessoa">
+			<nome>João Moura Ramalho</nome>
+			<telefone>913-428993</telefone>
+		</entrada>
+		<entrada id="e188">
+			<nome>Sofia Ramalho</nome>
+			<telefone>911-739711</telefone>
+		</entrada>
+		<ref entref="e96"/>
+		<ref entref="e107"/>
+		<ref entref="e180"/>
+	</grupo>
+	<grupo gid="g5">
+		<entrada id="e189" tipo="pessoa">
+			<nome>Rui Alves Alves</nome>
+			<email>ruialvesalves@contactos.org</email>
+			<telefone>912-603110</telefone>
+		</entrada>
+		<entrada id="e190" tipo="pessoa">
+			<nome>Carlos Correia</nome>
+			<email>carloscorreia@mail.pt</email>
+			<telefone>229-404561</telefone>
+		</entrada>
+		<ref entref="e141"/>
+		<ref entref="e121"/>
+		<ref entref="e138"/>
+	</grupo>
+	<grupo gid="g6">
+		<entrada id="e191" tipo="pessoa">
+			<nome>Manuel Moreira</nome>
+			<email>mm@empresa.pt</email>
+			<telefone>911-243941</telefone>
+		</entrada>
+		<entrada id="e192" tipo="pessoa">
+			<nome>Marta João Moura Martins</nome>
+			<email>martajoaomouramartins@contactos.org</email>
+			<telefone>229-105433</telefone>
+		</entrada>
+		<ref entref="e171"/>
+		<ref entref="e56"/>
+		<ref entref="e64"/>
+	</grupo>
+	<grupo gid="g7">
+		<entrada id="e193">
+			<nome>Paulo Sousa</nome>
+			<telefone>911-436768</telefone>
+		</entrada>
+		<entrada id="e194" tipo="pessoa">
+			<nome>João Pereira</nome>
+			<email>joaopereira@di.uminho.pt</email>
+			<telefone>229-538184</telefone>
+		</entrada>
+		<ref entref="e175"/>
+		<ref entref="e153"/>
+		<ref entref="e21"/>
+	</grupo>
+	<grupo gid="g8">
+		<entrada id="e195" tipo="pessoa">
+			<nome>Paulo Santos</nome>
+			<email>paulosantos@contactos.org</email>
+			<telefone>911-139286</telefone>
+		</entrada>
+		<entrada id="e196" tipo="pessoa">
+			<nome>Marta Ramalho Nunes</nome>
+			<email>martaramalhonunes@example.pt</email>
+			<telefone>914-386090</telefone>
+		</entrada>
+		<ref entref="e135"/>
+		<ref entref="e115"/>
+		<ref entref="e136"/>
+	</grupo>
+	<grupo gid="g9">
+		<entrada id="e197" tipo="pessoa">
+			<nome>António Moreira</nome>
+			<email>am@mail.pt</email>
+			<telefone>231-284019</telefone>
+		</entrada>
+		<entrada id="e198" tipo="pessoa">
+			<nome>Leonor Moura</nome>
+			<email>lm@example.pt</email>
+			<telefone>231-107161</telefone>
+		</entrada>
+		<ref entref="e93"/>
+		<ref entref="e20"/>
+		<ref entref="e145"/>
+	</grupo>
+	<grupo gid="g10">
+		<entrada id="e199" tipo="pessoa">
+			<nome>Rui Gomes</nome>
+			<email>ruigomes@di.uminho.pt</email>
+			<telefone>912-826420</telefone>
+		</entrada>
+		<entrada id="e200" tipo="pessoa">
+			<nome>António Ferreira</nome>
+			<email>antonioferreira@contactos.org</email>
+			<telefone>218-769737</telefone>
+		</entrada>
+		<ref entref="e29"/>
+		<ref entref="e16"/>
+		<ref entref="e141"/>
+	</grupo>
+</agenda>

@@ -1,0 +1,42 @@
+    start
+        pushi 0 
+
+        pushs "Quantos elementos terá a sua lista?"
+        writes
+        writeln
+        read
+        atoi
+        storeg 0
+
+        pushg 0     // Reservo espaço na Heap para a lista
+        allocn 
+        pushg 0
+        pushi 1
+        sub
+        storeg 0
+
+    ciclo:
+        pushst 0
+        pushg 0   // calcula indice (i): a[i]
+        pushs "Introduza o valor "
+        writes
+        pushg 0
+        pushi 1
+        add
+        writei 
+        pushs ": "
+        writes      // write('Introduza o valor  ', i, ': ');
+        read
+        atoi
+        storen // a[i] = read()
+
+        pushg 0 // i = i + 1
+        pushi 1
+        sub
+        storeg 0
+
+        pushg 0 // Foram feitas n leituras?
+        pushi 0
+        sup   // i > 0
+        jz ciclo
+    stop

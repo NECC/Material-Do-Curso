@@ -1,0 +1,63 @@
+        start
+
+        pushi 0  // i = 0
+        pushn 5  // array[5] = {0}
+
+        pushs "Introduza 5 valores inteiros:"
+        writes
+        writeln     // writeln('Introduza 5 valores inteiros:');
+ciclo:
+        pushgp
+        pushi 1
+        padd      // calcula endr base de a
+        pushg 0   // calcula indice (i): a[i]
+        pushs "Introduza o valor "
+        writes
+        pushg 0
+        pushi 1
+        add
+        writei 
+        pushs ": "
+        writes      // write('Introduza o valor  ', i, ': ');
+        read
+        atoi
+        storen // a[i] = read()
+
+        pushg 0 // i = i + 1
+        pushi 1
+        add
+        storeg 0
+
+        pushg 0 // Foram feitas 5 leituras?
+        pushi 5
+        equal   // i == 5
+        jz ciclo
+        writeln
+
+        // Escreve a lista lida
+        pushi 0
+        storeg 0  // i = 0
+        pushs "Acabou de introduzir: "
+        writes
+        writeln
+                
+ciclo2: 
+        pushgp
+        pushi 1
+        padd
+        pushg 0
+        loadn
+        writei    // print a[i]
+        writeln
+
+        pushg 0 // i = i + 1
+        pushi 1
+        add
+        storeg 0
+
+        pushg 0 // Foram feitas 5 leituras?
+        pushi 5
+        equal   // i == 5
+        jz ciclo2
+        
+        stop

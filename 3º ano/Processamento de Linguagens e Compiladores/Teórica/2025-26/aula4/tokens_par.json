@@ -1,0 +1,22 @@
+[
+    {
+        "id": "PA",
+        "expreg": "\\("
+    },
+    {
+        "id": "PF",
+        "expreg": "\\)"
+    },
+    {
+        "id": "SKIP",
+        "expreg": "[ \\t]"
+    },
+    {
+        "id": "NEWLINE",
+        "expreg": "\\n"
+    },
+    {
+        "id": "ERRO",
+        "expreg": "."
+    }
+]

@@ -1,0 +1,21 @@
+    start
+        pushi 2     // Reservo espaço na Heap para 2 inteiros
+        allocn 
+
+        pushst 0
+        pushi 73
+        store 0 // a[0] = 73
+
+        pushst 0
+        pushi 55
+        store 1 // a[1] = 55
+
+        pushst 0
+        load 0
+        writei
+
+        pushst 0
+        load 1
+        writei
+    
+    stop

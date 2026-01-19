@@ -1,0 +1,74 @@
+start
+    pushn 10    // reserva espaço para uma lista de 10 elementos
+
+    pushs "Função que lê uma lista: "
+    writes
+    pushgp      // param 1: endereço base da lista
+    pushi 5     // param 2: número de elementos a ler
+    pusha leLista
+    call
+
+    pushgp      // param 1: endereço base da lista
+    pushi 5     // param 2: número de elementos a escrever
+    pusha escreveLista
+    call
+    
+    writeln
+    pushs "That's all folks!"
+    writes
+stop
+
+leLista:
+        pushi  0   // variável de controlo do número de elementos a ler 
+        storel 0
+    
+        pushs "Introduza 5 valores inteiros:"
+        writes
+        writeln     // writeln('Introduza 5 valores inteiros:');
+    ciclo:
+        pushl -2    // endereço base da lista
+        
+        pushl 0   // calcula indice (i): a[i]
+        pushs "Introduza o valor "
+        writes
+        pushl 0
+        pushi 1
+        add
+        writei 
+        pushs ": "
+        writes      // write('Introduza o valor  ', i, ': ');
+        read
+        atoi
+        storen // a[i] = read()
+
+        pushl 0 // i = i + 1
+        pushi 1
+        add
+        storel 0
+
+        pushl 0 // Foram feitas 5 leituras?
+        pushi 5
+        equal   // i == 5
+        jz ciclo
+    return
+
+escreveLista:
+        pushi  0   // variável de controlo do número de elementos a ler 
+        storel 0
+    ciclo2:
+        pushl -2    // endereço base da lista
+        pushl 0     // indice (i): a[i]
+        loadn
+        writei
+        writeln
+        
+        pushl 0 // i = i + 1
+        pushi 1
+        add
+        storel 0
+
+        pushl 0 // Foram feitas 5 leituras?
+        pushi 5
+        equal   // i == 5
+        jz ciclo2
+    return

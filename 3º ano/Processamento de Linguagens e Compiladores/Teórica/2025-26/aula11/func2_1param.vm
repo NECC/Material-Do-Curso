@@ -1,0 +1,20 @@
+start
+    pushs "Função simples que calcula o dobro de 67: "
+    writes
+    pushi 0    // espaço para o resultado
+    pushi 67   // parâmetro
+    pusha dobro
+    call
+    pop 1
+    writei
+    writeln
+    pushs "That's all folks!"
+    writes
+stop
+
+dobro:
+    pushl  -1   // get arg1
+    pushi   2
+    mul
+    storel -2  
+    return

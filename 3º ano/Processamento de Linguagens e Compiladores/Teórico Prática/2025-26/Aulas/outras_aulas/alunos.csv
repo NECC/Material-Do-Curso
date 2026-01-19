@@ -1,0 +1,101 @@
+id_aluno,nome,curso,tpc1,tpc2,tpc3,tpc4
+"a1","Aysha Melanie Gilberto","LEI",12,8,19,8
+"a2","Igor André Cantanhede","ENGFIS",12,16,18,20
+"a3","Laurénio Narciso","ENGFIS",8,14,15,14
+"a4","Jasnoor Casegas","LCC",14,20,17,11
+"a5","Tawseef Rebouças","ENGBIOM",13,14,13,17
+"a6","Eryk Clementino","LEI",10,19,11,14
+"a7","Ianna Noivo","ENGBIOM",15,15,17,16
+"a8","Ayla Thaissa Reina","ENGBIOM",12,8,8,18
+"a9","Cássia Viviane Coitã","ENGFIS",19,9,14,10
+"a10","Koby Vindima","LEI",9,14,20,13
+"a11","Gustavo Martim Hernandez","ENGBIOM",11,8,14,11
+"a12","Siddarta Beiriz","LEI",17,10,16,16
+"a13","Daniela Patrícia Montes","ENGBIOM",15,15,18,19
+"a14","Kaylla Pessego","LCC",10,14,17,15
+"a15","Bianca Cristina Primitivo","ENGBIOM",16,9,18,10
+"a16","Magna Galhardo","ENGFIS",20,18,9,14
+"a17","Grace Isabel Patriarca","LCC",19,13,9,10
+"a18","Saubhagya Buco","LEI",18,18,17,8
+"a19","Ivo Vicente Boisa","ENGBIOM",14,10,18,13
+"a20","Vivaan Castilhos","ENGFIS",15,14,11,12
+"a21","Layana Camejo","ENGFIS",17,12,10,20
+"a22","Mahdi Menoita","ENGFIS",11,16,8,16
+"a23","Yifan Cortinado","LEI",19,16,8,18
+"a24","Éder Sodré","ENGFIS",17,13,14,12
+"a25","Dhriti Magano","ENGFIS",19,11,8,19
+"a26","Steve Devesa","ENGBIOM",10,16,8,13
+"a27","Lisandro Mariano Picassinos","ENGFIS",13,10,16,10
+"a28","Itiel Quinoy","LEI",18,18,8,9
+"a29","Pranika Reimoo","LEI",12,16,15,13
+"a30","Manaia Viseu","ENGFIS",8,12,20,11
+"a31","Eva Manuel Caio","ENGFIS",12,16,20,16
+"a32","Ariane Sofia Foja","LEI",20,19,13,18
+"a33","Jaime António Pauseiro","LCC",19,13,8,10
+"a34","Tanisha Marzagoo","ENGBIOM",14,19,13,14
+"a35","Siyon Anca","LEI",8,13,19,15
+"a36","Diana Beatriz Boavista","LCC",19,18,17,12
+"a37","Elisiário Saberio","ENGFIS",18,18,10,19
+"a38","Maira Brites","ENGFIS",13,16,15,17
+"a39","Victória Gabriela Incenso","LEI",17,14,13,8
+"a40","Najua Serôdio","LCC",17,9,16,18
+"a41","Lachezar Rosas","ENGBIOM",16,18,18,15
+"a42","Kattleya Trigueiro","ENGFIS",19,16,14,15
+"a43","Tatiana Guiomar Maricoto","LCC",19,8,15,11
+"a44","Mélanie Daniela Bugalhão","LCC",17,9,17,18
+"a45","Imayame Hespanha","ENGFIS",20,17,19,11
+"a46","Yuri Gabriel Baganha","LCC",15,18,12,16
+"a47","Moisés João Cornelio","LEI",20,16,19,17
+"a48","Nazir Assif Trinta","LEI",14,14,12,8
+"a49","Karamjot Arezes","LEI",10,9,20,12
+"a50","Rishit Justa","ENGBIOM",9,9,9,12
+"a51","Iara de Jesus Gonçalo","ENGFIS",14,8,12,14
+"a52","Stepfan Owusu Lercas","LEI",18,9,16,14
+"a53","Abner Umbelina","ENGBIOM",20,16,10,13
+"a54","Dânia Lucy Montelobo","LEI",18,19,15,11
+"a55","Myla Lopez","ENGFIS",9,17,12,20
+"a56","Hakeem Brazão","LEI",18,18,13,20
+"a57","Quinn Aveiro","ENGBIOM",17,16,9,13
+"a58","Etienne Constentino","ENGBIOM",15,8,9,13
+"a59","Emanuel Marcos Delfina","LEI",9,15,8,13
+"a60","Mariana Catarina Ramalheira","ENGBIOM",17,19,19,11
+"a61","Bradley Tabau","LCC",16,19,16,12
+"a62","Ahmadou Bamba Calcinha","LCC",13,20,8,16
+"a63","Francisco Pedro Derresa","ENGFIS",8,12,20,18
+"a64","Gil Miguel Lima","ENGBIOM",16,19,8,14
+"a65","Leonor Pedro Carqueijeiro","ENGBIOM",19,11,17,8
+"a66","Genrikh Maximovich Vila-Chã","ENGFIS",12,15,13,9
+"a67","Mayra Larissa Rolo","LCC",15,14,17,12
+"a68","Leandro David Dunhoo","ENGBIOM",15,14,11,15
+"a69","Adele Belchior","ENGBIOM",17,12,20,12
+"a70","Frantceska Borreca","ENGFIS",18,11,19,8
+"a71","Derrick Urias","ENGFIS",11,10,8,14
+"a72","Ana Gabriel Quirino","LCC",10,17,8,19
+"a73","Carolina Antoo","ENGBIOM",16,19,20,10
+"a74","Vânia Sofia Porfirio","ENGBIOM",18,19,18,15
+"a75","Dárcio Wosvaldo Tudela","LEI",8,18,9,18
+"a76","Zhara Couxão","ENGFIS",16,10,14,12
+"a77","Tomé Ferrito","LCC",14,10,15,19
+"a78","Iasmin Paloma Chaveiro","LCC",8,15,19,9
+"a79","Sadagi Cruto","ENGBIOM",13,18,14,18
+"a80","Maria Carolina Josué","ENGFIS",17,20,17,18
+"a81","Quaresma Lancastre","ENGBIOM",17,9,16,19
+"a82","Evaldir Gervasio","ENGFIS",16,19,15,8
+"a83","Dolorinda Adolfo","ENGFIS",11,20,16,8
+"a84","Laudário Frasão","LCC",20,19,10,19
+"a85","Rómula Jeronimo","ENGFIS",10,13,12,11
+"a86","Clésio Rodeiro","LCC",9,13,12,18
+"a87","Feliciano José Avis","ENGFIS",9,11,10,9
+"a88","Afonso Adriano Marca","ENGBIOM",8,16,12,15
+"a89","Victória Miguel Rosete","ENGFIS",8,13,13,18
+"a90","Tome Teroso","ENGFIS",9,9,10,17
+"a91","Constança Filipa Melado","LEI",10,12,8,20
+"a92","Madalena Jesus Alfaiate","LEI",17,14,9,17
+"a93","Bivhan Reimbau","LCC",17,11,8,12
+"a94","Viviana Sofia Gaspar","ENGBIOM",16,16,20,14
+"a95","Íris Soraia Chiote","LEI",11,11,17,16
+"a96","Anaïs Sintra","LCC",19,19,12,9
+"a97","Salvador Banaca","LCC",12,9,20,12
+"a98","Guilherme Matias Almeirão","ENGFIS",14,9,12,11
+"a99","Xavier Luís Bulha","ENGFIS",17,13,8,10
+"a100","Tude Searas","LEI",20,17,8,14

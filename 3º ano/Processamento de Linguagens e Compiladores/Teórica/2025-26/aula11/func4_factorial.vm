@@ -1,0 +1,34 @@
+start
+    pushs "Função que calcula o factorial de 4: "
+    writes
+    pushi 0    // espaço para o resultado
+    pushi 4   // parâmetro
+    pusha fact
+    call
+    pop 1
+    writei
+    writeln
+    pushs "That's all folks!"
+    writes
+stop
+
+fact:
+        pushl  -1   // get arg1
+        pushi   1
+        equal
+        jz else
+        pushi 1
+        storel -2
+        return
+    else:
+        pushl -1
+        pushi 0
+        pushl -1
+        pushi 1
+        sub
+        pusha fact
+        call
+        pop 1
+        mul
+        storel -2 
+        return

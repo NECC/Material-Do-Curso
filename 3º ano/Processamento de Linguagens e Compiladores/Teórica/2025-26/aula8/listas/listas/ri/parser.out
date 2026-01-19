@@ -1,0 +1,98 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Lista
+Rule 1     Lista -> [ ]
+Rule 2     Lista -> [ Conteudo ]
+Rule 3     Conteudo -> NUM
+Rule 4     Conteudo -> Conteudo , NUM
+
+Terminals, with rules where they appear
+
+,                    : 4
+NUM                  : 3 4
+[                    : 1 2
+]                    : 1 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+Conteudo             : 2 4
+Lista                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Lista
+    (1) Lista -> . [ ]
+    (2) Lista -> . [ Conteudo ]
+
+    [               shift and go to state 2
+
+    Lista                          shift and go to state 1
+
+state 1
+
+    (0) S' -> Lista .
+
+
+
+state 2
+
+    (1) Lista -> [ . ]
+    (2) Lista -> [ . Conteudo ]
+    (3) Conteudo -> . NUM
+    (4) Conteudo -> . Conteudo , NUM
+
+    ]               shift and go to state 3
+    NUM             shift and go to state 5
+
+    Conteudo                       shift and go to state 4
+
+state 3
+
+    (1) Lista -> [ ] .
+
+    $end            reduce using rule 1 (Lista -> [ ] .)
+
+
+state 4
+
+    (2) Lista -> [ Conteudo . ]
+    (4) Conteudo -> Conteudo . , NUM
+
+    ]               shift and go to state 6
+    ,               shift and go to state 7
+
+
+state 5
+
+    (3) Conteudo -> NUM .
+
+    ]               reduce using rule 3 (Conteudo -> NUM .)
+    ,               reduce using rule 3 (Conteudo -> NUM .)
+
+
+state 6
+
+    (2) Lista -> [ Conteudo ] .
+
+    $end            reduce using rule 2 (Lista -> [ Conteudo ] .)
+
+
+state 7
+
+    (4) Conteudo -> Conteudo , . NUM
+
+    NUM             shift and go to state 8
+
+
+state 8
+
+    (4) Conteudo -> Conteudo , NUM .
+
+    ]               reduce using rule 4 (Conteudo -> Conteudo , NUM .)
+    ,               reduce using rule 4 (Conteudo -> Conteudo , NUM .)
+

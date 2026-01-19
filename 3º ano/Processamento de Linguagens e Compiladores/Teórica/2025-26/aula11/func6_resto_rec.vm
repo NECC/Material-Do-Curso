@@ -1,0 +1,59 @@
+start
+    pushi 0
+    pushi 0
+    pushi 0         // a, b, r: integer;
+
+    pushs "Introduza a: "
+    writes
+    read 
+    atoi
+    storeg 0
+
+    pushs "Introduza b: "
+    writes
+    read 
+    atoi
+    storeg 1 
+
+    pushg 1
+    pushi 0
+    inf
+    jz bPositivo
+    writeln
+    pushs "O divisor deve ser positivo."
+    writes
+bPositivo:
+    pushi 0
+    pushg 0
+    pushg 1
+    pusha resto
+    call
+    pop 2
+    storeg 2
+    writeln
+    pushs "O resto da divisão inteira de a por b é: "
+    writes
+    pushg 2
+    writei
+stop
+
+
+resto:
+        pushl -2
+        pushl -1
+        inf         // a < b
+        jz fimResto
+        pushl -2
+        storel -3
+        return
+    fimResto:
+        pushi 0
+        pushl -2
+        pushl -1
+        sub
+        pushl -1
+        pusha resto
+        call  
+        pop 2
+        storel -3     // return a
+        return
