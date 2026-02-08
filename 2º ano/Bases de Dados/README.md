@@ -16,3 +16,7 @@ Material do Curso de LCC
 2022/23 - 
 
 2023/24 - Antonio Carlos Silva Abelha
+
+2024/25 - Orlando Manuel Oliveira Belo
+
+2025/26 - António Carlos Silva Abelha
