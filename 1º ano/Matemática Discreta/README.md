@@ -17,4 +17,6 @@ Material do Curso de LCC
 
 2023/24 - Ana Cristina Castro Ferreira
 
-2024/25 - 
+2024/25 - Paula Mendes Martins
+
+2025/26 - José Pedro Miranda Mourão Patricio 
