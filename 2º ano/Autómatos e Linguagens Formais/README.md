@@ -18,3 +18,5 @@ Material do Curso de LCC
 2023/24 - José Carlos Cruz Costa
 
 2024/25 - José Carlos Cruz Costa
+
+2025/26 - Luís Filipe Ribeiro Pinto
