@@ -19,4 +19,4 @@ Material do Curso de LCC
 
 2024/25 - Orlando Manuel Oliveira Belo
 
-2025/26 - António Carlos Silva Abelha;Ana Regina Coelho Sousa;Cristiana Marisa Pereira Neto
+2025/26 - António Carlos Silva Abelha; Ana Regina Coelho Sousa; Cristiana Marisa Pereira Neto
