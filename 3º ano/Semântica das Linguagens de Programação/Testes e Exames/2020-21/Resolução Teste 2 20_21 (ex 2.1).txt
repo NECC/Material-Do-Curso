@@ -1,0 +1,32 @@
+2º Teste de 28 Maio de 2021
+
+Questão 2 
+
+2. 
+
+f : Bool → List Int → Int, l : List Int |- λx. listcase l of ( 0, λh.λt. h + (f x t) ) : Bool → Int
+    
+    1. f : Bool → List Int → Int, l : List Int, x : Bool |-  listcase l of ( 0, λh.λt. h + (f x t) ) :Int
+
+        1. f : Bool → List Int → Int, l : List Int, x : Bool |- l : List Int
+
+        2. f : Bool → List Int → Int, l : List Int, x : Bool |- 0 : Int
+
+        3. f : Bool → List Int → Int, l : List Int, x : Bool |- λh.λt. h + (f x t) : Int -> List Int -> Int
+
+            1. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int |- λt. h + (f x t) : List Int -> Int
+
+                1. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- h + (f x t) : Int
+
+                    1. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- h : Int
+
+                    2. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- f x t : Int
+
+                        1. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- f x  : List Int -> Int
+
+                            1. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- f x  : Bool -> List Int -> Int
+
+                            2. 1. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- x : Bool
+
+
+                        2. f : Bool → List Int → Int, l : List Int, x : Bool, h : Int, t : List Int |- t : List Int
