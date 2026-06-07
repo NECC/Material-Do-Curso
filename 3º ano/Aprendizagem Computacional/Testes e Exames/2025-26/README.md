@@ -1,0 +1,1 @@
+Estes dois enunciados foram retirados do repositório de um aluno de LCC: https://david81820.github.io/Recursos-LCC/
