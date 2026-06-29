@@ -17,6 +17,6 @@ Material do Curso de LCC
 
 2023/24 - Ana luísa Novais Marques
 
-2024/25 - 
+2024/25 - Maria Conceição Soares Serra 
 
 2025/26 - Maria Conceição Soares Serra
