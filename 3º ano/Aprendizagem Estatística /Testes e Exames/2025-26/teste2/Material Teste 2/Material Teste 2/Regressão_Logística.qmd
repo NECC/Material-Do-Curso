@@ -1,0 +1,493 @@
+---
+title: "Regressão Logística"
+subtitle: "Introdução, teoria e exemplos em R"
+author: ""
+format:
+  revealjs:
+    theme: solarized
+    slide-number: true
+    transition: fade
+    incremental: true
+execute:
+  echo: true
+  warning: false
+  message: false
+lang: pt
+---
+
+```{r setup, echo=FALSE}
+set.seed(123)
+knitr::opts_chunk$set(fig.align = "center", fig.width = 7, fig.height = 4)
+```
+
+## Índice
+
+* Motivação e contexto
+* Modelo de regressão logística 
+* Função de ligação logit, odds e odds ratio
+* Verosimilhança e estimação por MLE
+* Exemplo em R com dados reais (mtcars)
+* Interpretação de coeficientes
+* Predição e avaliação (ROC, matriz de confusão)
+
+---
+
+## Motivação
+
+* Muitas situações têm **respostas binárias**:
+
+  * Doente / saudável
+  * Aprovado / reprovado
+  * Compra / não compra
+  * 0 / 1
+  
+* Neste caso a regressão linear não é adequada, pois:
+
+  * Pode gerar previsões fora de $[0,1]$
+  * Não respeita a natureza Bernoulli da resposta
+  
+---  
+  
+* A regressão logística:
+
+  * Modela diretamente $P(Y=1 \mid X)$
+  * Usa uma função de ligação apropriada
+
+---
+
+## Variável resposta binária
+
+Seja $Y \in \{0,1\}$ a resposta (por exemplo, 1 = sucesso, 0 = insucesso).
+
+Para um indivíduo com covariáveis $\mathbf{x} = (x_1, \dots, x_p)^\top$:
+
+* $Y \mid \mathbf{X} = \mathbf{x} \sim \text{Bernoulli}(p(\mathbf{x}))$
+* $P(Y=1 \mid \mathbf{X}=\mathbf{x}) = p(\mathbf{x})$
+* $P(Y=0 \mid \mathbf{X}=\mathbf{x}) = 1 - p(\mathbf{x})$
+
+Queremos modelar $p(\mathbf{x})$ em função de $\mathbf{x}$.
+
+---
+
+## Problema da regressão linear
+
+Se tentarmos
+$$
+p(\mathbf{x}) = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p,
+$$
+então:
+
+* Para alguns valores de $\mathbf{x}$, podemos ter $p(\mathbf{x}) < 0$ ou $>1$.
+* A variância de $Y$ é $p(\mathbf{x})(1-p(\mathbf{x}))$, o que viola a suposição de variância constante da regressão linear.
+
+
+---
+
+## Função logit
+
+Definimos o **logit** de $p$ como
+$$
+\text{logit}(p) = \log\left(\frac{p}{1-p}\right), \quad 0<p<1.
+$$
+
+* $\text{logit} : (0,1) \to \mathbb{R}$ é bijetiva.
+* Inversa: se $z = \text{logit}(p)$, então
+  $$
+  p = \frac{e^z}{1+e^z} = \frac{1}{1+e^{-z}}.
+  $$
+
+---
+
+## Modelo de regressão logística
+
+O modelo de regressão logística binária assume:
+$$
+\text{logit}\big(p(\mathbf{x})\big) = \log\left(\frac{p(\mathbf{x})}{1-p(\mathbf{x})}\right)
+= \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p.
+$$
+
+Equivalente a:
+$$
+p(\mathbf{x}) = P(Y=1 \mid \mathbf{X}=\mathbf{x})
+= \frac{1}{1 + \exp\big(-(\beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p)\big)}.
+$$
+
+---
+
+## Interpretação em termos de odds
+
+As **odds** de sucesso são
+$$
+\text{odds}(\mathbf{x}) = \frac{p(\mathbf{x})}{1-p(\mathbf{x})}.
+$$
+
+No modelo logístico:
+$$
+\log{\text{odds}(\mathbf{x})} = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p.
+$$
+
+* Um aumento de 1 unidade em $x_j$:
+
+  * Multiplica as *odds* por $\exp(\beta_j)$.
+  * $\exp(\beta_j)$ é o **odds ratio** associado a $x_j$.
+
+---
+
+## Forma sigmoide da função logística
+
+```{r}
+curve(1/(1+exp(-x)), from = -6, to = 6,
+      xlab = "η = β0 + β1 x", ylab = "p(η)",
+      main = "Função logística (sigmoide)")
+abline(h = c(0.25, 0.5, 0.75), lty = 3, col = "gray")
+abline(v = 0, lty = 2, col = "red")
+```
+
+* Quando $\eta \to -\infty$, $p(\eta) \to 0$.
+* Quando $\eta \to +\infty$, $p(\eta) \to 1$.
+* Para $\eta = 0$, $p = 0{,}5$.
+
+---
+
+## Verosimilhança do modelo
+
+Observamos $n$ pares $(y_i,\mathbf{x}_i)$, com $y_i \in \{0,1\}$.
+
+Assumindo independência:
+$$
+\mathbf{L}(\boldsymbol{\beta})
+= \prod_{i=1}^{n} 
+\big[p(\mathbf{x}_i)\big]^{y_i}
+\big[1 - p(\mathbf{x}_i)\big]^{1 - y_i}.
+$$
+
+
+Log-verosimilhança:
+$$
+\ell(\boldsymbol{\beta})
+= \sum_{i=1}^{n} 
+\left[
+y_i \log p(\mathbf{x}_i)
++ (1 - y_i)\log\big(1 - p(\mathbf{x}_i)\big)
+\right].
+$$
+
+
+---
+
+## Estimação por máxima verosimilhança
+
+Não há solução fechada para $\hat{\boldsymbol{\beta}}$.
+Usam-se métodos numéricos (e.g. Newton–Raphson / IRLS).
+
+Gradiente:
+$$
+\frac{\partial \ell}{\partial \beta_j}
+= \sum_{i=1}^{n} (y_i - p(\mathbf{x}_i))\, x_{ij}.
+$$
+
+Em vector-matriz:
+
+* $\mathbf{y} = (y_1,\dots,y_n)^\top$
+* $\mathbf{p} = (p(\mathbf{x}_1),\dots,p(\mathbf{x}_n))^\top$
+* $X$ matriz $n \times (p+1)$
+
+Então
+$$
+\nabla \ell(\boldsymbol{\beta}) = X^\top(\mathbf{y}-\mathbf{p}).
+$$
+
+---
+
+## Exemplo em R: dados `mtcars`
+
+Vamos modelar a probabilidade de o carro ter **transmissão manual** (`am = 1`) em função do **consumo** (`mpg`) e da **potência** (`hp`).
+
+```{r}
+data(mtcars)
+head(mtcars)
+
+mtcars$am_factor <- factor(mtcars$am, labels = c("Auto", "Manual"))
+table(mtcars$am_factor)
+```
+
+---
+
+## Ajustar o modelo logístico
+
+```{r}
+modelo1 <- glm(am ~ mpg + hp, data = mtcars,
+               family = binomial(link = "logit"))
+
+summary(modelo1)
+```
+
+* `family = binomial(link = "logit")` especifica a regressão logística.
+* Coeficientes são $\hat{\beta}_j$.
+
+---
+
+## Interpretação dos coeficientes
+
+Do output de `summary(modelo1)`:
+
+* Intercept $\hat{\beta}_0$: log-odds de `am=1` quando `mpg=0` e `hp=0` (pouco interpretável).
+* $\hat{\beta}_1$ (para `mpg`):
+
+  * $\exp(\hat{\beta}_1)$: fator multiplicativo nas **odds** de transmissão manual por aumento de 1 mpg, mantendo `hp` constante.
+* $\hat{\beta}_2$ (para `hp`):
+
+  * $\exp(\hat{\beta}_2)$: fator multiplicativo nas odds por aumento de 1 unidade de potência, mantendo `mpg` constante.
+
+```{r}
+exp(coef(modelo1))  # odds ratios aproximados
+```
+
+---
+
+## Predição de probabilidades
+
+```{r}
+# Probabilidades ajustadas
+mtcars$prob_manual <- predict(modelo1, type = "response")
+head(mtcars[, c("mpg", "hp", "am_factor", "prob_manual")])
+
+# Gráfico: probabilidade vs mpg (fixando hp no mediano)
+hp_med <- median(mtcars$hp)
+novo <- data.frame(
+  mpg = seq(min(mtcars$mpg), max(mtcars$mpg), length.out = 100),
+  hp  = hp_med
+)
+novo$prob_manual <- predict(modelo1, newdata = novo, type = "response")
+plot(mtcars$mpg, mtcars$prob_manual,
+     xlab = "mpg", ylab = "Prob(Manual)", pch = 19, col = "gray50",
+     main = "Probabilidade prevista de transmissão manual")
+lines(novo$mpg, novo$prob_manual, col = "blue", lwd = 2)
+```
+
+---
+
+## Classificação e matriz de confusão
+
+Escolhemos um limiar, por exemplo 0.5:
+
+```{r}
+mtcars$am_pred <- ifelse(mtcars$prob_manual >= 0.5, "Manual", "Auto")
+table(Real = mtcars$am_factor, Predito = mtcars$am_pred)
+```
+
+* A partir desta tabela, podemos calcular:
+
+  * Taxa de acerto
+  * Sensibilidade, especificidade
+  * Etc.
+
+---
+
+
+## Matriz de Confusão
+
+|                  | Predito 1 | Predito 0 |
+|------------------|-----------|-----------|
+| **Real 1**       | TP        | FN        |
+| **Real 0**       | FP        | TN        |
+
+- **TP** = verdadeiros positivos  
+- **FN** = falsos negativos  
+- **FP** = falsos positivos  
+- **TN** = verdadeiros negativos  
+
+---
+
+## Sensibilidade (Recall / True Positive Rate)
+
+Probabilidade de o modelo acertar **quando a classe é realmente 1**:
+
+$$
+\text{Sensibilidade}
+= \frac{TP}{TP + FN}.
+$$
+
+Mede a capacidade de **detetar positivos**.
+
+---
+
+## Especificidade (True Negative Rate)
+
+Probabilidade de o modelo acertar **quando a classe é realmente 0**:
+
+$$
+\text{Especificidade}
+= \frac{TN}{TN + FP}.
+$$
+
+Mede a capacidade de **detetar negativos**.
+
+---
+
+## Cálculo em R
+
+```{r}
+cm <- table(real = mtcars$am, pred = fitted(modelo1) > 0.5)
+
+TP <- cm["1","TRUE"]
+FN <- cm["1","FALSE"]
+FP <- cm["0","TRUE"]
+TN <- cm["0","FALSE"]
+
+sensibilidade  <- TP / (TP + FN)
+especificidade <- TN / (TN + FP)
+sensibilidade
+especificidade
+```
+
+
+---
+
+
+## Threshold (cutoff)
+
+O modelo logístico produz probabilidades:
+
+$$
+\hat{p}_i = P(Y=1 \mid X_i)
+$$
+
+Para classificar, escolhemos um threshold $(t)$:
+
+- Classificar como **1** se $( \hat{p}_i \ge t)$
+- Classificar como **0** se $( \hat{p}_i < t )$
+
+---
+
+## Efeito do threshold
+
+- **t baixo** → mais positivos  
+  - ↑ Sensibilidade  
+  - ↓ Especificidade  
+- **t alto** → mais negativos  
+  - ↑ Especificidade  
+  - ↓ Sensibilidade  
+
+---
+
+
+## Curva ROC e AUC 
+
+```{r}
+# install.packages("pROC")
+library(pROC)
+
+roc_obj <- roc(mtcars$am, mtcars$prob_manual)
+plot(roc_obj, main = "Curva ROC - modelo transmissão manual",xlab = "1 - Specificity (FPR)",
+     ylab = "Sensitivity (TPR)")
+auc(roc_obj)
+```
+
+* AUC perto de 1 → muito bom; perto de 0.5 → pouco melhor que aleatório.
+
+---
+
+## Correlação entre preditores
+
+Se quisermos adicionar mais variáveis (por exemplo, peso `wt`):
+
+```{r}
+modelo2 <- glm(am ~ mpg + hp + wt, data = mtcars,
+               family = binomial(link = "logit"))
+
+summary(modelo2)
+```
+
+---
+
+* Atenção a **multicolinearidade**:
+
+  * `mpg` e `wt` são fortemente correlacionadas.
+  * Coeficientes podem tornar-se instáveis.
+
+---
+
+## Comparação de modelos (teste de razão de verosimilhança)
+
+Podemos comparar modelo mais simples vs mais complexo:
+
+* $H_0$: modelo reduzido é suficiente.
+* Estatística:
+  $$
+  D = -2(\ell_{\text{reduzido}} - \ell_{\text{completo}}) \sim \chi^2_{df},
+  $$
+  approx. com df = diferença no nº de parâmetros.
+
+```{r}
+anova(modelo1, modelo2, test = "Chisq")
+```
+
+---
+
+## Medidas de ajuste: desvio e pseudo-(R^2)
+
+No output de `summary(glm)`:
+
+* **Deviance residual** → medida de falta de ajuste.
+* Podem-se definir **pseudo-$R^2$** (ex.: McFadden):
+  $$
+  R^2_{\text{McF}} = 1 - \frac{\ell_{\text{modelo}}}{\ell_{\text{nulo}}}.
+  $$
+
+```{r}
+# Aproximação simples a um pseudo-R2 (McFadden)
+ll_mod  <- logLik(modelo1)
+ll_null <- logLik(update(modelo1, . ~ 1))
+R2_McF  <- 1 - as.numeric(ll_mod / ll_null)
+R2_McF
+```
+
+---
+
+## Diagnóstico gráfico (resíduos)
+
+```{r}
+par(mfrow = c(1,2))
+plot(modelo1, which = 1)  # resíduos vs ajustados
+plot(modelo1, which = 4)  # valores de alavanca
+par(mfrow = c(1,1))
+```
+
+* Procurar:
+
+  * Pontos de alta alavanca
+  * Observações mal ajustadas (resíduos grandes)
+
+---
+
+## Exemplo alternativo (dados simulados)
+
+```{r}
+n <- 200
+x <- runif(n, -2, 2)
+eta <- -0.5 + 2*x
+p <- 1/(1+exp(-eta))
+y <- rbinom(n, size = 1, prob = p)
+
+dados_sim <- data.frame(y = factor(y), x = x)
+
+modelo_sim <- glm(y ~ x, data = dados_sim, family = binomial)
+summary(modelo_sim)
+```
+
+---
+
+## Visualizar ajuste no exemplo simulado
+
+```{r}
+plot(dados_sim$x, as.numeric(dados_sim$y) - 1,
+     xlab = "x", ylab = "y (0/1)",
+     main = "Dados simulados e curva logística", pch = 19, col = "gray60")
+
+x_grid <- seq(min(x), max(x), length.out = 200)
+prob_hat <- predict(modelo_sim, newdata = data.frame(x = x_grid),
+                    type = "response")
+lines(x_grid, prob_hat, col = "blue", lwd = 2)
+```
+
