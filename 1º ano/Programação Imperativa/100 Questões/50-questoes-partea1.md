@@ -1,10 +1,5 @@
 # 50 Questões - Resoluções em C
 
-**Arquivo original:** [questoes.c](/universidade/1ano/2semestre/PI/code/resolucoes/questoes1/questoes.c)
-**Links:**  [[Q1.pdf]]
-
----
-
 ### 1. Maior elemento de uma sequência
 Lê uma sequência de números terminada em 0 e devolve o maior.
 
